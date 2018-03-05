@@ -10,6 +10,7 @@ import { loginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
@@ -29,8 +30,9 @@ import { RouterModule } from '@angular/router';
     loginComponent,
     RegisterPartTwoComponent,
     HomeComponent,
-    PageNotFoundComponent
-    
+    PageNotFoundComponent,
+    ProfileComponent
+
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { RouterModule } from '@angular/router';
       { path: 'registerP2', component: RegisterPartTwoComponent },
       { path: 'login', component: loginComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
     ])

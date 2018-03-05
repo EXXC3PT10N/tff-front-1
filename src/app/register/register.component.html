@@ -1,10 +1,14 @@
-<div>
-  <form (ngSubmit)="sendToS()">
-    <input type="email" name="email" [(ngModel)]="email" /> Email <br>
-    <input type="text" name="login" [(ngModel)]="login" /> Login <br>
-    <input type="password" name="pwd" [(ngModel)]="pwd" /> Hasło <br>
-    <input type="password" name="pwd2" [(ngModel)]="pwd2" />Powtórz hasło <br>
-    <input type="submit" value="Dalej" />
-  </form>
-  {{komunikat}}
+<div class="container-flex">
+
+  <div class="d-flex align-items-center justify-content-center cont flex-column">
+      <a href="/home"><div style="font-size:14px; color:white; margin-bottom:25px;">back to home</div></a>
+      <div style="font-size:24px; color:white; margin-bottom:25px;">tinder for freelancers</div>
+    <form (ngSubmit)="sendToS()" class="d-flex justify-content-around flex-column" style="height: 40vh; width: 15vw;">
+      <input type="email" name="email" [(ngModel)]="email" placeholder="Email"/>
+      <input type="text" name="login" [(ngModel)]="login" placeholder="Username"/>
+      <input type="password" name="pwd" [(ngModel)]="pwd" placeholder="Password"/>
+      <input type="password" name="pwd2" [(ngModel)]="pwd2" placeholder="Confirm password"/>
+      <input type="submit" value="Dalej" class="svg" />
+    </form>
+  </div>
 </div>
