@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 
 export class ProfileComponent implements OnInit {
-
+  path:any = require("./img/edit.png");
 }
