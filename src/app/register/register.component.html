@@ -1,0 +1,10 @@
+<div>
+  <form (onsubmit)="sendToS()">
+    <input type="email" name="email" [(ngModel)]="email" /> Email <br>
+    <input type="text" name="login" [(ngModel)]="login" /> Login <br>
+    <input type="password" name="pwd" [(ngModel)]="pwd" /> Hasło <br>
+    <input type="password" name="pwd2" [(ngModel)]="pwd2" />Powtórz hasło <br>
+    <button (click)="sendToS()" class="btn btn-primary">Dalej</button>
+  </form>
+  {{komunikat}}
+</div>
