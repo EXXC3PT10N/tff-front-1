@@ -16,7 +16,11 @@ import { AuthInterceptorService } from './auth-interceptor.service';
 import { RegisterPartTwoComponent } from './register-part-two/register-part-two.component';
 import { RouterModule } from '@angular/router';
 
+//git add foldery/pliki
+//git commit -m "wiadomosc"
+//git push tff master
 
+//git pull origin master
 
 @NgModule({
   declarations: [
