@@ -1,3 +1,12 @@
-<p>
-  register-part-two works!
-</p>
+<div>
+  <form (ngSubmit)="sendToF()">
+    <input type="text" name="first_name" [(ngModel)]="first_name" placeholder="Imie" />  
+    <input type="text" name="last_name" [(ngModel)]="last_name" placeholder="Nazwisko"/>
+    <input type="text" name="phone" [(ngModel)]="phone" placeholder="Numer telefonu"/>
+    <input type="text" name="city" [(ngModel)]="city" placeholder="Miasto"/>
+    
+    
+
+    <input type="submit" value="Dalej" />
+  </form>
+</div>

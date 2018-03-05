@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -40,7 +40,7 @@ import { RouterModule } from '@angular/router';
     HttpModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'register', component: RegisterComponent},
+      { path: 'register/:type', component: RegisterComponent},
       { path: 'registerP2', component: RegisterPartTwoComponent },
       { path: 'login', component: loginComponent },
       { path: 'home', component: HomeComponent },
@@ -50,7 +50,11 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   providers: [
-    AuthService
+    AuthService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
