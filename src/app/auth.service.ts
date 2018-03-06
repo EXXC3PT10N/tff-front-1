@@ -5,14 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { UserP2 } from './userP2';
+import { Router } from '@angular/router';
+
 
 
 @Injectable()
 export class AuthService {
   private _authUrl = "http://192.168.10.201:3000/api/auth/register";
+  private _loginUrl = "http://192.168.10.201:3000/api/auth/login";
   private _registerP2Url = "";
   TOKEN_KEY: string = 'token';
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _router: Router) { }
 
 
   register(user: User): Observable<User> {
@@ -28,9 +31,16 @@ export class AuthService {
     if(typ == 1)
       this._registerP2Url = "http://192.168.10.201:3000/api/create/employer";
       return this._http.post<any>(this._registerP2Url, user)
-      .do(res => this.saveToken(res.token))
+      
       .catch(this.handleError);
   }
+
+  loginUser(loginData) : Observable<string> {
+    return this._http.post<any>(this._loginUrl, loginData)
+    .do(res => {
+        this.saveToken(res.token);
+    });
+}
 
   checkPass(){
 
@@ -47,6 +57,17 @@ export class AuthService {
   
   saveToken(token) {
     localStorage.setItem(this.TOKEN_KEY, token)
-}
+  }
+
+  isAuthenticated() {
+    return new Promise<boolean>((resolve, reject) => {
+      if(localStorage.getItem(this.TOKEN_KEY) != null) {
+        resolve(true);
+      }
+      else 
+        reject(false);
+    });
+  }
+
 
 }

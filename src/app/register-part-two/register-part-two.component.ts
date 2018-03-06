@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserP2 } from '../userP2';
 import { AuthService } from '../auth.service';
 
@@ -17,7 +17,7 @@ export class RegisterPartTwoComponent implements OnInit {
   typ: number;
   user: UserP2;
 
-  constructor(private _route: ActivatedRoute, private _authService: AuthService) { }
+  constructor(private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) { }
 
   ngOnInit() {
     this.typ = +this._route.snapshot.paramMap.get('type');
@@ -35,7 +35,7 @@ export class RegisterPartTwoComponent implements OnInit {
         user => this.user = user
       );
         
-      //this._router.navigate(['/registerP2']);
+      this._router.navigate(['/registerP3']);
       
     }
      

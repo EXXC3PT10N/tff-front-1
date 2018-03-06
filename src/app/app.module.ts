@@ -16,6 +16,9 @@ import { AuthService } from './auth.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { RegisterPartTwoComponent } from './register-part-two/register-part-two.component';
 import { RouterModule } from '@angular/router';
+import { LoginGuardService } from './login-guard.service';
+import { ProfileService } from './profile.service';
+import { RegisterPartThreeComponent } from './register-part-three/register-part-three.component'
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -31,7 +34,8 @@ import { RouterModule } from '@angular/router';
     RegisterPartTwoComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterPartThreeComponent
 
   ],
   imports: [
@@ -41,10 +45,16 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'register/:type', component: RegisterComponent},
-      { path: 'registerP2', component: RegisterPartTwoComponent },
+      { path: 'registerP2',
+      component: RegisterPartTwoComponent },
+      { path: 'registerP3',
+      canActivate: [ LoginGuardService ],
+      component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile',
+          canActivate: [ LoginGuardService ], 
+          component: ProfileComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
     ])
@@ -53,8 +63,11 @@ import { RouterModule } from '@angular/router';
     AuthService, {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
+      multi: true,
+      
+    },
+    LoginGuardService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })
