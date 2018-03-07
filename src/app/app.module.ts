@@ -12,12 +12,12 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { AuthService } from './auth.service';
-import { AuthInterceptorService } from './auth-interceptor.service';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { RegisterPartTwoComponent } from './register-part-two/register-part-two.component';
 import { RouterModule } from '@angular/router';
-import { LoginGuardService } from './login-guard.service';
-import { ProfileService } from './profile.service';
+import { LoginGuardService } from './services/login-guard.service';
+import { ProfileService } from './services/profile.service';
 import { RegisterPartThreeComponent } from './register-part-three/register-part-three.component'
 
 //git add foldery/pliki

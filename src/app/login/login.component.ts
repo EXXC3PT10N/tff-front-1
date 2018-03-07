@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UserPass } from '../userPass';
-import { AuthService } from '../auth.service';
+import { UserPass } from '../models/userPass';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,9 +27,6 @@ export class loginComponent {
             username: this.login,
             password: this.pass
           };
-          this._authService.loginUser(this.user).subscribe(res => this._router.navigate(['/profile']));
-          
-          
-          
+          this._authService.loginUser(this.user).subscribe(() => this._router.navigate(['/profile']));
     }
 }
