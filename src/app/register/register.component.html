@@ -3,6 +3,7 @@
   <div class="d-flex align-items-center justify-content-center cont flex-column">
       <a href="/home"><div style="font-size:14px; color:white; margin-bottom:25px;">back to home</div></a>
       <div style="font-size:24px; color:white; margin-bottom:25px;">tinder for freelancers</div>
+      <div style="font-size:24px; color:red; margin-bottom:25px;" *ngIf="errorMessage">{{errorMessage}}</div>
     <form (ngSubmit)="sendToS()" class="d-flex justify-content-around flex-column" style="height: 40vh; width: 15vw;">
       <input type="email" name="email" [(ngModel)]="email" placeholder="Email"/>
       <input type="text" name="login" [(ngModel)]="login" placeholder="Username"/>

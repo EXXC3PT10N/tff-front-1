@@ -31,11 +31,12 @@ export class RegisterPartTwoComponent implements OnInit {
         phone: this.phone,
         city: this.city
       };
-      this._authService.registerP2(this.user,this.typ).subscribe(
-        user => this.user = user
+      this._authService.registerP2(this.user,this.typ).subscribe(user => {
+            this.user = user;
+            this._router.navigate(['/registerP3']); }
       );
         
-      this._router.navigate(['/registerP3']);
+
       
     }
      

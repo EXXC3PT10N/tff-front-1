@@ -32,12 +32,13 @@ export class RegisterComponent implements OnInit {
         password: this.pwd,
         email: this.email
       };
-      this._authService.register(this.user).subscribe(
-        user => this.user = user
-      );
-        
-      this._router.navigate(['/registerP2']);
-      
+      this._authService.register(this.user).subscribe((data) => {
+        if(data['token'])
+          this._router.navigate(['/registerP2']);
+        else
+          this.errorMessage = data["message"];
+    });
+
     }
      else this.komunikat = "Hasła nie mogą się różnić!"
       

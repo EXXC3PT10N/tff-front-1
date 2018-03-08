@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally'
+import 'rxjs/add/observable/throw';
 import { UserP2 } from '../models/userP2';
 import { Router } from '@angular/router';
 import {environment} from "../../environments/environment";
@@ -24,8 +25,9 @@ export class AuthService {
   register(user: User): Observable<User> {
    
    return this._http.post<any>(this._registerUrl, user)
-   .do(res => this.saveToken(res.token))
+   .do(res =>{ this.saveToken(res.token); console.log(res)})
    .catch(this.handleError);
+
   }
 
   registerP2(user: UserP2, typ: number): Observable<UserP2>{
@@ -40,6 +42,7 @@ export class AuthService {
   loginUser(loginData) : Observable<any> {
     return this._http.post<any>(this._loginUrl, loginData)
     .do(res => {
+        if(res.token)
         this.saveToken(res.token);
     });
 }
