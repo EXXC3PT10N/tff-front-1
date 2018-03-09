@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-part-three',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPartThreeComponent implements OnInit {
 
-  constructor() { }
+  head_message: string = "Rejestracja przebiegła pomyślnie!";
+  butt_message: string = "Zakończ";
+  
+
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
