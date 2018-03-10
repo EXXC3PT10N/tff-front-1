@@ -35,9 +35,6 @@ export class RegisterPartTwoComponent implements OnInit {
             this.user = user;
             this._router.navigate(['/registerP3']); }
       );
-        
-
-      
     }
      
   }

@@ -1,10 +1,10 @@
 <div class="container-fluid x">
   <div class="container-fluid">
     <div class="row d-flex justify-content-end">
-      <p class="m-2"><a href="/home">home</a></p>
-      <p class="m-2"><a href="/home">szukaj zleceń</a></p>
-      <p class="m-2"><a href="/home">wiadomości</a></p>
-      <p class="m-2"><a href="/home">ustawienia</a></p>
+      <p class="m-2"><a [routerLink]="['/home']">home</a></p>
+      <p class="m-2"><a [routerLink]="['/home']">szukaj zleceń</a></p>
+      <p class="m-2"><a [routerLink]="['/home']">wiadomości</a></p>
+      <p class="m-2"><a [routerLink]="['/home']">ustawienia</a></p>
       <p class="m-2"><a [routerLink]="" (click)="logout()"> wyloguj </a></p>
     </div>
   </div>
@@ -30,6 +30,12 @@
     <div class="row no-gutters d-flex align-items-end justify-content-around">
       <div class="col-2 text-center">
         <h6>JĘZYKI OBCE</h6>
+          <div *ngFor="let userLanguage of userLanguages"> 
+            <input type="text" [(ngModel)]="userLanguage.name" disabled/>
+            <button (click)="deleteLang(userLanguage.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="langFilter" />
+          <button *ngFor="let language of filteredLanguages" (click)="addLang(language.name)">{{language.name}}</button>
         <p></p>
       </div>
       <div class="col-2 text-center">

@@ -9,8 +9,10 @@ import {environment} from "../../environments/environment";
 
 @Injectable()
 export class ProfileService {
-  idUrl: string = environment.path + "/api/auth/id";
-  identityUrl: string = environment.path + '/api/user/me';
+  envPath: string = environment.path;
+  idUrl: string = this.envPath + "/api/auth/id";
+  identityUrl: string = this.envPath + '/api/user/me';
+  updateUrl: string = this.envPath + '/api/employee/update';
 
   constructor(private _http: HttpClient) { }
 
@@ -20,7 +22,22 @@ export class ProfileService {
   getId(): Observable<string>{
     return this._http.get<string>(this.idUrl)
     //.do(data => console.log(JSON.stringify(data)));
-    
+  }
+
+  getLanguagesNames(): Observable<string[]>{
+    let url: string = environment.path + "/api/skills/languages";
+    return this._http.get<string[]>(url);
+  }
+
+  getUserLanguages(): Observable<any>{
+    return this._http.get<any>(this.identityUrl)
+    //.do(data => console.log(JSON.stringify(data)));
+  }
+  
+  setLanguages(language): Observable<any>{
+    let url = this.updateUrl + "/languages";
+
+    return this._http.post<any>(url, language);
   }
 
 }
