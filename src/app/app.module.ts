@@ -45,7 +45,7 @@ import { RegisterPartThreeComponent } from './register-part-three/register-part-
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'register/:type', component: RegisterComponent},
-      { path: 'registerP2',
+      { path: 'registerP2/:type',
           canActivate: [ LoginGuardService ],
           component: RegisterPartTwoComponent },
       { path: 'registerP3',

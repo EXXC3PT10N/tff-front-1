@@ -31,10 +31,11 @@ export class AuthService {
   }
 
   registerP2(user: UserP2, typ: number): Observable<UserP2>{
-    if(typ == 0)
+    if(typ === 0)
       this._registerP2Url = environment.path + "/api/employee/create";
-    if(typ == 1)
+    else if(typ === 1)
       this._registerP2Url = environment.path + "/api/employer/create";
+    else console.log("Błąd!");
       return this._http.post<any>(this._registerP2Url, user)
       .catch(this.handleError);
   }

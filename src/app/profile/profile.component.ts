@@ -3,6 +3,7 @@ import { ProfileService } from '../services/profile.service';
 import { UserProfile } from './userProfile';
 import { AuthService } from "../services/auth.service";
 import { Router } from '@angular/router';
+import { FullUser } from '../models/fullUser';
 
 
 
@@ -12,11 +13,12 @@ import { Router } from '@angular/router';
 })
 
 export class ProfileComponent implements OnInit{
+  person: string;
   userProfile: UserProfile;
   imie: string;
   nazwisko: string;
   ocena: number;
-  id: any;
+  id: number;
   languages: string[];
   _langFilter: string;
   filteredLanguages: string[];
@@ -33,26 +35,43 @@ export class ProfileComponent implements OnInit{
   _certificationsFilter: string;
   filteredCertifications: string[];
   userCertifications;
+  compName:string;
+  NIP:string;
+  compCity:string;
+  pracodawca: any;
+  user: FullUser;
   
   constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router){}
 
   ngOnInit(): void {
       this._profileService.getIdentity().subscribe(userProfile => {
+        this.user = userProfile;
         this.imie = userProfile["user"].first_name;
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile["user"].rate;
+        this.id = userProfile['user'].status;
+        console.log("Id: "+this.id);
+
+        if(this.id==0){
+          this.person = "Freelancer";
+        this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
+        this._profileService.getUserLanguages().subscribe(userLanguages => { 
+          this.userLanguages = userLanguages.employee.languages;
+          });
+        this._profileService.getSpecializationsNames().subscribe(specializations => this.specializations = specializations)
+        this._profileService.getUserSpec().subscribe(userSpec => this.userSpec = userSpec.employee.specs);
+        this._profileService.getSoftwareNames().subscribe(software => this.software = software);
+        this._profileService.getUserSoftware().subscribe(userSoftware => this.userSoftware = userSoftware.employee.software);
+        this._profileService.getCertificationsNames().subscribe(certifications => this.certifications = certifications);
+        this._profileService.getUserCertifications().subscribe(userCertifications => this.userCertifications = userCertifications.employee.certifications);
+        }else if(this.id==1){
+          this.person = "Pracodawca";
+          
+        } 
+
       });
-      this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
-      this._profileService.getUserLanguages().subscribe(userLanguages => { 
-        this.userLanguages = userLanguages.employee.languages;
-        });
-      this._profileService.getSpecializationsNames().subscribe(specializations => this.specializations = specializations)
-      this._profileService.getUserSpec().subscribe(userSpec => this.userSpec = userSpec.employee.specs);
-      this._profileService.getSoftwareNames().subscribe(software => this.software = software);
-      this._profileService.getUserSoftware().subscribe(userSoftware => this.userSoftware = userSoftware.employee.software);
-      this._profileService.getCertificationsNames().subscribe(certifications => this.certifications = certifications);
-      this._profileService.getUserCertifications().subscribe(userCertifications => this.userCertifications = userCertifications.employee.certifications);
-      
+     
+
   }
 
   get langFilter(): string {
@@ -242,6 +261,21 @@ deleteCertifications(name: string){
   // console.log("Indeks: "+pos);
 }
 
+createComp(): void{
+  let comp = {"name": this.compName,
+              "NIP": this.NIP,
+              "city": this.compCity};
+  this._profileService.company.create(comp).subscribe();
+  this.user.employer.company.push(comp);
+}
+
+deleteComp(data: string): void{
+  this._profileService.company.delete(data).subscribe();
+  //console.log("wybrales NIP: "+data)
+  let pos = this.user.employer.company.map(function(e) { return e.NIP }).indexOf(data);
+  if(pos > -1)
+    this.user.employer.company.splice(pos,1);
+}
 
 
 }

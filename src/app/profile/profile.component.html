@@ -23,10 +23,10 @@
           <div class="d-flex justify-content-between"><p>Ukończone:</p> <p>57</p></div>
         </div>
       </div>
-      <div class="mb-5">FREELANCER</div>
+      <div class="mb-5">{{person}}</div>
     </div>
   </div>
-  <div class="container-fluid" style="width: 100vw;">
+  <div class="container-fluid" style="width: 100vw;" *ngIf="!id">
     <div class="row no-gutters d-flex align-items-end justify-content-around">
       <div class="col-2 text-center">
         <h6>JĘZYKI OBCE</h6>
@@ -71,4 +71,25 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid" style="width: 100vw;" *ngIf="id">
+      <div class="row no-gutters d-flex align-items-end justify-content-around">
+        <div class="col-2 text-center">
+          <form (ngSubmit)="createComp()">
+            <input type="text" [(ngModel)]="compName" name="compName" placeholder="Nazwa firmy"/>
+            <input type="text" [(ngModel)]="NIP" name="NIP" placeholder="NIP"/>
+            <input type="text" [(ngModel)]="compCity" name="compCity" placeholder="Miasto"/><br>
+            <input type="submit" value="Utwórz!" />
+          </form>
+        </div>
+        <div class="col-2 text-center">
+            <div *ngFor="let company of user.employer.company">
+              {{company.name}}
+              {{company.city}}
+              {{company.NIP}}
+              <button (click)="deleteComp(company.NIP)">-</button>
+            </div>
+        </div>
+        
+      </div>
+    </div>
 </div>

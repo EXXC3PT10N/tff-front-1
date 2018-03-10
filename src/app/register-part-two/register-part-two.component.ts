@@ -21,6 +21,7 @@ export class RegisterPartTwoComponent implements OnInit {
 
   ngOnInit() {
     this.typ = +this._route.snapshot.paramMap.get('type');
+    alert(this.typ);
   }
 
   sendToF(): void{

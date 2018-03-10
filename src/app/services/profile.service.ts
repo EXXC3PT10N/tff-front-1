@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { UserProfile } from '../profile/userProfile';
 import {environment} from "../../environments/environment";
+import { FullUser } from "../models/fullUser";
 
 // /api/auth/id => id
 
@@ -14,11 +15,12 @@ export class ProfileService {
   identityUrl: string = this.envPath + '/api/user/me';
   skillsUrl: string = this.envPath + '/api/skills';
   updateUrl: string = this.envPath + '/api/employee/update';
+  companyUrl: string = this.envPath + '/api/company';
 
   constructor(private _http: HttpClient) { }
 
-  getIdentity(): Observable<UserProfile> {
-      return this._http.get<UserProfile>(this.identityUrl)
+  getIdentity(): Observable<FullUser> {
+      return this._http.get<FullUser>(this.identityUrl)
   }
   getId(): Observable<string>{
     return this._http.get<string>(this.idUrl)
@@ -41,13 +43,13 @@ export class ProfileService {
   }
   
   setLanguages(language): Observable<any>{
-    let url = this.updateUrl + "/languages";
+    let url = this.updateUrl;
 
     return this._http.post<any>(url, language);
   }
   
   setSpecializations(specialization): Observable<any>{
-    let url = this.updateUrl + "/specs";
+    let url = this.updateUrl;
 
     return this._http.post<any>(url, specialization);
   }
@@ -69,7 +71,7 @@ export class ProfileService {
 
 
   setSoftware(software): Observable<any>{
-    let url = this.updateUrl + "/software";
+    let url = this.updateUrl;
 
     return this._http.post<any>(url, software);
   }
@@ -86,9 +88,24 @@ export class ProfileService {
 
 
   setCertifications(certifications): Observable<any>{
-    let url = this.updateUrl + "/certifications";
+    let url = this.updateUrl;
 
     return this._http.post<any>(url, certifications);
+  }
+
+  company = {
+    create: (data): Observable<any> =>{
+      let url = this.companyUrl + '/create';
+      return this._http.post<any>(url, data);
+    },
+    update: function(){
+
+    },
+    delete: (NIP: string): Observable<string> =>{
+      let url = this.companyUrl + '/delete';
+      let obj = {"NIP": NIP}
+      return this._http.post<string>(url,obj);
+    }
   }
 
 }

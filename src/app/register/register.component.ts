@@ -17,11 +17,13 @@ export class RegisterComponent implements OnInit {
   pwd2: string;
   komunikat: string;
   user: User;
+  typ: number;
 
 
-  constructor(private _authService: AuthService, private _router: Router) { }
+  constructor(private _authService: AuthService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.typ = +this._route.snapshot.paramMap.get('type');
   }
 
   sendToS(): void{
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
       };
       this._authService.register(this.user).subscribe((data) => {
         if(data['token'])
-          this._router.navigate(['/registerP2']);
+          this._router.navigate(['/registerP2/'+this.typ]);
         else
           this.errorMessage = data["message"];
     });
