@@ -40,14 +40,33 @@
       </div>
       <div class="col-2 text-center">
         <h6>SPECJALIZACJA</h6>
-        <p></p>
+        <div *ngFor="let userSp of userSpec"> 
+            <input type="text" [(ngModel)]="userSp.name" disabled/>
+            <button (click)="deleteSpec(userSp.name)">-</button>
+          </div>
+        <input type="text" [(ngModel)]="specFilter" />
+        <button *ngFor="let specialization of filteredSpecializations" (click)="addSpec(specialization.name)">{{specialization.name}}</button>
       </div>
       <div class="col-2 text-center">
         <h6>OPROGRAMOWANIE</h6>
+        <div *ngFor="let userSoft of userSoftware"> 
+            <input type="text" [(ngModel)]="userSoft.name" disabled/>
+            <button (click)="deleteSoftware(userSoft.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="softwareFilter" />
+          
+          <button *ngFor="let software of filteredSoftware" (click)="addSoftware(software.name)">{{software.name}}</button>
         <p></p>
       </div>
       <div class="col-2 text-center">
         <h6>CERTYFIKATY I KURSY</h6>
+        <div *ngFor="let userCert of userCertifications"> 
+            <input type="text" [(ngModel)]="userCert.name" disabled/>
+            <button (click)="deleteCertifications(userCert.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="certificationsFilter" />
+          
+          <button *ngFor="let certificate of filteredCertifications" (click)="addCertifications(certificate.name)">{{certificate.name}}</button>
         <p></p>
       </div>
     </div>
