@@ -40,6 +40,11 @@ export class ProfileComponent implements OnInit{
   compCity:string;
   pracodawca: any;
   user: FullUser;
+  categories: string[];
+  _categoriesFilter: string;
+  filteredCategories: string[];
+  userCategories;
+
   
   constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router){}
 
@@ -50,32 +55,31 @@ export class ProfileComponent implements OnInit{
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile["user"].rate;
         this.id = userProfile['user'].status;
-        console.log("Id: "+this.id);
+        
 
         if(this.id==0){
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
         this._profileService.getUserLanguages().subscribe(userLanguages => { 
-          this.userLanguages = userLanguages.employee.languages;
-          });
+          this.userLanguages = userLanguages.employee.languages });
         this._profileService.getSpecializationsNames().subscribe(specializations => this.specializations = specializations)
         this._profileService.getUserSpec().subscribe(userSpec => this.userSpec = userSpec.employee.specs);
         this._profileService.getSoftwareNames().subscribe(software => this.software = software);
         this._profileService.getUserSoftware().subscribe(userSoftware => this.userSoftware = userSoftware.employee.software);
         this._profileService.getCertificationsNames().subscribe(certifications => this.certifications = certifications);
         this._profileService.getUserCertifications().subscribe(userCertifications => this.userCertifications = userCertifications.employee.certifications);
+        this._profileService.getCategoriesNames().subscribe(categories => this.categories = categories);
+        this.userCategories = this.user.employee.categories;
         }else if(this.id==1){
           this.person = "Pracodawca";
-          
+          console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
         } 
 
       });
-     
-
   }
 
-  get langFilter(): string {
-    return this._langFilter;
+get langFilter(): string {
+  return this._langFilter;
 }
 
 set langFilter(value: string) {
@@ -110,6 +114,14 @@ this._certificationsFilter = value;
 this.filteredCertifications = this.certificationsFilter ? this.performFilter(this.certificationsFilter, this.certifications) : null;
 }
 
+get categoriesFilter(): string {
+  return this._categoriesFilter;
+}
+
+set categoriesFilter(value: string) {
+this._categoriesFilter = value;
+this.filteredCategories = this.categoriesFilter ? this.performFilter(this.categoriesFilter, this.categories) : null;
+}
 
   logout() {
     this._authService.logout();
@@ -260,6 +272,37 @@ deleteCertifications(name: string){
   this.confirmCertifications(cert);
   // console.log("Indeks: "+pos);
 }
+
+confirmCategories(categories): void{
+  
+  this._profileService.setCategories(categories).subscribe()
+  
+}
+addCategories(name: string): void{
+  let nowy = {"categories": new Array()};
+  for(let userCat of this.userCategories)
+    nowy.categories.push(userCat.name);
+  nowy.categories.push(name);
+  console.log(JSON.stringify(nowy));
+  let tmp = { "name": nowy.categories[nowy.categories.length-1] }
+  this.userCategories.push(tmp);
+  this.confirmCategories(nowy);
+}
+
+deleteCategories(name: string){
+  let obj = {"name": name};
+  let pos = this.userCategories.map(function(e) { return e.name; }).indexOf(name);
+  
+  if(pos > -1)
+    this.userCategories.splice(pos, 1);
+  let cat = {"categories": new Array()};
+  for(let userCat of this.userCategories)
+    cat.categories.push(userCat.name);
+  this.confirmCategories(cat);
+  // console.log("Indeks: "+pos);
+}
+
+
 
 createComp(): void{
   let comp = {"name": this.compName,

@@ -93,6 +93,16 @@ export class ProfileService {
     return this._http.post<any>(url, certifications);
   }
 
+  getCategoriesNames(): Observable<string[]>{
+    let url: string = this.skillsUrl + "/categories";
+    return this._http.get<string[]>(url);
+  }
+
+  setCategories(categories): Observable<any>{
+    let url = this.updateUrl;
+    return this._http.post<any>(url, categories);
+  }
+
   company = {
     create: (data): Observable<any> =>{
       let url = this.companyUrl + '/create';

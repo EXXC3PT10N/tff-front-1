@@ -18,7 +18,10 @@ import { RegisterPartTwoComponent } from './register-part-two/register-part-two.
 import { RouterModule } from '@angular/router';
 import { LoginGuardService } from './services/login-guard.service';
 import { ProfileService } from './services/profile.service';
-import { RegisterPartThreeComponent } from './register-part-three/register-part-three.component'
+import { RegisterPartThreeComponent } from './register-part-three/register-part-three.component';
+import { AskComponent } from './ask/ask.component';
+import { AskService } from './services/ask.service';
+import { TestComponent } from './test/test.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -35,7 +38,9 @@ import { RegisterPartThreeComponent } from './register-part-three/register-part-
     HomeComponent,
     PageNotFoundComponent,
     ProfileComponent,
-    RegisterPartThreeComponent
+    RegisterPartThreeComponent,
+    AskComponent,
+    TestComponent
 
   ],
   imports: [
@@ -52,6 +57,8 @@ import { RegisterPartThreeComponent } from './register-part-three/register-part-
           canActivate: [ LoginGuardService ],
           component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
+      { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
+      { path: "test", component: TestComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile',
           canActivate: [ LoginGuardService ], 
@@ -68,7 +75,8 @@ import { RegisterPartThreeComponent } from './register-part-three/register-part-
       
     },
     LoginGuardService,
-    ProfileService
+    ProfileService,
+    AskService
   ],
   bootstrap: [AppComponent]
 })

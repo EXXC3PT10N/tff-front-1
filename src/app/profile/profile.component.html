@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="row d-flex justify-content-end">
       <p class="m-2"><a [routerLink]="['/home']">home</a></p>
-      <p class="m-2"><a [routerLink]="['/home']">szukaj zleceń</a></p>
+      <p class="m-2" *ngIf="id==0"><a [routerLink]="['/home']" >szukaj zleceń</a></p>
+      <p class="m-2" *ngIf="id==1"><a [routerLink]="['/ask']" >Dodaj ogłoszenie</a></p>
       <p class="m-2"><a [routerLink]="['/home']">wiadomości</a></p>
       <p class="m-2"><a [routerLink]="['/home']">ustawienia</a></p>
       <p class="m-2"><a [routerLink]="" (click)="logout()"> wyloguj </a></p>
@@ -26,8 +27,18 @@
       <div class="mb-5">{{person}}</div>
     </div>
   </div>
-  <div class="container-fluid" style="width: 100vw;" *ngIf="!id">
+  <div class="container-fluid" style="width: 100vw;" *ngIf="id==0">
     <div class="row no-gutters d-flex align-items-end justify-content-around">
+      <div class="col-2 text-center">
+            <h6>Kategorie</h6>
+              <div *ngFor="let userCategory of userCategories"> 
+                <input type="text" [(ngModel)]="userCategory.name" disabled/>
+                <button (click)="deleteCategories(userCategory.name)">-</button>
+              </div>
+              <input type="text" [(ngModel)]="categoriesFilter" />
+              <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button>
+            <p></p>
+        </div>
       <div class="col-2 text-center">
         <h6>JĘZYKI OBCE</h6>
           <div *ngFor="let userLanguage of userLanguages"> 
@@ -71,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid" style="width: 100vw;" *ngIf="id">
+  <div class="container-fluid" style="width: 100vw;" *ngIf="id==1">
       <div class="row no-gutters d-flex align-items-end justify-content-around">
         <div class="col-2 text-center">
           <form (ngSubmit)="createComp()">
@@ -82,6 +93,7 @@
           </form>
         </div>
         <div class="col-2 text-center">
+            <h3 *ngIf="user.employer.company != ''">Twoje firmy: </h3>
             <div *ngFor="let company of user.employer.company">
               {{company.name}}
               {{company.city}}

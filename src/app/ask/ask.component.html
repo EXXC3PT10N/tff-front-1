@@ -1,0 +1,41 @@
+<div class="container-fluid x">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-end">
+        <p class="m-2"><a [routerLink]="['/home']">home</a></p>
+        <p class="m-2"><a [routerLink]="['/profile']">Profil</a></p>
+        <p class="m-2"><a [routerLink]="['/home']">wiadomości</a></p>
+        <p class="m-2"><a [routerLink]="['/home']">ustawienia</a></p>
+        <p class="m-2"><a [routerLink]="" (click)="logout()"> wyloguj </a></p>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row d-flex align-items-center justify-content-center flex-column">
+      <div class="mb-5">
+         <form (ngSubmit)="createAsk()">
+              <input type="text" [(ngModel)]="description" name="description" placeholder="description"/> <br>
+              <input type="text" [(ngModel)]="salary" name="salary" placeholder="salary"/> <br>
+              <input type="text" [(ngModel)]="work_time" name="work_time" placeholder="work_time"/> <br>
+
+              <!-- <div *ngFor="let userCategory of categories"> 
+                  <input type="text" [(ngModel)]="userCategory.name"/>
+                  <button (click)="deleteCategories(userCategory.name)">-</button>
+                </div>
+              <input type="text" [(ngModel)]="categoriesFilter" placeholder="category" />
+              <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button> -->
+
+              <!-- <input type="text" [(ngModel)]="categories" name="cate" placeholder="cat" *ngFor="let cat of categories" > <button (click)="categories.push('nazwa')">+</button> <button (click)="categoriesCounter.pop()">-</button> <br>
+              <input type="text" [(ngModel)]="languages" name="languages" placeholder="languages" *ngFor="let lang of languagesCounter"/> <button (click)="languagesCounter.push(true)">+</button> <button (click)="languagesCounter.pop()">-</button> <br>
+              <input type="text" [(ngModel)]="software" name="software" placeholder="software" *ngFor="let soft of softwareCounter"/> <button (click)="softwareCounter.push(true)">+</button> <button (click)="softwareCounter.pop()">-</button> <br>
+              <input type="text" [(ngModel)]="specs" name="specs" placeholder="specs" *ngFor="let spec of specsCounter"/> <button (click)="specsCounter.push(true)">+</button> <button (click)="specsCounter.pop()">-</button> <br>
+              <input type="text" [(ngModel)]="certifications" name="certifications" placeholder="certifications" *ngFor="let cert of certificationsCounter"/> <button (click)="certificationsCounter.push(true)">+</button> <button (click)="categoriesCounter.pop()">-</button> <br> -->
+              <!-- <button (click)="createAsk()">Klick</button> -->
+              <input type="submit" />
+            </form>
+      </div>
+      </div>
+    </div>
+    <div class="container-fluid" style="width: 100vw;" *ngIf="!id">
+     
+    </div>
+   
+  </div>

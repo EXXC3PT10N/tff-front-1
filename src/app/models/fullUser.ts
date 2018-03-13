@@ -14,7 +14,9 @@ export interface FullUser{
         "languages": any[],
         "software": any[],
         "specs": any[],
-        "certifications": any[]
+        "certifications": any[],
+        "categories": any[]
+
     },
     "employer": {
         "asks": object,
