@@ -25,7 +25,7 @@ export class AskService {
 
   deleteAsk(id: string): Observable<string>{
     let url: string = this.envPath + "/ask/delete/" + id;
-    return this._http.post<string>(url,id);
+    return this._http.delete<string>(url);
   }
 
 }

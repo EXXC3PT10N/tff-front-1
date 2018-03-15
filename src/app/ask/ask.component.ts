@@ -135,7 +135,7 @@ export class AskComponent implements OnInit {
       this.ask.certifications.push(element.name);
     })
 
-    // this._askService.addAsk(this.ask).subscribe();
+    this._askService.addAsk(this.ask).subscribe();
     // TODO Dodac if'a 
     this.cleanSite();
     this.komunikat = "Udało się utworzyć ogłoszenie!";
