@@ -10,28 +10,50 @@
     </div>
     <div class="container-fluid">
       <div class="row d-flex align-items-center justify-content-center flex-column">
-      <div class="mb-5">
-         <form (ngSubmit)="createAsk()">
-              <input type="text" [(ngModel)]="description" name="description" placeholder="description"/> <br>
-              <input type="text" [(ngModel)]="salary" name="salary" placeholder="salary"/> <br>
-              <input type="text" [(ngModel)]="work_time" name="work_time" placeholder="work_time"/> <br>
+        <div class="mb-5">
+        
+          <input type="text" [(ngModel)]="description" name="description" placeholder="opis"/> <br>
+          <input type="text" [(ngModel)]="salary" name="salary" placeholder="wynagrodzenie"/> <br>
+          <input type="text" [(ngModel)]="work_time" name="work_time" placeholder="czas pracy"/> <br>
 
-              <!-- <div *ngFor="let userCategory of categories"> 
-                  <input type="text" [(ngModel)]="userCategory.name"/>
-                  <button (click)="deleteCategories(userCategory.name)">-</button>
-                </div>
-              <input type="text" [(ngModel)]="categoriesFilter" placeholder="category" />
-              <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button> -->
+          <div *ngFor="let userCategory of categories"> 
+            <input type="text" [(ngModel)]="userCategory.name" disabled/>
+            <button (click)="deleteCategories(userCategory.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="categoriesFilter" placeholder="kategoria" /> <br>
+          <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button>
 
-              <!-- <input type="text" [(ngModel)]="categories" name="cate" placeholder="cat" *ngFor="let cat of categories" > <button (click)="categories.push('nazwa')">+</button> <button (click)="categoriesCounter.pop()">-</button> <br>
-              <input type="text" [(ngModel)]="languages" name="languages" placeholder="languages" *ngFor="let lang of languagesCounter"/> <button (click)="languagesCounter.push(true)">+</button> <button (click)="languagesCounter.pop()">-</button> <br>
-              <input type="text" [(ngModel)]="software" name="software" placeholder="software" *ngFor="let soft of softwareCounter"/> <button (click)="softwareCounter.push(true)">+</button> <button (click)="softwareCounter.pop()">-</button> <br>
-              <input type="text" [(ngModel)]="specs" name="specs" placeholder="specs" *ngFor="let spec of specsCounter"/> <button (click)="specsCounter.push(true)">+</button> <button (click)="specsCounter.pop()">-</button> <br>
-              <input type="text" [(ngModel)]="certifications" name="certifications" placeholder="certifications" *ngFor="let cert of certificationsCounter"/> <button (click)="certificationsCounter.push(true)">+</button> <button (click)="categoriesCounter.pop()">-</button> <br> -->
-              <!-- <button (click)="createAsk()">Klick</button> -->
-              <input type="submit" />
-            </form>
-      </div>
+          <div *ngFor="let userLanguages of languages"> 
+            <input type="text" [(ngModel)]="userLanguages.name" disabled/>
+            <button (click)="deleteLanguages(userLanguages.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="languagesFilter" placeholder="język" /> <br>
+          <button *ngFor="let lang of filteredLanguages" (click)="addLanguages(lang.name)">{{lang.name}}</button>
+
+          <div *ngFor="let userSoftware of software"> 
+            <input type="text" [(ngModel)]="userSoftware.name" disabled/>
+          <button (click)="deleteSoftware(userSoftware.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="softwareFilter" placeholder="oprogramowanie" /> <br>
+          <button *ngFor="let soft of filteredSoftware" (click)="addSoftware(soft.name)">{{soft.name}}</button>
+
+          <div *ngFor="let userSpecializations of specializations"> 
+            <input type="text" [(ngModel)]="userSpecializations.name" disabled/>
+            <button (click)="deleteSpecializations(userSpecializations.name)">-</button>
+          </div>
+          <input type="text" [(ngModel)]="specializationsFilter" placeholder="specjalizacje" /> <br>
+          <button *ngFor="let specs of filteredSpecializations" (click)="addSpecializations(specs.name)">{{specs.name}}</button>
+
+          <div *ngFor="let userCertifications of certifications"> 
+            <input type="text" [(ngModel)]="userCertifications.name" disabled/>
+            <button (click)="deleteCertifications(userCertifications.name)">-</button>
+          </div>
+        <input type="text" [(ngModel)]="certificationsFilter" placeholder="certyfikaty" /> <br>
+        <button *ngFor="let cert of filteredCertifications" (click)="addCertifications(cert.name)">{{cert.name}}</button>
+        
+        <button (click)="createAsk()">Dodaj</button>
+                    
+        </div>
       </div>
     </div>
     <div class="container-fluid" style="width: 100vw;" *ngIf="!id">

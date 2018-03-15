@@ -22,6 +22,8 @@ import { RegisterPartThreeComponent } from './register-part-three/register-part-
 import { AskComponent } from './ask/ask.component';
 import { AskService } from './services/ask.service';
 import { TestComponent } from './test/test.component';
+import { MyAskComponent } from './my-ask/my-ask.component';
+import { BidComponent } from './bid/bid.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -40,7 +42,9 @@ import { TestComponent } from './test/test.component';
     ProfileComponent,
     RegisterPartThreeComponent,
     AskComponent,
-    TestComponent
+    TestComponent,
+    MyAskComponent,
+    BidComponent
 
   ],
   imports: [
@@ -58,6 +62,7 @@ import { TestComponent } from './test/test.component';
           component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
+      { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: "test", component: TestComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile',

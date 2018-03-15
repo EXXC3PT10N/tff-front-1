@@ -1,0 +1,21 @@
+<div *ngFor="let ask of userAsks">
+  <div>Opis: {{ask.description}}</div>
+  <div>Wynagrodzenie: {{ask.salary}}</div>
+  <div>Czas pracy: {{ask.work_time}}</div>
+  <div>Kategorie:   <div *ngFor="let cat of ask.categories">
+                  {{cat.name}}
+  </div></div>
+  <div>Języki: <div *ngFor="let lang of ask.languages">
+      {{lang.name}}
+</div></div>
+  <div>Oprogramowanie: <div *ngFor="let soft of ask.software">
+      {{soft.name}}
+</div></div>
+  <div>Specjalizacje: <div *ngFor="let spec of ask.specs">
+      {{spec.name}}
+</div></div>
+  <div>Certyfikaty: <div *ngFor="let cert of ask.certifications">
+      {{cert.name}}
+</div></div>
+<button (click)="deleteAsk(ask._id)">Usuń</button>
+</div>

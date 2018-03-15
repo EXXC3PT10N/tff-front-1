@@ -7,7 +7,16 @@ import { Ask } from '../models/ask';
 })
 export class TestComponent implements OnInit {
 
-  ask: Ask;
+  ask: Ask = {
+    description: "",
+    "salary": 0,
+    "work_time": 0,
+    "categories": [],
+    "languages": [],
+    "software": [],
+    "specs": [],
+    "certifications": []
+};
   description: string;
   constructor() { }
 
@@ -17,5 +26,6 @@ export class TestComponent implements OnInit {
   addDesc()
   {
     this.ask.description = this.description;
+    console.log("Obiekt: "+JSON.stringify(this.ask));
   }
 }

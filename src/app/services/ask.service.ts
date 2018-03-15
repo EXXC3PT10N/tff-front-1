@@ -9,7 +9,7 @@ import { Ask } from '../models/ask';
 
 @Injectable()
 export class AskService {
-  envPath: string = environment.path;
+  envPath: string = environment.path + "/api";
 
   constructor(private _http: HttpClient) { }
 
@@ -17,6 +17,15 @@ export class AskService {
     let url: string = this.envPath + "/ask/create";
 
     return this._http.post<Ask>(url, data);
+  }
+  getMyAsks(): Observable<Ask[]>{
+    let url: string = this.envPath + "/employer/asks/my";
+    return this._http.get<Ask[]>(url);
+  }
+
+  deleteAsk(id: string): Observable<string>{
+    let url: string = this.envPath + "/ask/delete/" + id;
+    return this._http.post<string>(url,id);
   }
 
 }
