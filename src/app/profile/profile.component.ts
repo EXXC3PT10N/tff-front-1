@@ -199,6 +199,7 @@ deleteSpec(name: string){
   let spec = {"specs": new Array()};
   for(let userSpec of this.userSpec)
     spec.specs.push(userSpec.name);
+
   this.confirmSpec(spec);
   // console.log("Indeks: "+pos);
 }

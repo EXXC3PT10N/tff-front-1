@@ -1,3 +1,45 @@
-<p>
-  bid works!
-</p>
+<div>
+  <div *ngIf="czyAsk">
+    <h1>Dostępne ogłoszenia: </h1>
+      <div *ngFor="let ask of asks.asks; let i=index" style="border: solid">
+          <div>Opis: {{ask.description}}</div>
+          <div>Wynagrodzenie: {{ask.salary}}</div>
+          <div>Czas pracy: {{ask.work_time}}</div>
+          <div>Kategorie: 
+            <div *ngFor="let cat of ask.categories">
+              {{cat.name}}
+            </div>
+          </div>
+          <div>Języki: 
+            <div *ngFor="let lang of ask.languages">
+               {{lang.name}}
+              </div>
+          </div>
+          <div>Oprogramowanie: 
+               <div *ngFor="let soft of ask.software">
+                 {{soft.name}}
+               </div>
+          </div>
+          <div>Specjalizacje: 
+           <div *ngFor="let spec of ask.specs">
+               {{spec.name}}
+           </div>
+          </div>
+          <div>Certyfikaty: 
+             <div *ngFor="let cert of ask.certifications">
+               {{cert.name}}
+             </div>
+          </div>
+        <button (click)="ask.active = !ask.active" >Biere xD</button>
+        <div *ngIf="ask.active">
+          <input type="text" [(ngModel)]="description" placeholder="opis" />
+          <input type="number" [(ngModel)]="salary" placeholder="wynagrodzenie" />
+          <button (click)="takeOffer(ask._id)">Wyślij!</button>
+        </div>      
+      </div>
+  </div>
+  <div>
+    <!-- <div *ngIf="warunek">To sie nie powinno wyswietlac</div> -->
+  </div>
+  <div *ngIf="!czyAsk">Przykro nam, brak dostępnych ofert.</div>
+</div>

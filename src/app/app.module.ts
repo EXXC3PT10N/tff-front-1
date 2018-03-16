@@ -24,6 +24,7 @@ import { AskService } from './services/ask.service';
 import { TestComponent } from './test/test.component';
 import { MyAskComponent } from './my-ask/my-ask.component';
 import { BidComponent } from './bid/bid.component';
+import { BidService } from './services/bid.service';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -63,6 +64,7 @@ import { BidComponent } from './bid/bid.component';
       { path: 'login', component: loginComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile',
@@ -81,7 +83,8 @@ import { BidComponent } from './bid/bid.component';
     },
     LoginGuardService,
     ProfileService,
-    AskService
+    AskService,
+    BidService
   ],
   bootstrap: [AppComponent]
 })
