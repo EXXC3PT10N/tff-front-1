@@ -1,15 +1,52 @@
-<div class="container-flex">
+<!DOCTYPE html>
+<html>
 
-  <div class="d-flex align-items-center justify-content-center cont flex-column">
-      <a href="/home"><div style="font-size:14px; color:white; margin-bottom:25px;">back to home</div></a>
-      <div style="font-size:24px; color:white; margin-bottom:25px;">tinder for freelancers</div>
-      <div style="font-size:24px; color:red; margin-bottom:25px;" *ngIf="errorMessage">{{errorMessage}}</div>
-    <form (ngSubmit)="sendToS()" class="d-flex justify-content-around flex-column" style="height: 40vh; width: 15vw;">
-      <input type="email" name="email" [(ngModel)]="email" placeholder="Email"/>
-      <input type="text" name="login" [(ngModel)]="login" placeholder="Username"/>
-      <input type="password" name="pwd" [(ngModel)]="pwd" placeholder="Password"/>
-      <input type="password" name="pwd2" [(ngModel)]="pwd2" placeholder="Confirm password"/>
-      <input type="submit" value="Dalej" class="svg" />
-    </form>
-  </div>
-</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierwszy register</title>
+    <link rel="stylesheet" href="assets/assets_register/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="assets/assets_register/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/assets_register/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/assets_register/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Strona główna</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Jak to działa?</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Freelancer</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Zleceniodawca</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder" style="background-image:url(&quot;assets/assets_register/img/3.jpg&quot;);background-size:cover;background-position:center;"></div>
+            <form method="post">
+                <h2 class="text-center" style="margin:0px;"><strong>Załóż konto</strong></h2>
+                <div class="form-row" style="margin:10px;">
+                    <div class="col-auto d-flex flex-row justify-content-center align-items-start align-content-start" style="padding:0px;width:261px;">
+                        <div class="btn-group" role="group"><button class="btn btn-primary" type="button" style="width:110px;background-color:rgb(157,157,157);margin:15px 0px 15px;">Freelancer</button><button class="btn btn-primary" type="button" style="width:130px;background-color:rgb(31,106,221);margin:15px 0px 15px;">Zleceniodawca</button></div>
+                    </div>
+                </div>
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" autofocus=""></div>
+                <div class="form-group"><input class="form-control" type="email" name="login" placeholder="Nazwa użytkownika"></div>
+                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Hasło"></div>
+                <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Powtórz hasło"></div>
+                <div class="form-group">
+                    <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">Akceptuję regulamin</label></div>
+                </div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:rgb(31,106,221);">Dalej</button></div><a href="#" class="already">Masz już konto? Zaloguj się</a></form>
+        </div>
+    </div>
+</body>
+
+</html>
