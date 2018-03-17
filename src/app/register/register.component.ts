@@ -17,13 +17,12 @@ export class RegisterComponent implements OnInit {
   pwd2: string;
   komunikat: string;
   user: User;
-  typ: number;
+  typ: number = 0;
 
 
-  constructor(private _authService: AuthService, private _router: Router, private _route: ActivatedRoute) { }
+  constructor(private _authService: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    this.typ = +this._route.snapshot.paramMap.get('type');
   }
 
   sendToS(): void{
@@ -44,6 +43,10 @@ export class RegisterComponent implements OnInit {
     }
      else this.komunikat = "Hasła nie mogą się różnić!"
       
+  }
+  setTyp(num: number): void{
+    this.typ = num;
+    console.log("Typ: " + this.typ)
   }
 
 }

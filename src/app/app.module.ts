@@ -56,7 +56,7 @@ import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
     HttpModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'register/:type', component: RegisterComponent},
+      { path: 'register', component: RegisterComponent},
       { path: 'registerP2/:type',
           canActivate: [ LoginGuardService ],
           component: RegisterPartTwoComponent },

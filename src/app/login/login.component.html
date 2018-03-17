@@ -28,12 +28,12 @@
         </div>
     </nav>
     <div class="login-clean">
-        <form method="post">
+        <form method="post" (ngSubmit)="onSubmit()" >
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-log-in" style="color:rgb(31,106,221);"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="login" placeholder="Nazwa użytkownika" [(ngModel)]="login" autofocus=""></div>
             <div class="form-group"><input class="form-control" type="password" name="pass" placeholder="Hasło" [(ngModel)]="pass"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:rgb(31,106,221);" (click)="onSubmit()">Zaloguj</button></div><a href="#" class="forgot">Zapomniałeś hasło?</a></form>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:rgb(31,106,221);" >Zaloguj</button></div><a href="#" class="forgot">Zapomniałeś hasło?</a></form>
     </div>
 </body>
 

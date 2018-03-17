@@ -1,0 +1,12 @@
+.customButActive{
+    width:130px;
+    background-color:rgb(31,106,221);
+    margin:15px 0px 15px;
+    color: white
+}
+.customButDisabled{
+    width:130px;
+    background-color:rgb(157,157,157);
+    margin:15px 0px 15px;
+    color: white
+}
