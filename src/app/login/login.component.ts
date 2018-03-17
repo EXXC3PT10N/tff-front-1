@@ -27,6 +27,7 @@ export class loginComponent {
             username: this.login,
             password: this.pass
           };
+          console.log("Użytkownik: "+JSON.stringify(this.user))
           this._authService.loginUser(this.user).subscribe(() => this._router.navigate(['/profile']));
     }
 }

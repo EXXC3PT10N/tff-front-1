@@ -25,6 +25,7 @@ import { TestComponent } from './test/test.component';
 import { MyAskComponent } from './my-ask/my-ask.component';
 import { BidComponent } from './bid/bid.component';
 import { BidService } from './services/bid.service';
+import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -45,7 +46,8 @@ import { BidService } from './services/bid.service';
     AskComponent,
     TestComponent,
     MyAskComponent,
-    BidComponent
+    BidComponent,
+    ParallaxTestComponent
 
   ],
   imports: [
@@ -70,6 +72,7 @@ import { BidService } from './services/bid.service';
       { path: 'profile',
           canActivate: [ LoginGuardService ], 
           component: ProfileComponent },
+      { path: 'parallax', component: ParallaxTestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
     ])
