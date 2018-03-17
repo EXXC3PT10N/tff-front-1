@@ -1,13 +1,40 @@
-<div class="container-flex">
-  <div class="d-flex align-items-center justify-content-center cont flex-column">
-      <a href="/home"><div style="font-size:14px; color:black; margin-bottom:25px;">back to home</div></a>
-      <div style="font-size:24px; color:black; margin-bottom:25px;">tinder for freelancers</div>
-    <form (ngSubmit)="onSubmit()" class="d-flex justify-content-around flex-column" style="height: 40vh; width: 15vw;">
-            <input type="text" name="login" placeholder="{{enter_login}}" [(ngModel)]="login">
-            <input type="password" name="pass" placeholder="{{enter_pass}}" [(ngModel)]="pass">
-            <label><input type="checkbox">{{ rememberMe }}</label>
-            <a href="{{forgetUrl}}">Forgot password?</a>
-            <input type="submit" value="{{ submit }}">
-    </form>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierwszy login</title>
+    <link rel="stylesheet" href="assets/assets_login/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/assets_login/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="assets/assets_login/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/assets_login/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/assets_login/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/assets_login/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/home']">Strona główna</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/home']">Jak to działa?</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/home']">Freelancer</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/home']">Zleceniodawca</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="login-clean">
+        <form method="post">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-log-in" style="color:rgb(31,106,221);"></i></div>
+            <div class="form-group"><input class="form-control" type="email" name="login" placeholder="Nazwa użytkownika" autofocus=""></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Hasło"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:rgb(31,106,221);">Zaloguj</button></div><a href="#" class="forgot">Zapomniałeś hasło?</a></form>
+    </div>
+</body>
+
+</html>

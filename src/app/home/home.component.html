@@ -1,26 +1,119 @@
-<div class="container-flex">
-    <div class="row no-gutters">
-        <div class="col-6 left d-flex align-items-center">
-          <a href="/register/0">
-            <div class="areyou ml-4">
-            <h2 style="font-size:32px;">jesteś freelancerem?</h2>
-            <p style=" margin-top:-8px; font-size:12px;">klinkij tutaj i zacznij przyjmować zlecenia!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierwszy home</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue-1.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Strona główna</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#jaktodziala">Jak to działa?</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#freelancer">Freelancer</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#zleceniodawca">Zleceniodawca</a></li>
+                    </ul>
+                </div>
             </div>
-          </a>
-          <div class="position-absolute mr-4" style="top:96%; left:2%;"><a>facebook</a></div>
-        </div>
-        <div class="col-6 right d-flex align-items-center justify-content-end">
-          <a href="/register/1">
-            <div class="areyou d-flex align-items-end flex-column mr-4">
-              <h2 style="font-size:32px;">chcesz zlecić pracę?</h2>
-              <p style="margin-top: -8px; font-size:12px;">kliknij tutaj i zleć pracę już teraz!</p>
+        </nav>
+    </div>
+    <div class="d-flex justify-content-center align-items-center"style="height:500px;background-image:url(&quot;assets/img/bg.jpg&quot;);background-attachment: fixed;background-position:center;background-size:cover;background-color:rgba(255,255,255,0.48);">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-center align-items-start">
+                    <h1 class="text-center" style="font-size:28px;color:#000000;"><strong style="color:rgb(255,255,255);">Nie jesteś tu pierwszy raz?</strong></h1><a [routerLink]="['/login']"><button class="btn btn-primary" type="button">Przejdź do logowania</button></a></div>
             </div>
-          </a>
-          <div class="position-absolute ml-4" style="top:96%; right:2%;"><a>kontakt</a></div>
         </div>
     </div>
-    <div class="position-absolute" style="color: white; top:96%; left:46.5%; font-size: 12px;">tff 2018 all rights reserved</div>
-    <div class="position-absolute" style="color: white; top:45%; left:36%;"><p style="font-size:64px; margin:0;">tinder for freelancers</p>
-    <p style="font-size: 14px; margin-top:-15px; text-align:center;">created by freelancers for freelancers</p></div>
-    <a href="/login"><div class="position-absolute" style="padding: 6px; width: 100px; text-align:center; color: white; border:1px solid white; border-radius:10px; top:60%; cursor:pointer; left: 47.5%;">zaloguj</div></a>
-</div>
+    <div class="highlight-phone">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                    <div class="intro">
+                        <h2>Top Lance</h2>
+                        <p>Wygodna, intuicyjna platforma, która zrzesza freelancerów oraz zleceniodawców z całego świata. W łatwy sposób można wykonywać lub zlecać pracę. Głównym atutem jest intuicyjny system, który ułatwia i usprawnia komunikację</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="d-none d-md-block iphone-mockup"><img src="assets/img/iphone.svg" class="device">
+                        <div class="screen" style="background-image:url(&quot;assets/img/screen-content-iphone-6.jpg&quot;);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="highlight-clean" id="jaktodziala">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Jak to działa?</h2>
+                <p class="text-center">Aby móc przyjmować lub zlecać pracę wystarczy utworzyć darmowe konto, wybrać jeden z dwóch typów kont, uzupełnić podstawowe dane i przejść do działania.</p>
+            </div>
+            <div class="buttons"><a class="btn btn-primary" role="button" href="#">FREELANCER</a><button class="btn btn-light" type="button">ZLECENIODAWCA</button></div>
+        </div>
+    </div>
+    <div class="highlight-blue" id="freelancer">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Freelancer</h2>
+                <p class="text-center">Szukasz ciekawych zleceń? Z pewnością znajdziesz ciekawe ogłoszenia na warunkach, które sam wybierzesz.</p>
+            </div>
+            <div  class="buttons"><a class="btn btn-primary" role="button" href="#">UTWÓRZ KONTO</a></div>
+        </div>
+    </div>
+    <div class="highlight-blue" style="background-color:rgb(255,255,255);" id="zleceniodawca">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center" style="color:rgb(30,106,221);">Zleceniodawca</h2>
+                <p class="text-center">Masz zlecenie, a nie ma kto go wykonać? Nasza platforma Ci w tym pomoże! Wystarczy, że założysz konto.</p>
+            </div>
+            <div class="buttons"><a class="btn btn-primary" role="button" href="#" style="color:rgb(30,106,221); border: 2px solid rgba(30,106,221, 0.7);">uTWÓRZ KONTO</a></div>
+        </div>
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Usługi</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>O nas</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Top Lance</h3>
+                        <p>Wygodna, intuicyjna platforma, która zrzesza freelancerów oraz zleceniodawców z całego świata. W łatwy sposób można wykonywać lub zlecać pracę. Głównym atutem jest intuicyjny system, który ułatwia i usprawnia komunikację<br></p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Top Lance © 2018</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
