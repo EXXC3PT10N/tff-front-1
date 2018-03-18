@@ -1,0 +1,9 @@
+.label {
+    background-color: rgb(233,233,233) !important;
+    width: auto;
+}
+
+.delete {
+    margin-left: 5px;
+    cursor: pointer;
+}

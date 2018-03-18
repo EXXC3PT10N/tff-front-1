@@ -1,63 +1,51 @@
-<div class="container-fluid x">
-    <div class="container-fluid">
-      <div class="row d-flex justify-content-end">
-        <p class="m-2"><a [routerLink]="['/home']">home</a></p>
-        <p class="m-2"><a [routerLink]="['/profile']">Profil</a></p>
-        <p class="m-2"><a [routerLink]="['/home']">wiadomości</a></p>
-        <p class="m-2"><a [routerLink]="['/home']">ustawienia</a></p>
-        <p class="m-2"><a [routerLink]="" (click)="logout()"> wyloguj </a></p>
-      </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierwszy dodaj</title>
+    <link rel="stylesheet" href="assets/assets_ask/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/assets_ask/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/assets_ask/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/assets_ask/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(31,106,221);">
+            <div class="container"><a class="navbar-brand" href="#" style="background-color:rgba(255,255,255,0);color:rgba(255,255,255,0.9);">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgb(255,255,255);">Dodaj ogłoszenie</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgb(215,215,215);">Lista ogłoszeń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgb(215,215,215);">Twój profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgb(215,215,215);">Ustawienia</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgb(215,215,215);">Wyloguj się</a></li>
+                    </ul>
+            </div>
     </div>
-    <div class="container-fluid">
-      <div class="row d-flex align-items-center justify-content-center flex-column">
-        <div class="mb-5">
-        
-          <input type="text" [(ngModel)]="description" name="description" placeholder="opis"/> <br>
-          <input type="text" [(ngModel)]="salary" name="salary" placeholder="wynagrodzenie"/> <br>
-          <input type="text" [(ngModel)]="work_time" name="work_time" placeholder="czas pracy"/> <br>
-
-          <div *ngFor="let userCategory of categories"> 
-            <input type="text" [(ngModel)]="userCategory.name" disabled/>
-            <button (click)="deleteCategories(userCategory.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="categoriesFilter" placeholder="kategoria" /> <br>
-          <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button>
-
-          <div *ngFor="let userLanguages of languages"> 
-            <input type="text" [(ngModel)]="userLanguages.name" disabled/>
-            <button (click)="deleteLanguages(userLanguages.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="languagesFilter" placeholder="język" /> <br>
-          <button *ngFor="let lang of filteredLanguages" (click)="addLanguages(lang.name)">{{lang.name}}</button>
-
-          <div *ngFor="let userSoftware of software"> 
-            <input type="text" [(ngModel)]="userSoftware.name" disabled/>
-          <button (click)="deleteSoftware(userSoftware.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="softwareFilter" placeholder="oprogramowanie" /> <br>
-          <button *ngFor="let soft of filteredSoftware" (click)="addSoftware(soft.name)">{{soft.name}}</button>
-
-          <div *ngFor="let userSpecializations of specializations"> 
-            <input type="text" [(ngModel)]="userSpecializations.name" disabled/>
-            <button (click)="deleteSpecializations(userSpecializations.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="specializationsFilter" placeholder="specjalizacje" /> <br>
-          <button *ngFor="let specs of filteredSpecializations" (click)="addSpecializations(specs.name)">{{specs.name}}</button>
-
-          <div *ngFor="let userCertifications of certifications"> 
-            <input type="text" [(ngModel)]="userCertifications.name" disabled/>
-            <button (click)="deleteCertifications(userCertifications.name)">-</button>
-          </div>
-        <input type="text" [(ngModel)]="certificationsFilter" placeholder="certyfikaty" /> <br>
-        <button *ngFor="let cert of filteredCertifications" (click)="addCertifications(cert.name)">{{cert.name}}</button>
-        
-        <button (click)="createAsk()">Dodaj</button>
-                    
-        </div>
-      </div>
+    </nav>
     </div>
-    <div class="container-fluid" style="width: 100vw;" *ngIf="!id">
-     
+    <div class="contact-clean">
+        <form method="post">
+            <h2 class="text-center">Dodaj ogłoszenie</h2>
+            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Nazwa ogłoszenia"></div>
+            <div class="form-group"><input class="form-control" type="text" name="categories" placeholder="Kategorie"></div>
+            <!--<div class="form-group d-flex mb-2">-->
+                <!--<label class="form-control label">WEB<span class="delete"><i class="fa fa-remove"></i></span></label>-->
+            <!--</div>-->
+            <div class="form-group"><input class="form-control" type="text" name="languages" placeholder="Języki"></div>
+            <div class="form-group"><input class="form-control" type="text" name="soft" placeholder="Oprogramowanie"></div>
+            <div class="form-group"><input class="form-control" type="text" name="specs" placeholder="Specjalizacje"></div>
+            <div class="form-group"><input class="form-control" type="text" name="certifications" placeholder="Certyfikaty"></div>
+            <div class="form-group"><input class="form-control" type="text" name="salary" placeholder="Stawka za godzinę"></div>
+            <div class="form-group"><input class="form-control" type="text" name="time" placeholder="Przewidywana liczba godzin pracy"></div>
+            <div class="form-group"><textarea class="form-control" rows="14" name="message" placeholder="Opis zlecenia"></textarea></div>
+            <div class="form-group"><button class="btn btn-primary" type="submit">DODAJ</button></div>
+        </form>
     </div>
-   
-  </div>
+</body>
+
+</html>
