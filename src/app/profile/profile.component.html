@@ -1,108 +1,92 @@
-<div class="container-fluid x">
-  <div class="container-fluid">
-    <div class="row d-flex justify-content-end">
-      <p class="m-2"><a [routerLink]="['/home']">home</a></p>
-      <p class="m-2" *ngIf="id==0"><a [routerLink]="['/bid']" >szukaj zleceń</a></p>
-      <p class="m-2" *ngIf="id==1"><a [routerLink]="['/ask']" >Dodaj ogłoszenie</a></p>
-      <p class="m-2"><a [routerLink]="['/home']">wiadomości</a></p>
-      <p class="m-2"><a [routerLink]="['/home']">ustawienia</a></p>
-      <p class="m-2"><a [routerLink]="" (click)="logout()"> wyloguj </a></p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierwszy profile</title>
+    <link rel="stylesheet" href="assets/assets_profile/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/assets_profile/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/assets_profile/css/Features-Boxed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/assets_profile/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/assets_profile/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/assets_profile/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Strona główna</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Szukaj zleceń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Twój profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Ustawienia</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wyloguj się</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row d-flex align-items-center justify-content-center flex-column">
-      <div class="m-5 d-flex align-items-center justify-content-center">
-        <div class="mr-5 d-flex justify-content-center flex-column" style="width: 250px;">
-          <div class="d-flex justify-content-between"><p>Imie:</p> <p>{{imie}}</p></div>
-          <div class="d-flex justify-content-between"><p>Nazwisko:</p> <p>{{nazwisko}}</p></div>
-          <div class="d-flex justify-content-between"><p>Ocena:</p> <p>{{ocena}}/5</p></div>
-        </div>
-        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" style="width: 150px; height:150px;">
-        
-        <div class="ml-5 d-flex justify-content-center flex-column" style="width: 250px;">
-          <div class="d-flex justify-content-between"><p>Przyjętych zleceń:</p> <p>61</p></div>
-          <div class="d-flex justify-content-between"><p>W trakcie realizacji:</p> <p>4</p></div>
-          <div class="d-flex justify-content-between"><p>Ukończone:</p> <p>57</p></div>
-        </div>
-      </div>
-      <div class="mb-5">{{person}}</div>
-    </div>
-  </div>
-  <div class="container-fluid" style="width: 100vw;" *ngIf="id==0">
-    <div class="row no-gutters d-flex align-items-end justify-content-around">
-      <div class="col-2 text-center">
-            <h6>Kategorie</h6>
-              <div *ngFor="let userCategory of userCategories"> 
-                <input type="text" [(ngModel)]="userCategory.name" disabled/>
-                <button (click)="deleteCategories(userCategory.name)">-</button>
-              </div>
-              <input type="text" [(ngModel)]="categoriesFilter" />
-              <button *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)">{{cat.name}}</button>
-            <p></p>
-        </div>
-      <div class="col-2 text-center">
-        <h6>JĘZYKI OBCE</h6>
-          <div *ngFor="let userLanguage of userLanguages"> 
-            <input type="text" [(ngModel)]="userLanguage.name" disabled/>
-            <button (click)="deleteLang(userLanguage.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="langFilter" />
-          <button *ngFor="let language of filteredLanguages" (click)="addLang(language.name)">{{language.name}}</button>
-        <p></p>
-      </div>
-      <div class="col-2 text-center">
-        <h6>SPECJALIZACJA</h6>
-        <div *ngFor="let userSp of userSpec"> 
-            <input type="text" [(ngModel)]="userSp.name" disabled/>
-            <button (click)="deleteSpec(userSp.name)">-</button>
-          </div>
-        <input type="text" [(ngModel)]="specFilter" />
-        <button *ngFor="let specialization of filteredSpecializations" (click)="addSpec(specialization.name)">{{specialization.name}}</button>
-      </div>
-      <div class="col-2 text-center">
-        <h6>OPROGRAMOWANIE</h6>
-        <div *ngFor="let userSoft of userSoftware"> 
-            <input type="text" [(ngModel)]="userSoft.name" disabled/>
-            <button (click)="deleteSoftware(userSoft.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="softwareFilter" />
-          
-          <button *ngFor="let software of filteredSoftware" (click)="addSoftware(software.name)">{{software.name}}</button>
-        <p></p>
-      </div>
-      <div class="col-2 text-center">
-        <h6>CERTYFIKATY I KURSY</h6>
-        <div *ngFor="let userCert of userCertifications"> 
-            <input type="text" [(ngModel)]="userCert.name" disabled/>
-            <button (click)="deleteCertifications(userCert.name)">-</button>
-          </div>
-          <input type="text" [(ngModel)]="certificationsFilter" />
-          
-          <button *ngFor="let certificate of filteredCertifications" (click)="addCertifications(certificate.name)">{{certificate.name}}</button>
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid" style="width: 100vw;" *ngIf="id==1">
-      <div class="row no-gutters d-flex align-items-end justify-content-around">
-        <div class="col-2 text-center">
-          <form (ngSubmit)="createComp()">
-            <input type="text" [(ngModel)]="compName" name="compName" placeholder="Nazwa firmy"/>
-            <input type="text" [(ngModel)]="NIP" name="NIP" placeholder="NIP"/>
-            <input type="text" [(ngModel)]="compCity" name="compCity" placeholder="Miasto"/><br>
-            <input type="submit" value="Utwórz!" />
-          </form>
-        </div>
-        <div class="col-2 text-center">
-            <h3 *ngIf="user.employer.company != ''">Twoje firmy: </h3>
-            <div *ngFor="let company of user.employer.company">
-              {{company.name}}
-              {{company.city}}
-              {{company.NIP}}
-              <button (click)="deleteComp(company.NIP)">-</button>
+    <div class="photo-gallery">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Twoje przyjęte zlecenia</h2>
+                <p class="text-center">Są one archiwizowane, więc w każdym momencie masz do nich dostęp</p>
+            </div>
+            <div class="row photos">
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/desk.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/building.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/loft.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/building.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/loft.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/assets_profile/img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/assets_profile/img/desk.jpg"></a></div>
             </div>
         </div>
-        
-      </div>
     </div>
-</div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Twój profil</h2>
+                <p class="text-center">Możesz go z łatwością edytować klikając odpowiedni odnośnik</p>
+            </div>
+            <div class="row justify-content-center features">
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-map-marker icon"></i>
+                        <h3 class="name">Lokalizacja</h3>
+                        <p class="description">Chojnice</p><a href="#" class="learn-more">Edytuj »</a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-clock-o icon"></i>
+                        <h3 class="name">Czas pracy</h3>
+                        <p class="description">720 godzin</p><a href="#" class="learn-more">Edytuj »<br></a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-list-alt icon"></i>
+                        <h3 class="name">Ilość wykonanych zleceń</h3>
+                        <p class="description">21</p><a href="#" class="learn-more">Edytuj »<br></a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-leaf icon"></i>
+                        <h3 class="name">Specjalizacja</h3>
+                        <p class="description">Software development</p><a href="#" class="learn-more">Edytuj »</a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-plane icon"></i>
+                        <h3 class="name">Języki</h3>
+                        <p class="description">Java, C++</p><a href="#" class="learn-more">Edytuj »</a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><i class="fa fa-phone icon"></i>
+                        <h3 class="name">Certyfikaty</h3>
+                        <p class="description">CCNA, Cisco</p><a href="#" class="learn-more">Edytuj »</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
