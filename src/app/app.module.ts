@@ -26,6 +26,8 @@ import { MyAskComponent } from './my-ask/my-ask.component';
 import { BidComponent } from './bid/bid.component';
 import { BidService } from './services/bid.service';
 import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
+import { ImageTestComponent } from './image-test/image-test.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -47,7 +49,8 @@ import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
     TestComponent,
     MyAskComponent,
     BidComponent,
-    ParallaxTestComponent
+    ParallaxTestComponent,
+    ImageTestComponent
 
   ],
   imports: [
@@ -55,15 +58,17 @@ import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
     FormsModule,
     HttpModule,
     HttpClientModule,
+    FileUploadModule,
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent},
-      { path: 'registerP2/:type',
+      { path: 'registerP2',
           canActivate: [ LoginGuardService ],
           component: RegisterPartTwoComponent },
       { path: 'registerP3',
           canActivate: [ LoginGuardService ],
           component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
+      { path: 'image', component: ImageTestComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
