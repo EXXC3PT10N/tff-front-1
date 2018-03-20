@@ -118,4 +118,9 @@ export class ProfileService {
     }
   }
 
+  // getImage(nazwa: string): Observable<any>{
+  //   let url: string = this.envPath + "/user/" + nazwa
+  //   return this._http.get<any>(url);
+  // }
+
 }

@@ -7,7 +7,8 @@ export interface FullUser{
         "phone": string,
         "last_name": string,
         "first_name": string,
-        "status": number
+        "status": number,
+        image?: string
     },
     "employee": {
         "bids": object,

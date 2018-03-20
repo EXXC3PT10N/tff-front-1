@@ -31,11 +31,12 @@ export class RegisterComponent implements OnInit {
       this.user = {
         username: this.login,
         password: this.pwd,
-        email: this.email
+        email: this.email,
+        status: this.typ
       };
       this._authService.register(this.user).subscribe((data) => {
         if(data['token'])
-          this._router.navigate(['/registerP2/'+this.typ]);
+          this._router.navigate(['/registerP2']);
         else
           this.errorMessage = data["message"];
     });
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
   }
   setTyp(num: number): void{
     this.typ = num;
-    console.log("Typ: " + this.typ)
+    //console.log("Typ: " + this.typ)
   }
 
 }

@@ -6,7 +6,9 @@ import { RequestOptions, Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ProfileService } from '../services/profile.service';
-
+import {Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 
@@ -45,7 +47,10 @@ export class ImageTestComponent implements OnInit {
   apiEndPoint: string = "http://localhost:3000/api/user/image/upload"
   warunek: boolean = false;
   
-  constructor(private _authService: AuthService, private _http: HttpClient, private _profileService: ProfileService) { 
+  
+  dialogResult: string;
+  
+  constructor(private _authService: AuthService, private _http: HttpClient, private _profileService: ProfileService, public dialog: MatDialog) { 
     // this.token = this.getToken();
     // console.log("token: "+this.token)
   }
@@ -60,8 +65,17 @@ export class ImageTestComponent implements OnInit {
       this.url += data.user.image
       this.warunek = true;
     })
-    
-    
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
+      data: 'This text is passed into the dialog!'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed: ${result}`);
+      this.dialogResult = result;
+    });
   }
 
   fileChange(event) {

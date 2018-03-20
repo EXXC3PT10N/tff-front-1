@@ -17,5 +17,6 @@ export interface Ask{
     },
     is_active?: boolean,
 	is_complete?: false,
-	creation_date?: Date
+    creation_date?: Date,
+    title?: string
 }
