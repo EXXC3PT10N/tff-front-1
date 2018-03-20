@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserP2 } from '../models/userP2';
 import { AuthService } from '../services/auth.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   
@@ -17,11 +18,10 @@ export class RegisterPartTwoComponent implements OnInit {
   typ: number;
   user: UserP2;
 
-  constructor(private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) { }
+  constructor(private _route: ActivatedRoute, private _authService: AuthService, private _router: Router, private _profileService: ProfileService) { }
 
   ngOnInit() {
-    this.typ = +this._route.snapshot.paramMap.get('type');
-    alert(this.typ);
+    this._profileService.getIdentity().subscribe(data => this.typ = data.user.status)
   }
 
   sendToF(): void{
@@ -32,10 +32,8 @@ export class RegisterPartTwoComponent implements OnInit {
         phone: this.phone,
         city: this.city
       };
-      this._authService.registerP2(this.user,this.typ).subscribe(user => {
-            this.user = user;
-            this._router.navigate(['/registerP3']); }
-      );
+     // console.log("Uzytnik: "+JSON.stringify(this.user))
+      this._authService.registerP2(this.user, this.typ).subscribe(data => this._router.navigate(['/registerP3']));
     }
      
   }

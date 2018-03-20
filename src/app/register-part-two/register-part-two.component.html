@@ -31,9 +31,12 @@
     <div class="register-photo">
         <div class="form-container">
             <div class="image-holder" style="background-image:url(&quot;assets/assets_register2/img/3.jpg&quot;);background-size:cover;background-position:center;"></div>
-            <form method="post">
+            <form method="post" (ngSubmit)="sendToF()" >
                 <h2 class="text-center"><strong>Krok drugi</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" name="firstname" placeholder="Imię" autofocus="" [(ngModel)]="first_name" ></div>
+                <div class="form-group"><input class="form-control" type="text" name="first_name" placeholder="Imię" autofocus="" [(ngModel)]="first_name" ></div>
+                <div class="form-group"><input class="form-control" type="text" name="last_name" placeholder="Nazwisko" [(ngModel)]="last_name" ></div>
+                <div class="form-group"><input class="form-control" type="text" name="phone" placeholder="Numer telefonu" [(ngModel)]="phone" ></div>
+                <div class="form-group"><input class="form-control" type="text" name="city" placeholder="Lokalizacja" [(ngModel)]="city" ></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:rgb(31,106,221);">Stwórz konto</button></div></form>
         </div>
     </div>
