@@ -25,10 +25,11 @@ export class BidComponent implements OnInit {
   ngOnInit() {
     this._profileService.getIdentity().subscribe(user => {
       this.user = user;
-      console.log(JSON.stringify(this.user))
+      
       this._askService.getFilteredAsks(this.user, 10,0).subscribe(asks => {
         this.asks = asks;
         this.czyAsk = true;
+        console.log(JSON.stringify(this.asks.asks))
       });
     });
     

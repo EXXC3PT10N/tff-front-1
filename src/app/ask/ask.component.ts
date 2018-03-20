@@ -29,6 +29,7 @@ export class AskComponent implements OnInit {
   software = new Array();
   specializations = new Array();
   certifications = new Array();
+  title: string;
   
   categoriesNames;
   languagesNames;
@@ -119,6 +120,7 @@ export class AskComponent implements OnInit {
     this.ask.description = this.description;
     this.ask.salary = this.salary;
     this.ask.work_time = this.work_time;
+    this.ask.title = this.title;
     this.categories.forEach(element => {
       this.ask.categories.push(element.name);
     })
@@ -247,6 +249,7 @@ export class AskComponent implements OnInit {
     this.specializationsFilter = "";
     this.certifications = [];
     this.certificationsFilter = "";
+    this.title = ""
   }
 
   logout() {

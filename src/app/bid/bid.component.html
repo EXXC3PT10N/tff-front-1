@@ -52,117 +52,19 @@
         </nav>
     </div>
     <div class="container">
-        <ul class="list-group">
-            <li class="list-group-item">
+        <ul class="list-group" *ngIf="czyAsk">
+            <li class="list-group-item" *ngFor="let ask of asks.asks; let i=index">
                 <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
+                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">{{ask.title}}</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">{{ask.salary}}zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
                         <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
+                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">{{ask.work_time}} godzin</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
+                    <div class="col"><span style="font-size:14px;">{{ask.description}}</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">{{ ask.create_date | date }}</span></div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">Strona internetowa restauracji</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">17zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
-                        <span
-                            class="float-right" style="font-size:12px;color:rgb(120,120,120);">400 godzin</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><span style="font-size:14px;">Krótki opis zlecenia</span><span class="float-right" style="font-size:12px;color:rgb(162,162,162);">1 dzień temu</span></div>
-                </div>
-            </li>
+            
         </ul>
     </div>
     <div class="footer-basic">

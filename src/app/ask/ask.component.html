@@ -29,20 +29,53 @@
     </nav>
     </div>
     <div class="contact-clean">
-        <form method="post">
+        <form method="post" (ngSubmit)="createAsk()">
             <h2 class="text-center">Dodaj ogłoszenie</h2>
-            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Nazwa ogłoszenia"></div>
-            <div class="form-group"><input class="form-control" type="text" name="categories" placeholder="Kategorie"></div>
-            <!--<div class="form-group d-flex mb-2">-->
-                <!--<label class="form-control label">WEB<span class="delete"><i class="fa fa-remove"></i></span></label>-->
-            <!--</div>-->
-            <div class="form-group"><input class="form-control" type="text" name="languages" placeholder="Języki"></div>
-            <div class="form-group"><input class="form-control" type="text" name="soft" placeholder="Oprogramowanie"></div>
-            <div class="form-group"><input class="form-control" type="text" name="specs" placeholder="Specjalizacje"></div>
-            <div class="form-group"><input class="form-control" type="text" name="certifications" placeholder="Certyfikaty"></div>
-            <div class="form-group"><input class="form-control" type="text" name="salary" placeholder="Stawka za godzinę"></div>
-            <div class="form-group"><input class="form-control" type="text" name="time" placeholder="Przewidywana liczba godzin pracy"></div>
-            <div class="form-group"><textarea class="form-control" rows="14" name="message" placeholder="Opis zlecenia"></textarea></div>
+            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Nazwa ogłoszenia" [(ngModel)]="title" name="title"></div>
+
+            <div class="form-group"><input class="form-control" type="text" name="categories" placeholder="Kategorie" [(ngModel)]="categoriesFilter"></div>
+                <div class="form-group d-flex mb-2">
+                    <label class="form-control label" *ngFor="let cat of filteredCategories" (click)="addCategories(cat.name)" style="height:70px">{{cat.name}}</label>
+                </div>
+                <div *ngFor="let userCategory of categories" class="form-group d-flex mb-2">
+                    <label class="form-control label" >{{userCategory.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteCategories(userCategory.name)"></i></span></label>
+                </div>
+
+            <div class="form-group"><input class="form-control" type="text" name="languages" placeholder="Języki" [(ngModel)]="languagesFilter"></div>
+                <div class="form-group d-flex mb-2">
+                    <label class="form-control label" *ngFor="let lang of filteredLanguages" (click)="addLanguages(lang.name)" style="height:70px">{{lang.name}}</label>
+                </div>
+                <div *ngFor="let userLanguages of languages" class="form-group d-flex mb-2">
+                    <label class="form-control label" >{{userLanguages.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteLanguages(userLanguages.name)"></i></span></label>
+                </div>
+
+            <div class="form-group"><input class="form-control" type="text" name="soft" placeholder="Oprogramowanie" [(ngModel)]="softwareFilter"></div>
+                <div class="form-group d-flex mb-2">
+                    <label class="form-control label" *ngFor="let soft of filteredSoftware" (click)="addSoftware(soft.name)" style="height:70px">{{soft.name}}</label>
+                </div>
+                <div *ngFor="let userSoftware of software" class="form-group d-flex mb-2">
+                    <label class="form-control label" >{{userSoftware.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteSoftware(userSoftware.name)"></i></span></label>
+                </div>
+
+            <div class="form-group"><input class="form-control" type="text" name="specs" placeholder="Specjalizacje" [(ngModel)]="specializationsFilter"></div>
+                <div class="form-group d-flex mb-2">
+                    <label class="form-control label" *ngFor="let specs of filteredSpecializations" (click)="addSpecializations(specs.name)" style="height:70px">{{specs.name}}</label>
+                </div>
+                <div *ngFor="let userSpecializations of specializations" class="form-group d-flex mb-2">
+                    <label class="form-control label" >{{userSpecializations.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteSpecializations(userSpecializations.name)"></i></span></label>
+                </div>
+
+            <div class="form-group"><input class="form-control" type="text" name="certifications" placeholder="Certyfikaty" [(ngModel)]="certificationsFilter"></div>
+                <div class="form-group d-flex mb-2">
+                    <label class="form-control label" *ngFor="let cert of filteredCertifications" (click)="addCertifications(cert.name)" style="height:70px">{{cert.name}}</label>
+                </div>
+                <div *ngFor="let userCertifications of certifications" class="form-group d-flex mb-2">
+                    <label class="form-control label" >{{userCertifications.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteCertifications(userCertifications.name)"></i></span></label>
+                </div>
+
+            <div class="form-group"><input class="form-control" type="text" name="salary" placeholder="Stawka za godzinę" [(ngModel)]="salary" name="salary"></div>
+            <div class="form-group"><input class="form-control" type="text" name="time" placeholder="Przewidywana liczba godzin pracy" [(ngModel)]="work_time" name="work_time"></div>
+            <div class="form-group"><textarea class="form-control" rows="14" name="message" placeholder="Opis zlecenia" [(ngModel)]="description" name="description"></textarea></div>
             <div class="form-group"><button class="btn btn-primary" type="submit">DODAJ</button></div>
         </form>
     </div>
