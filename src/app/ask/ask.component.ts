@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Ask } from '../models/ask';
 import { AskService } from '../services/ask.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -258,3 +261,4 @@ export class AskComponent implements OnInit {
 
 
 }
+

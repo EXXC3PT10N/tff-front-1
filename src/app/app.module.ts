@@ -28,6 +28,12 @@ import { BidService } from './services/bid.service';
 import { ParallaxTestComponent } from './parallax-test/parallax-test.component';
 import { ImageTestComponent } from './image-test/image-test.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DialogComponent } from './dialog/dialog.component';
+import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import {MatDialogModule} from '@angular/material';
+import { MyDialogComponent } from './my-dialog/my-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -50,7 +56,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     MyAskComponent,
     BidComponent,
     ParallaxTestComponent,
-    ImageTestComponent
+    ImageTestComponent,
+    DialogComponent,
+    MyDialogComponent
 
   ],
   imports: [
@@ -59,6 +67,10 @@ import { FileUploadModule } from 'ng2-file-upload';
     HttpModule,
     HttpClientModule,
     FileUploadModule,
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent},
       { path: 'registerP2',
@@ -69,6 +81,7 @@ import { FileUploadModule } from 'ng2-file-upload';
           component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
       { path: 'image', component: ImageTestComponent },
+      { path: 'dialog', component: DialogComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },

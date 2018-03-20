@@ -53,7 +53,7 @@
     </div>
     <div class="container">
         <ul class="list-group" *ngIf="czyAsk">
-            <li class="list-group-item" *ngFor="let ask of asks.asks; let i=index">
+            <li class="list-group-item" *ngFor="let ask of asks.asks; let i=index" (click)="openDialog(ask.title, ask)">
                 <div class="row">
                     <div class="col"><span style="font-size:19px;color:rgb(30,106,221);">{{ask.title}}</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">{{ask.salary}}zł/h</span><span class="float-right" style="font-size:12px;color:rgb(120,120,120);">&nbsp;/&nbsp;</span>
                         <span
