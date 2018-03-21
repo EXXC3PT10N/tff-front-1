@@ -34,6 +34,10 @@ import {MatButtonModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageAllComponent } from './message.all/message.all.component';
+import { MessageWithComponent } from './message.with/message.with.component';
+import { KeysPipe } from './pipes/keys.pipe';
+import {MessageService} from './services/message.service';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -58,7 +62,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ParallaxTestComponent,
     ImageTestComponent,
     DialogComponent,
-    MyDialogComponent
+    MyDialogComponent,
+    MessageAllComponent,
+    MessageWithComponent,
+    KeysPipe
 
   ],
   imports: [
@@ -80,6 +87,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
           canActivate: [ LoginGuardService ],
           component: RegisterPartThreeComponent },
       { path: 'login', component: loginComponent },
+      { path: 'messages', component: MessageAllComponent },
+      { path: 'message/:id', component: MessageWithComponent },
       { path: 'image', component: ImageTestComponent },
       { path: 'dialog', component: DialogComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
@@ -88,7 +97,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: "test", component: TestComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile',
-          canActivate: [ LoginGuardService ], 
+          canActivate: [ LoginGuardService ],
           component: ProfileComponent },
       { path: 'parallax', component: ParallaxTestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -100,12 +109,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-      
+
     },
     LoginGuardService,
     ProfileService,
     AskService,
-    BidService
+    BidService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

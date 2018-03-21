@@ -1,0 +1,6 @@
+<div>dziala</div>
+<div *ngFor="let msg of messages">
+  <p *ngFor="let prop of msg | keys">
+    {{prop.key}} : {{prop.value}}
+  </p>
+</div>
