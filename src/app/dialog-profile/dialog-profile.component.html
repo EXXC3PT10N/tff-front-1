@@ -1,0 +1,24 @@
+<div>
+  <h2 mat-dialog-title>{{data.title}}</h2>
+  <hr>
+  <mat-dialog-content>
+    
+    <div>Obecne: <div *ngFor="let pres of data.content.presents">
+      <label class="form-control label" >{{pres.name}}<span class="delete"><i class="fa fa-remove" (click)="deleteFromTab(pres.name)"></i></span></label>
+    </div></div>
+    <div>Wybierz nowe: <input type="text" [(ngModel)]="filter" /></div>
+    <div class="form-group d-flex mb-2">
+      <label class="form-control label" *ngFor="let t of filteredTab" (click)="addToTab(t.name)" >{{t.name}}</label>
+    </div>
+    
+    
+    <br>
+    <br>
+    <strong></strong>
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="onCloseConfirm()">Dodaj</button>&nbsp;
+    <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
+  </mat-dialog-actions>
+</div>

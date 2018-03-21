@@ -34,6 +34,7 @@ import {MatButtonModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogProfileComponent } from './dialog-profile/dialog-profile.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -58,7 +59,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ParallaxTestComponent,
     ImageTestComponent,
     DialogComponent,
-    MyDialogComponent
+    MyDialogComponent,
+    DialogProfileComponent
 
   ],
   imports: [
@@ -82,6 +84,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: 'login', component: loginComponent },
       { path: 'image', component: ImageTestComponent },
       { path: 'dialog', component: DialogComponent },
+      { path: 'dialogProfile', component: DialogProfileComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
