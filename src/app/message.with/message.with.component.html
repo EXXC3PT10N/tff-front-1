@@ -1,0 +1,14 @@
+<div *ngFor="let val of with | keys">
+  <p>{{val.key}} : {{val.value}}</p>
+</div>
+<div *ngFor="let msg of messages">
+  <p *ngFor="let prop of msg | keys">
+    {{prop.key}} : {{prop.value}}
+  </p>
+</div>
+<p>{{count}}</p>
+
+<textarea [(ngModel)]="textValue">
+
+</textarea>
+<button (click)="sendMessage()">Send</button>
