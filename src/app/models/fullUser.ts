@@ -16,7 +16,11 @@ export interface FullUser{
         "software": any[],
         "specs": any[],
         "certifications": any[],
-        "categories": any[]
+        "categories": any[],
+        description?: string,
+        portfolio_link?: string,
+        git_link?: string,
+        linked_in_link?: string
 
     },
     "employer": {
@@ -27,6 +31,8 @@ export interface FullUser{
                 "NIP": string,
                 "city": string
             }
-        ]
+        ],
+        git_link?: string,
+        linked_in_link?: string
     }
 }
