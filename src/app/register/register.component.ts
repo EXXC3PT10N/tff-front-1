@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
   }
   setTyp(num: number): void{
     this.typ = num;
-    //console.log("Typ: " + this.typ)
   }
 
 }
