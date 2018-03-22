@@ -35,6 +35,10 @@ import {MatDialogModule} from '@angular/material';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogProfileComponent } from './dialog-profile/dialog-profile.component';
+import { MessageAllComponent } from './message.all/message.all.component';
+import { MessageWithComponent } from './message.with/message.with.component';
+import { KeysPipe } from './pipes/keys.pipe';
+import {MessageService} from './services/message.service';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -60,8 +64,10 @@ import { DialogProfileComponent } from './dialog-profile/dialog-profile.componen
     ImageTestComponent,
     DialogComponent,
     MyDialogComponent,
-    DialogProfileComponent
-
+    DialogProfileComponent,
+    MessageAllComponent,
+    MessageWithComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -81,6 +87,8 @@ import { DialogProfileComponent } from './dialog-profile/dialog-profile.componen
       { path: 'registerP3',
           canActivate: [ LoginGuardService ],
           component: RegisterPartThreeComponent },
+      { path: 'messages', canActivate: [ LoginGuardService ], component: MessageAllComponent },
+      { path: 'message/:id', canActivate: [ LoginGuardService ], component: MessageWithComponent },
       { path: 'login', component: loginComponent },
       { path: 'image', component: ImageTestComponent },
       { path: 'dialog', component: DialogComponent },
@@ -91,7 +99,7 @@ import { DialogProfileComponent } from './dialog-profile/dialog-profile.componen
       { path: "test", component: TestComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile',
-          canActivate: [ LoginGuardService ], 
+          canActivate: [ LoginGuardService ],
           component: ProfileComponent },
       { path: 'parallax', component: ParallaxTestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -103,12 +111,13 @@ import { DialogProfileComponent } from './dialog-profile/dialog-profile.componen
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-      
+
     },
     LoginGuardService,
     ProfileService,
     AskService,
-    BidService
+    BidService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

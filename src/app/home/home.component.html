@@ -72,7 +72,7 @@
                 <h2 class="text-center">Freelancer</h2>
                 <p class="text-center">Szukasz ciekawych zleceń? Z pewnością znajdziesz ciekawe ogłoszenia na warunkach, które sam wybierzesz.</p>
             </div>
-            <div  class="buttons"><a class="btn btn-primary" role="button" href="#">UTWÓRZ KONTO</a></div>
+            <div  class="buttons"><a class="btn btn-primary" role="button" [routerLink]="['/register']" [queryParams]="{type: 'freelancer'}">UTWÓRZ KONTO</a></div>
         </div>
     </div>
     <div class="highlight-blue" style="background-color:rgb(255,255,255);" id="zleceniodawca">
@@ -81,7 +81,7 @@
                 <h2 class="text-center" style="color:rgb(30,106,221);">Zleceniodawca</h2>
                 <p class="text-center">Masz zlecenie, a nie ma kto go wykonać? Nasza platforma Ci w tym pomoże! Wystarczy, że założysz konto.</p>
             </div>
-            <div class="buttons"><a class="btn btn-primary" role="button" href="#" style="color:rgb(30,106,221); border: 2px solid rgba(30,106,221, 0.7);">uTWÓRZ KONTO</a></div>
+            <div class="buttons"><a class="btn btn-primary" role="button" [routerLink]="['/register']" [queryParams]="{type: 'employer'}" style="color:rgb(30,106,221); border: 2px solid rgba(30,106,221, 0.7);">uTWÓRZ KONTO</a></div>
         </div>
     </div>
     <div class="footer-dark">

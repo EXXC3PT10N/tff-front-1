@@ -5,7 +5,7 @@ import { User } from '../models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  
+
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -19,10 +19,10 @@ export class RegisterComponent implements OnInit {
   user: User;
   typ: number = 0;
 
-
-  constructor(private _authService: AuthService, private _router: Router) { }
+  constructor(private _authService: AuthService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this._route.queryParams.subscribe(qparam => this.typ = qparam.type === 'freelancer' ? 0 : 1);
   }
 
   sendToS(): void{
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
     }
      else this.komunikat = "Hasła nie mogą się różnić!"
-      
+
   }
   setTyp(num: number): void{
     this.typ = num;
