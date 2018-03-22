@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../models/message.all';
 import { MessageService } from '../services/message.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-message.all',
@@ -12,7 +13,7 @@ export class MessageAllComponent implements OnInit {
   count: number;
   page: number;
   pagesize: number;
-  constructor(private _messageService: MessageService) { }
+  constructor(private _messageService: MessageService, private _authService: AuthService) { }
 
   ngOnInit() {
     this.getMessages();
@@ -28,5 +29,8 @@ export class MessageAllComponent implements OnInit {
         console.error(err);
       }
     )
+  }
+  logout() {
+    this._authService.logout();
   }
 }
