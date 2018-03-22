@@ -39,6 +39,8 @@ import { MessageAllComponent } from './message.all/message.all.component';
 import { MessageWithComponent } from './message.with/message.with.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import {MessageService} from './services/message.service';
+import { FileDropModule } from 'ngx-file-drop';
+import { ProfileImageDialogComponent } from './profile-image-dialog/profile-image-dialog.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -67,7 +69,8 @@ import {MessageService} from './services/message.service';
     DialogProfileComponent,
     MessageAllComponent,
     MessageWithComponent,
-    KeysPipe
+    KeysPipe,
+    ProfileImageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import {MessageService} from './services/message.service';
     MatCardModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    FileDropModule,
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent},
       { path: 'registerP2',
@@ -93,6 +97,7 @@ import {MessageService} from './services/message.service';
       { path: 'image', component: ImageTestComponent },
       { path: 'dialog', component: DialogComponent },
       { path: 'dialogProfile', component: DialogProfileComponent },
+      { path: 'ProfileImageDialog', component: ProfileImageDialogComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },

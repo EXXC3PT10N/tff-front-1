@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { FullUser } from '../models/fullUser';
 import { DialogProfileComponent } from '../dialog-profile/dialog-profile.component';
 import { MatDialog } from '@angular/material';
+import { ProfileImageDialogComponent } from '../profile-image-dialog/profile-image-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 
 
@@ -38,9 +41,10 @@ export class ProfileComponent implements OnInit{
   userCategories;
 
   dialogResult: string;
+  url: string = "http://localhost:3000/image/user/";
   
   
-  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog){}
+  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog, private _http: HttpClient){}
 
   ngOnInit(): void {
       this._profileService.getIdentity().subscribe(userProfile => {
@@ -49,7 +53,7 @@ export class ProfileComponent implements OnInit{
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile["user"].rate;
         this.id = userProfile['user'].status;
-        
+        this.url += userProfile.user.image
 
         if(this.id==0){
           this.person = "Freelancer";
@@ -184,6 +188,21 @@ openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
       }
     }
       
+  });
+}
+openProfileImageDialog() {
+  let dialogRef = this.dialog.open(ProfileImageDialogComponent, {
+    width: '600px',
+    data: {formData: FormData}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result}`);
+    this.dialogResult = result;
+    
+    if(result == "Confirm")
+    {
+      
+    }
   });
 }
 }
