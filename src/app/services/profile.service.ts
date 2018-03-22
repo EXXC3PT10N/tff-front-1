@@ -5,6 +5,7 @@ import 'rxjs/add/operator/do';
 import { UserProfile } from '../profile/userProfile';
 import {environment} from "../../environments/environment";
 import { FullUser } from "../models/fullUser";
+import { UserP2 } from '../models/userP2';
 
 // /api/auth/id => id
 
@@ -42,17 +43,17 @@ export class ProfileService {
     //.do(data => console.log(JSON.stringify(data)));
   }
   
-  setLanguages(language): Observable<any>{
-    let url = this.updateUrl;
+  // setLanguages(language): Observable<any>{
+  //   let url = this.updateUrl;
 
-    return this._http.post<any>(url, language);
-  }
+  //   return this._http.post<any>(url, language);
+  // }
   
-  setSpecializations(specialization): Observable<any>{
-    let url = this.updateUrl;
+  // setSpecializations(specialization): Observable<any>{
+  //   let url = this.updateUrl;
 
-    return this._http.post<any>(url, specialization);
-  }
+  //   return this._http.post<any>(url, specialization);
+  // }
 
   getUserSpec(): Observable<any>{
     return this._http.get<any>(this.identityUrl)
@@ -70,11 +71,11 @@ export class ProfileService {
   }
 
 
-  setSoftware(software): Observable<any>{
-    let url = this.updateUrl;
+  // setSoftware(software): Observable<any>{
+  //   let url = this.updateUrl;
 
-    return this._http.post<any>(url, software);
-  }
+  //   return this._http.post<any>(url, software);
+  // }
 
   getCertificationsNames(): Observable<string[]>{
     let url: string = this.skillsUrl + "/certifications";
@@ -87,21 +88,21 @@ export class ProfileService {
   }
 
 
-  setCertifications(certifications): Observable<any>{
-    let url = this.updateUrl;
+  // setCertifications(certifications): Observable<any>{
+  //   let url = this.updateUrl;
 
-    return this._http.post<any>(url, certifications);
-  }
+  //   return this._http.post<any>(url, certifications);
+  // }
 
   getCategoriesNames(): Observable<string[]>{
     let url: string = this.skillsUrl + "/categories";
     return this._http.get<string[]>(url);
   }
 
-  setCategories(categories): Observable<any>{
-    let url = this.updateUrl;
-    return this._http.post<any>(url, categories);
-  }
+  // setCategories(categories): Observable<any>{
+  //   let url = this.updateUrl;
+  //   return this._http.post<any>(url, categories);
+  // }
 
   company = {
     create: (data): Observable<any> =>{
@@ -118,9 +119,14 @@ export class ProfileService {
     }
   }
 
-  // getImage(nazwa: string): Observable<any>{
-  //   let url: string = this.envPath + "/user/" + nazwa
-  //   return this._http.get<any>(url);
-  // }
+  updateEmployee(tab): Observable<any>{
+      let url = this.updateUrl;
+      return this._http.post<any>(url, tab);
+    }
+
+  updateUser(tab): Observable<any>{
+    let url = this.envPath + '/api/user/update';
+    return this._http.post<any>(url, tab);
+  }
 
 }

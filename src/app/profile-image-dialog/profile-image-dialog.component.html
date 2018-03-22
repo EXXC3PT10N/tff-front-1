@@ -5,13 +5,16 @@
     
       <div class="center">
         <file-drop headertext="Upuść plik tutaj" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-            
         </file-drop>
       </div>
-      
       <br>
       <br>
-      <strong></strong>
+        <label class="btn btn-primary" style="width: 150px; height: 50px">
+            <div class="center">  Wybierz plik</div><input type="file" id="file" class="custom-file-input" (change)="fileChange($event)"> 
+        </label>
+      <br>
+      <br>
+      <strong> {{message}} </strong>
     </mat-dialog-content>
     <hr>
     <mat-dialog-actions>

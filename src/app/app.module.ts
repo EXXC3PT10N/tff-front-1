@@ -41,6 +41,11 @@ import { KeysPipe } from './pipes/keys.pipe';
 import {MessageService} from './services/message.service';
 import { FileDropModule } from 'ngx-file-drop';
 import { ProfileImageDialogComponent } from './profile-image-dialog/profile-image-dialog.component';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { ProfileLinkDialogComponent } from './profile-link-dialog/profile-link-dialog.component';
+import { ProfileEducationDialogComponent } from './profile-education-dialog/profile-education-dialog.component';
+import { ProfileDescriptionDialogComponent } from './profile-description-dialog/profile-description-dialog.component';
+import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-dialog.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -70,7 +75,11 @@ import { ProfileImageDialogComponent } from './profile-image-dialog/profile-imag
     MessageAllComponent,
     MessageWithComponent,
     KeysPipe,
-    ProfileImageDialogComponent
+    ProfileImageDialogComponent,
+    ProfileLinkDialogComponent,
+    ProfileEducationDialogComponent,
+    ProfileDescriptionDialogComponent,
+    ProfileCityDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +92,14 @@ import { ProfileImageDialogComponent } from './profile-image-dialog/profile-imag
     MatButtonModule,
     BrowserAnimationsModule,
     FileDropModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff', 
+      secondaryColour: '#ffffff', 
+      tertiaryColour: '#ffffff'
+  }),
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent},
       { path: 'registerP2',
@@ -98,6 +115,10 @@ import { ProfileImageDialogComponent } from './profile-image-dialog/profile-imag
       { path: 'dialog', component: DialogComponent },
       { path: 'dialogProfile', component: DialogProfileComponent },
       { path: 'ProfileImageDialog', component: ProfileImageDialogComponent },
+      { path: 'ProfileLinkDialog', component: ProfileLinkDialogComponent },
+      { path: 'ProfileEducationDialog', component: ProfileEducationDialogComponent },
+      { path: 'ProfileDescriptionDialog', component: ProfileDescriptionDialogComponent },
+      { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },

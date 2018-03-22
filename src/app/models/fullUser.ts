@@ -20,7 +20,8 @@ export interface FullUser{
         description?: string,
         portfolio_link?: string,
         git_link?: string,
-        linked_in_link?: string
+        linked_in_link?: string,
+        education?: string
 
     },
     "employer": {

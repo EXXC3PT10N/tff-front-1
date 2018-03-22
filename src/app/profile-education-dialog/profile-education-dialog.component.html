@@ -1,0 +1,26 @@
+<div>
+    <h2 mat-dialog-title>Edukacja</h2>
+    <hr>
+    <mat-dialog-content>
+    
+        <div class="form-group">
+            <label >Wybierz </label>
+            <select class="form-control" [(ngModel)]="data.education" >
+              <option>wykształcenie podstawowe</option>
+              <option>wykształcenie gimnazjalne</option>
+              <option>wykształcenie zasadnicze(zawodowe)</option>
+              <option>wykształcenie średnie</option>
+              <option>wykształcenie wyższe</option>
+            </select>
+          </div>
+         
+      <br>
+      <br>
+      <strong> {{message}} </strong>
+    </mat-dialog-content>
+    <hr>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onCloseConfirm()">Dodaj</button>&nbsp;
+      <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
+    </mat-dialog-actions>
+  </div>

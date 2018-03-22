@@ -9,6 +9,10 @@ import { MatDialog } from '@angular/material';
 import { ProfileImageDialogComponent } from '../profile-image-dialog/profile-image-dialog.component';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ProfileLinkDialogComponent } from '../profile-link-dialog/profile-link-dialog.component';
+import { ProfileEducationDialogComponent } from '../profile-education-dialog/profile-education-dialog.component';
+import { ProfileDescriptionDialogComponent } from '../profile-description-dialog/profile-description-dialog.component';
+import { ProfileCityDialogComponent } from '../profile-city-dialog/profile-city-dialog.component';
 
 
 
@@ -42,6 +46,7 @@ export class ProfileComponent implements OnInit{
 
   dialogResult: string;
   url: string = "http://localhost:3000/image/user/";
+  public loading = true;
   
   
   constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog, private _http: HttpClient){}
@@ -68,9 +73,11 @@ export class ProfileComponent implements OnInit{
         this._profileService.getUserCertifications().subscribe(userCertifications => this.userCertifications = userCertifications.employee.certifications);
         this._profileService.getCategoriesNames().subscribe(categories => this.categories = categories);
         this.userCategories = this.user.employee.categories;
+        this.loading = false;
         }else if(this.id==1){
           this.person = "Pracodawca";
           console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
+          this.loading = false;
         } 
 
       });
@@ -84,25 +91,25 @@ export class ProfileComponent implements OnInit{
 
 confirmLang(lang): void{
   
-  this._profileService.setLanguages(lang).subscribe()
+  this._profileService.updateEmployee(lang).subscribe()
   
 }
 
 confirmSpec(spec): void{
-  this._profileService.setSpecializations(spec).subscribe()
+  this._profileService.updateEmployee(spec).subscribe()
 }
 
 confirmSoftware(software): void{
-  this._profileService.setSoftware(software).subscribe()
+  this._profileService.updateEmployee(software).subscribe()
 }
 
 confirmCertifications(certifications): void{
-  this._profileService.setCertifications(certifications).subscribe()
+  this._profileService.updateEmployee(certifications).subscribe()
 }
 
 confirmCategories(categories): void{
   
-  this._profileService.setCategories(categories).subscribe()
+  this._profileService.updateEmployee(categories).subscribe()
   
 }
 
@@ -201,8 +208,97 @@ openProfileImageDialog() {
     
     if(result == "Confirm")
     {
+      window.location.reload();
+    }
+  });
+}
+openProfileLinkDialog(link: string, title: string, jsonName: string) {
+  let dialogRef = this.dialog.open(ProfileLinkDialogComponent, {
+    width: '600px',
+    data: {title: title,link: link}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result;
+    
+    if(result.status == "Confirm")
+    {
+      var obj;
+      switch(jsonName){
+        case 'portfolio_link': {
+          obj = {portfolio_link: result.result}
+          break;
+        }
+        case 'git_link': {
+          obj = {git_link: result.result}
+          break;
+        }
+        case 'linked_in_link': {
+          obj = {linked_in_link: result.result}
+          break;
+        }
+      }
+      this._profileService.updateEmployee(obj).subscribe(data => window.location.reload())
+    }
+  });
+}
+openProfileEducationDialog() {
+  let dialogRef = this.dialog.open(ProfileEducationDialogComponent, {
+    width: '600px',
+    data: {education: this.user.employee.education}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result;
+    
+    if(result.status == "Confirm")
+    {
+      // console.log("Wyksztalcenie: "+result.result);
+      this.user.employee.education = result.result;
+      let obj = {education: result.result};
+      this._profileService.updateEmployee(obj).subscribe()
       
     }
   });
 }
+openProfileDescriptionDialog() {
+  let dialogRef = this.dialog.open(ProfileDescriptionDialogComponent, {
+    width: '600px',
+    data: {description: this.user.employee.description}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result;
+    
+    if(result.status == "Confirm")
+    {
+      // console.log("Wyksztalcenie: "+result.result);
+      this.user.employee.description = result.result;
+      let obj = {description: result.result};
+      this._profileService.updateEmployee(obj).subscribe()
+      
+    }
+  });
+}
+
+openProfileCityDialog() {
+  let dialogRef = this.dialog.open(ProfileCityDialogComponent, {
+    width: '600px',
+    data: {city: this.user.user.city}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result;
+    
+    if(result.status == "Confirm")
+    {
+      // console.log("Wyksztalcenie: "+result.result);
+      this.user.user.city = result.result;
+      let obj = {city: result.result};
+      this._profileService.updateUser(obj).subscribe()
+      
+    }
+  });
+}
+
 }

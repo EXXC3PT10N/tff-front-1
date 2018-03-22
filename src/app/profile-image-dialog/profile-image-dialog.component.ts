@@ -13,6 +13,7 @@ export class ProfileImageDialogComponent implements OnInit {
   public files: UploadFile[] = [];
   apiEndPoint: string = "http://localhost:3000/api/user/image/upload";
   formData: FormData;
+  message: string;
 
   constructor(public thisDialogRef: MatDialogRef<ProfileImageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _http: HttpClient) { }
 
@@ -48,19 +49,7 @@ export class ProfileImageDialogComponent implements OnInit {
           formData.append('uploadFile', file, file.name);
           this.formData = formData;
           
-          // // You could upload it like this:
-          // const formData = new FormData()
-          // formData.append('logo', file, relativePath)
- 
-          // // Headers
-          // const headers = new HttpHeaders({
-          //   'security-token': 'mytoken'
-          // })
- 
-          // this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          // .subscribe(data => {
-          //   // Sanitized logo returned from backend
-          // })
+          this.message = "Twoje zdjęcie zostało załadowane. Aby ustawić je na profilowe kliknij 'Dodaj'"
           
  
         });
@@ -79,5 +68,19 @@ export class ProfileImageDialogComponent implements OnInit {
   public fileLeave(event){
     console.log(event);
   }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        this.formData = formData;
+          
+        this.message = "Twoje zdjęcie zostało załadowane. Aby ustawić je na profilowe kliknij 'Dodaj'"
+        
+
+    }
+}
 }
 
