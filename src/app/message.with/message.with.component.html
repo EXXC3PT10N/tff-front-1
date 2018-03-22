@@ -5,6 +5,7 @@
   <p *ngFor="let prop of msg | keys">
     {{prop.key}} : {{prop.value}}
   </p>
+  <p [innerHTML]="msg.content"></p>
 </div>
 <p>{{count}}</p>
 
