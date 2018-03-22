@@ -21,9 +21,9 @@
                     id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Twój profil</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" []>Lista ogłoszeń</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="fa fa-envelope-o" style="margin:0px 5px 0px 0px;"></i>Wiadomości</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wyloguj się</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']">Lista ogłoszeń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/messages']"><i class="fa fa-envelope-o" style="margin:0px 5px 0px 0px;"></i>Wiadomości</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/login']" (click)="logout()">Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
