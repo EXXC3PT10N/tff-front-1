@@ -31,6 +31,10 @@ export class DialogProfileComponent implements OnInit {
   set filter(value: string) {
   this._filter = value;
   this.filteredTab = this.filter ? this.performFilter(this.filter, this.data.tabNames) : null;
+  if(this.filteredTab.length>4)
+  {
+    this.filteredTab.splice(4)
+  }
   }
   
 
