@@ -1,14 +1,16 @@
 export interface MessageWith {
-  with: With,
+  with: User,
+  me: User,
   messages: [Message],
   count: number
 }
 
-export interface With {
+export interface User {
   _id: string,
   username: string,
   last_name: string,
-  first_name: string
+  first_name: string,
+  image: string
 }
 
 export interface Message {

@@ -28,16 +28,17 @@
     </div>
     <div class="row no-gutters justify-content-center">
         <div class="col col-lg-6">
+            <button style="position: fixed; background-color: rgba(244,244,244,0.1);" class="input-group col col-lg-6" (click)="getMessages()">Load More</button>
             <div class="container d-flex flex-column  justify-content-between" style="height: 90vh;">
                 <span *ngFor="let group of groupMessages; let i = index">
                   <span *ngIf="group.is_send">
                     <div class="label d-flex flex-column align-items-end" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
-                      <div class="d-flex align-items-center"><div class="message you m-1">{{message.content}}</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                      <div class="d-flex align-items-center"><div class="message you m-1">{{message.content}}</div><img [src]="imageMe" class="rounded-circle" style="width: 40px; height: 40px;"></div>
                     </div>
                   </span>
                   <span *ngIf="!group.is_send">
                     <div class="label d-flex flex-column align-items-start" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
-                      <div class="d-flex align-items-center"><div class="message m-1">{{message.content}}</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                      <div class="d-flex align-items-center"><div class="message m-1">{{message.content}}</div><img [src]="imageWith" class="rounded-circle" style="width: 40px; height: 40px;"></div>
                     </div>
                   </span>
                 </span>
