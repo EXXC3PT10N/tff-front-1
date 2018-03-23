@@ -48,6 +48,7 @@ import { ProfileDescriptionDialogComponent } from './profile-description-dialog/
 import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-dialog.component';
 import { HomeGuardService } from './services/home-guard.service';
 import {ImgFallbackModule} from 'ngx-img-fallback';
+import {ScrollEventModule} from 'ngx-scroll-event';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -95,6 +96,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
     BrowserAnimationsModule,
     FileDropModule,
     ImgFallbackModule,
+    ScrollEventModule,
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.wanderingCubes,
       backdropBackgroundColour: 'rgba(0,0,0,0.5)',
