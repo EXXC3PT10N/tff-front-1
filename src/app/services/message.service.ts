@@ -30,11 +30,11 @@ export class MessageService {
   }
   private createUrl(url, page ?: number, pagesize ?: number): string {
     if (page && pagesize) {
-      return `${url}?page=${page}&pagesize${pagesize}`;
+      return `${url}?page=${page}&pagesize=${pagesize}`;
     } else if (page) {
       return `${url}?page=${page}`;
     } else if (pagesize) {
-      return `${url}?pagesize${pagesize}`;
+      return `${url}?pagesize=${pagesize}`;
     } else {
       return url;
     }

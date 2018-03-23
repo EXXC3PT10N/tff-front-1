@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import {GroupMessage, User, Message} from '../models/message.with';
-import {ActivatedRoute} from '@angular/router';
-import {withIdentifier} from 'codelyzer/util/astQuery';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {environment} from '../../environments/environment';
+import {ScrollEvent} from 'ngx-scroll-event';
+import { AfterViewInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-message.with',
   templateUrl: './message.with.component.html',
   styleUrls: ['./message.with.component.css']
 })
-export class MessageWithComponent implements OnInit {
+export class MessageWithComponent implements OnInit, AfterViewInit {
   messages: Message[] = new Array();
   groupMessages: GroupMessage[];
   userWith: User;
@@ -24,12 +26,22 @@ export class MessageWithComponent implements OnInit {
   imageMe: string;
   imageWith: string;
   defaultImg: string = environment.defaultImage;
-  constructor(private _messageService: MessageService, private _route: ActivatedRoute) { }
+  loadMore: boolean;
+
+  constructor(private _messageService: MessageService, private _route: ActivatedRoute, private _router: Router) { }
+
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      document.getElementById('scroller').scrollTo(0, document.getElementById('scroller').scrollHeight);
+    }, 500);
+  }
 
   ngOnInit() {
+    this.loadMore = false;
+    this.pagesize = 15;
     this.page = 0;
     this.getMessages();
-
   }
 
   getMessages(): void {
@@ -45,6 +57,7 @@ export class MessageWithComponent implements OnInit {
           this.userMe = res.me;
           this.imageWith = this.userWith !== null ? this.basePath + '/image/user/' + this.userWith.image : this.defaultImg;
           this.imageMe = this.userMe !== null ? this.basePath + '/image/user/' + this.userMe.image : this.defaultImg;
+          this.loadMore = false;
         },
         err => {
           console.error(err);
@@ -101,6 +114,18 @@ export class MessageWithComponent implements OnInit {
       });
     } else {
       this.groupMessages[this.groupMessages.length - 1].messages.push(message);
+    }
+  }
+  handleScroll(event: ScrollEvent): void {
+    if (event.isReachingTop) {
+      if (this.messages.length < this.count)
+        this.getMessages();
+    }
+    if(document.getElementById('scroller').scrollTop < 150 && this.count > this.messages.length) {
+      this.loadMore = true;
+    }
+    else {
+      this.loadMore = false;
     }
   }
 }
