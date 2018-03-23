@@ -23,6 +23,7 @@ export class MessageWithComponent implements OnInit {
   basePath: string = environment.path;
   imageMe: string;
   imageWith: string;
+  defaultImg: string = environment.defaultImage;
   constructor(private _messageService: MessageService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -42,8 +43,8 @@ export class MessageWithComponent implements OnInit {
           this.page++;
           this.userWith = res.with;
           this.userMe = res.me;
-          this.imageWith = this.userWith !== null ? this.basePath + '/image/user/' + this.userWith.image : 'assets/assets_with/img/pic.png';
-          this.imageMe = this.userMe !== null ? this.basePath + '/image/user/' + this.userMe.image : 'assets/assets_with/img/pic.png';
+          this.imageWith = this.userWith !== null ? this.basePath + '/image/user/' + this.userWith.image : this.defaultImg;
+          this.imageMe = this.userMe !== null ? this.basePath + '/image/user/' + this.userMe.image : this.defaultImg;
         },
         err => {
           console.error(err);

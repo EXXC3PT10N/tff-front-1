@@ -15,6 +15,7 @@ export class MessageAllComponent implements OnInit {
   page: number;
   pagesize: number;
   basePath = environment.path;
+  defaultImg: string = environment.defaultImage;
   constructor(private _messageService: MessageService, private _authService: AuthService) { }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class MessageAllComponent implements OnInit {
         this.messages = res.messages;
         this.count = res.count;
         this.messages = this.messages.map(msg => {
-          msg.image = msg.image !== null ? this.basePath + '/image/user/' + msg.image : 'assets/assets_with/img/pic.png';
+          msg.image = msg.image !== null ? this.basePath + '/image/user/' + msg.image : this.defaultImg;
           return msg;
         });
       },
