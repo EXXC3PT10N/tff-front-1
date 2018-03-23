@@ -46,6 +46,7 @@ import { ProfileLinkDialogComponent } from './profile-link-dialog/profile-link-d
 import { ProfileEducationDialogComponent } from './profile-education-dialog/profile-education-dialog.component';
 import { ProfileDescriptionDialogComponent } from './profile-description-dialog/profile-description-dialog.component';
 import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-dialog.component';
+import { HomeGuardService } from './services/home-guard.service';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -123,7 +124,7 @@ import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-d
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
-      { path: 'home', component: HomeComponent },
+      { path: 'home', canActivate: [HomeGuardService], component: HomeComponent },
       { path: 'profile',
           canActivate: [ LoginGuardService ],
           component: ProfileComponent },
@@ -143,7 +144,9 @@ import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-d
     ProfileService,
     AskService,
     BidService,
-    MessageService
+    MessageService,
+    HomeGuardService
+    
   ],
   bootstrap: [AppComponent]
 })

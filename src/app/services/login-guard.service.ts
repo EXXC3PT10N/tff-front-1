@@ -9,7 +9,7 @@ export class LoginGuardService implements CanActivate {
 
   constructor(private _authService: AuthService, private _router: Router, private _profile: ProfileService) { }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  canActivate(): boolean {
 
     if(!this._authService.token) {
       this._router.navigate(['/login']);
@@ -21,10 +21,7 @@ export class LoginGuardService implements CanActivate {
       })
     }
    return true;
-    
-    
   }
-
   
 
 }
