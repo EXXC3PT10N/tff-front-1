@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from '../models/message.all';
 import { MessageService } from '../services/message.service';
 import {AuthService} from '../services/auth.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-message.all',
@@ -13,6 +14,7 @@ export class MessageAllComponent implements OnInit {
   count: number;
   page: number;
   pagesize: number;
+  basePath = environment.path;
   constructor(private _messageService: MessageService, private _authService: AuthService) { }
 
   ngOnInit() {
@@ -24,6 +26,10 @@ export class MessageAllComponent implements OnInit {
       res => {
         this.messages = res.messages;
         this.count = res.count;
+        this.messages = this.messages.map(msg => {
+          msg.image = msg.image !== null ? this.basePath + '/image/user/' + msg.image : 'assets/assets_with/img/pic.png';
+          return msg;
+        });
       },
       err => {
         console.error(err);

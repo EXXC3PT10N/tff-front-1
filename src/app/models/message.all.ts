@@ -11,6 +11,7 @@ export interface Message {
   is_send: boolean,
   username: string,
   first_name: string,
-  last_name: string
+  last_name: string,
+  image: string
 }
 

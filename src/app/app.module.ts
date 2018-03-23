@@ -47,6 +47,7 @@ import { ProfileEducationDialogComponent } from './profile-education-dialog/prof
 import { ProfileDescriptionDialogComponent } from './profile-description-dialog/profile-description-dialog.component';
 import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-dialog.component';
 import { HomeGuardService } from './services/home-guard.service';
+import {ImgFallbackModule} from 'ngx-img-fallback';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -93,12 +94,13 @@ import { HomeGuardService } from './services/home-guard.service';
     MatButtonModule,
     BrowserAnimationsModule,
     FileDropModule,
+    ImgFallbackModule,
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.wanderingCubes,
-      backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
       backdropBorderRadius: '4px',
-      primaryColour: '#ffffff', 
-      secondaryColour: '#ffffff', 
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
       tertiaryColour: '#ffffff'
   }),
     RouterModule.forRoot([
@@ -146,7 +148,7 @@ import { HomeGuardService } from './services/home-guard.service';
     BidService,
     MessageService,
     HomeGuardService
-    
+
   ],
   bootstrap: [AppComponent]
 })
