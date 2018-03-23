@@ -29,22 +29,25 @@
     <div class="row no-gutters justify-content-center">
         <div class="col col-lg-6">
             <div class="container d-flex flex-column  justify-content-between" style="height: 90vh;">
-                <div class="label d-flex flex-column align-items-end mt-2">
-                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
-                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
-                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
-                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
-                </div>
+                <span *ngFor="let group of groupMessages; let i = index">
+                  <span *ngIf="group.is_send">
+                    <div class="label d-flex flex-column align-items-end" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
+                      <div class="d-flex align-items-center"><div class="message you m-1">{{message.content}}</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                    </div>
+                  </span>
+                  <span *ngIf="!group.is_send">
+                    <div class="label d-flex flex-column align-items-start" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
+                      <div class="d-flex align-items-center"><div class="message m-1">{{message.content}}</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                    </div>
+                  </span>
+                </span>
 
-                <div class="label d-flex flex-column align-items-start">
-                    <div class="d-flex align-items-center"><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"><div class="message m-1">Siema!</div></div>
 
-                </div>
-
-                <div class="input-group mb-2">
-                    <input type="text" class="" placeholder="Wpisz wiadomość..">
-                </div>
+              <div class="input-group mb-2">
+                <input type="text" class="" placeholder="Wpisz wiadomość.." [(ngModel)]="textValue" (keydown)="onEnter($event)">
+              </div>
             </div>
+
         </div>
     </div>
 </body>

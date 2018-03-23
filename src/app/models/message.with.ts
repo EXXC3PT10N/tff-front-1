@@ -23,3 +23,8 @@ export interface MessagePost {
   success: string,
   message: Message,
 }
+
+export interface GroupMessage {
+  is_send: boolean,
+  messages: [Message]
+}
