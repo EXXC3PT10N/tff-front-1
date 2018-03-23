@@ -1,15 +1,52 @@
-<div *ngFor="let val of with | keys">
-  <p>{{val.key}} : {{val.value}}</p>
-</div>
-<div *ngFor="let msg of messages">
-  <p *ngFor="let prop of msg | keys">
-    {{prop.key}} : {{prop.value}}
-  </p>
-  <p [innerHTML]="msg.content"></p>
-</div>
-<p>{{count}}</p>
+<!DOCTYPE html>
+<html>
 
-<textarea [(ngModel)]="textValue">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>message.with</title>
+    <link rel="stylesheet" href="assets/assets_with/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/assets_with/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/assets_with/css/styles.css">
+</head>
 
-</textarea>
-<button (click)="sendMessage()">Send</button>
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Szukaj zleceń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wiadomości</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Twój profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wyloguj się</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row no-gutters justify-content-center">
+        <div class="col col-lg-6">
+            <div class="container d-flex flex-column  justify-content-between" style="height: 90vh;">
+                <div class="label d-flex flex-column align-items-end mt-2">
+                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                    <div class="d-flex align-items-center"><div class="message you m-1">Siema!</div><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                </div>
+
+                <div class="label d-flex flex-column align-items-start">
+                    <div class="d-flex align-items-center"><img src="assets/assets_with/img/pic.png" class="rounded-circle" style="width: 40px; height: 40px;"><div class="message m-1">Siema!</div></div>
+
+                </div>
+
+                <div class="input-group mb-2">
+                    <input type="text" class="" placeholder="Wpisz wiadomość..">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
