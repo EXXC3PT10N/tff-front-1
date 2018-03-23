@@ -14,12 +14,12 @@ export class LoginGuardService implements CanActivate {
     if(!this._authService.token) {
       this._router.navigate(['/login']);
       return false;
-    } //else {
-    //   this._profile.getIdentity().subscribe(user => {
-    //     if(!user.user.first_name || !user.user.last_name || !user.user.phone || !user.user.city)
-    //       this._router.navigate(['/registerP2'])
-    //   })
-    // }
+    } else {
+      this._profile.getIdentity().subscribe(user => {
+        if(!user.user.first_name || !user.user.last_name || !user.user.phone || !user.user.city)
+          this._router.navigate(['/registerP2'])
+      })
+    }
    return true;
     
     
