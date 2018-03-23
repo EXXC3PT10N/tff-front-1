@@ -59,8 +59,8 @@ export class ProfileComponent implements OnInit{
         this.ocena = userProfile["user"].rate;
         this.id = userProfile['user'].status;
         this.url += userProfile.user.image
-
-        if(this.id==0){
+        
+        if(this.id==0 && this.user.user.first_name){
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
         this._profileService.getUserLanguages().subscribe(userLanguages => { 

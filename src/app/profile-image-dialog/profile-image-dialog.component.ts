@@ -23,17 +23,25 @@ export class ProfileImageDialogComponent implements OnInit {
   }
 
   onCloseConfirm() {
-     this.fileEntry.file((file: File) => {
-          let formData:FormData = new FormData();
-          formData.append('uploadFile', file, file.name);
-          this._http.post(`${this.apiEndPoint}`, formData)
-          .catch(error => Observable.throw(error))
-          .subscribe(
-              data => console.log('success'),
-              error => console.log(error)
-          )
-          
-        })
+    if(this.fileEntry){
+      this.fileEntry.file((file: File) => {
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        this._http.post(`${this.apiEndPoint}`, formData)
+        .catch(error => Observable.throw(error))
+        .subscribe(
+            data => console.log('success'),
+            error => console.log(error)
+        )
+      })
+    } else {
+        this._http.post(`${this.apiEndPoint}`, this.formData)
+        .catch(error => Observable.throw(error))
+        .subscribe(
+            data => console.log('success'),
+            error => console.log(error)
+        )
+      }
     
     this.thisDialogRef.close('Confirm');
   }
