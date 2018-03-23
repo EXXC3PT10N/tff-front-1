@@ -13,7 +13,9 @@ export class ProfileImageDialogComponent implements OnInit {
   public files: UploadFile[] = [];
   apiEndPoint: string = "http://localhost:3000/api/user/image/upload";
   formData: FormData;
+  fileEntry;
   message: string;
+  public loading: boolean;
 
   constructor(public thisDialogRef: MatDialogRef<ProfileImageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _http: HttpClient) { }
 
@@ -21,12 +23,18 @@ export class ProfileImageDialogComponent implements OnInit {
   }
 
   onCloseConfirm() {
-    this._http.post(`${this.apiEndPoint}`, this.formData)
+     this.fileEntry.file((file: File) => {
+          let formData:FormData = new FormData();
+          formData.append('uploadFile', file, file.name);
+          this._http.post(`${this.apiEndPoint}`, formData)
           .catch(error => Observable.throw(error))
           .subscribe(
               data => console.log('success'),
               error => console.log(error)
           )
+          
+        })
+    
     this.thisDialogRef.close('Confirm');
   }
   onCloseCancel() {
@@ -34,31 +42,30 @@ export class ProfileImageDialogComponent implements OnInit {
   }
 
   public dropped(event: UploadEvent) {
+    this.loading = true;
     this.files = event.files;
     for (const droppedFile of event.files) {
  
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
- 
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-          
-          let formData:FormData = new FormData();
-          formData.append('uploadFile', file, file.name);
-          this.formData = formData;
+        this.fileEntry = fileEntry;
+        // fileEntry.file((file: File) => {
+        //   let formData:FormData = new FormData();
+        //   formData.append('uploadFile', file, file.name);
+        //   this.formData = formData;
           
           this.message = "Twoje zdjęcie zostało załadowane. Aby ustawić je na profilowe kliknij 'Dodaj'"
           
- 
-        });
+          
+        // });
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
+    this.loading = false;
   }
  
   public fileOver(event){

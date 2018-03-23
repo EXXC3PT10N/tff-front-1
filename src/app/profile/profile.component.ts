@@ -227,18 +227,21 @@ openProfileLinkDialog(link: string, title: string, jsonName: string) {
       switch(jsonName){
         case 'portfolio_link': {
           obj = {portfolio_link: result.result}
+          this.user.employee.portfolio_link = obj.portfolio_link;
           break;
         }
         case 'git_link': {
           obj = {git_link: result.result}
+          this.user.employee.git_link = obj.git_link;
           break;
         }
         case 'linked_in_link': {
           obj = {linked_in_link: result.result}
+          this.user.employee.linked_in_link = obj.linked_in_link;
           break;
         }
       }
-      this._profileService.updateEmployee(obj).subscribe(data => window.location.reload())
+      this._profileService.updateEmployee(obj).subscribe()
     }
   });
 }

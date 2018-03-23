@@ -4,6 +4,7 @@
     <mat-dialog-content>
     
       <div class="center">
+        <ngx-loading [show]="loading"></ngx-loading>
         <file-drop headertext="Upuść plik tutaj" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
         </file-drop>
       </div>
