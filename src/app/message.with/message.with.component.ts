@@ -32,9 +32,7 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      document.getElementById('scroller').scrollTo(0, document.getElementById('scroller').scrollHeight);
-    }, 500);
+    this.scrollDown(500);
   }
 
   ngOnInit() {
@@ -74,6 +72,7 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
           this.groupMsgsAddMessage(res.message);
           this.count++;
           this.textValue = '';
+          this.scrollDown(250);
         } else {
           console.log(res.message);
         }
@@ -127,5 +126,10 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
     else {
       this.loadMore = false;
     }
+  }
+  scrollDown(time: number) {
+    setTimeout(() => {
+      document.getElementById('scroller').scrollTo(0, document.getElementById('scroller').scrollHeight);
+    }, time);
   }
 }
