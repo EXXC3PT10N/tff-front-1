@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  path: 'http://localhost:3000',
+  // path: 'http://localhost:3000',
+  path: 'https://toplance-842bb.firebaseapp.com',
   defaultImage: 'assets/assets_with/img/pic.png'
 };
