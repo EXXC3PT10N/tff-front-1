@@ -53,8 +53,8 @@
                             <p class="text-center">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
                         </div>
                       <div class="col-md-4 d-flex justify-content-center align-self-center">
-                        <img class="float-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
                         <div style="width:150px;height:150px;">
+                          <img class="rounded-circle img-fluid-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
                           <img class="rounded-circle img-fluid-right" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
                         </div>
                         </div>
