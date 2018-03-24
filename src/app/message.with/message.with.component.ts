@@ -4,7 +4,6 @@ import {GroupMessage, User, Message} from '../models/message.with';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {ScrollEvent} from 'ngx-scroll-event';
-import { AfterViewInit } from '@angular/core';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { AfterViewInit } from '@angular/core';
   templateUrl: './message.with.component.html',
   styleUrls: ['./message.with.component.css']
 })
-export class MessageWithComponent implements OnInit, AfterViewInit {
+export class MessageWithComponent implements OnInit {
   messages: Message[] = new Array();
   groupMessages: GroupMessage[];
   userWith: User;
@@ -31,9 +30,6 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
   constructor(private _messageService: MessageService, private _route: ActivatedRoute) { }
 
 
-  ngAfterViewInit(): void {
-    this.scrollDown(500);
-  }
 
   ngOnInit() {
     this.loadMore = false;
@@ -50,11 +46,13 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
           this.messages = res.messages.concat(this.messages);
           this.count = res.count;
           this.groupMessages = this.groupMsgs(this.messages);
+          if(this.page === 0)
+            this.scrollDown(500);
           this.page++;
           this.userWith = res.with;
           this.userMe = res.me;
-          this.imageWith = this.userWith !== null ? this.basePath + '/image/user/' + this.userWith.image : this.defaultImg;
-          this.imageMe = this.userMe !== null ? this.basePath + '/image/user/' + this.userMe.image : this.defaultImg;
+          this.imageWith =  this.userWith.image || this.defaultImg;
+          this.imageMe = this.userMe.image || this.defaultImg;
           this.loadMore = false;
         },
         err => {

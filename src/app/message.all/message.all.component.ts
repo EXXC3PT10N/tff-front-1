@@ -28,7 +28,7 @@ export class MessageAllComponent implements OnInit {
         this.messages = res.messages;
         this.count = res.count;
         this.messages = this.messages.map(msg => {
-          msg.image = msg.image !== null ? this.basePath + '/image/user/' + msg.image : this.defaultImg;
+          msg.image = msg.image || this.defaultImg;
           return msg;
         });
       },
