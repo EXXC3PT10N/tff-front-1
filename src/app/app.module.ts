@@ -55,16 +55,15 @@ import { FillPipe } from './pipes/fill.pipe';
 import { StrangerProfileComponent } from './stranger-profile/stranger-profile.component';
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 import {FirebaseMessagingService} from './services/firebase.messaging.service';
-<<<<<<< HEAD
+
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import * as firebase from 'firebase';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-=======
 import { MyAsksComponent } from './my-asks/my-asks.component';
 
->>>>>>> 996618c85599199d1dfc4d29814e1c42fb8b5e46
+
 //git add foldery/pliki
 //git commit -m "wiadomosc"
 //git push tff master
