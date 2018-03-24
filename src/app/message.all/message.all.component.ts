@@ -3,6 +3,7 @@ import { Message } from '../models/message.all';
 import { MessageService } from '../services/message.service';
 import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
+import { FirebaseMessagingService } from '../services/firebase.messaging.service';
 
 @Component({
   selector: 'app-message.all',

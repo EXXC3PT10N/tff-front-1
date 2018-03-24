@@ -54,6 +54,7 @@ import { RateService } from './services/rate.service';
 import { FillPipe } from './pipes/fill.pipe';
 import { StrangerProfileComponent } from './stranger-profile/stranger-profile.component';
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
+import {FirebaseMessagingService} from './services/firebase.messaging.service';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -162,7 +163,8 @@ import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dial
     BidService,
     MessageService,
     HomeGuardService,
-    RateService
+    RateService,
+    FirebaseMessagingService
 
   ],
   bootstrap: [AppComponent]
