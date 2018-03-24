@@ -8,9 +8,55 @@
     <link rel="stylesheet" href="assets/assets_with/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/assets_with/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/assets_with/css/styles.css">
+  <style>
+    /*// Extra small devices (portrait phones, less than 576px)*/
+    @media (max-width: 575px) {
+      .asd {
+        max-height: 85% !important;
+      }
+
+    }
+
+    /*// Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) and (max-width: 767px) {
+      .asd {
+        max-height: 75% !important;
+      }
+      .qwe {
+        height: 70vh !important;
+      }
+    }
+
+     /*Medium devices (tablets, 768px and up)*/
+    @media (min-width: 768px) and (max-width: 991px) {
+      .asd {
+        max-height: 90% !important;
+      }
+      .qwe {
+        height: 88vh !important;
+      }
+    }
+
+    /*// Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .asd {
+        max-height: 100% !important;
+      }
+      .qwe {
+        height: 85vh !important;
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+      .asd {
+        max-height: 95% !important;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body style="height: 100vh;">
     <div>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean">
             <div class="container"><a class="navbar-brand" href="#">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -27,8 +73,8 @@
         </nav>
     </div>
     <div style="background-color: rgb(0, 123, 255); color: white; padding:12px; border:none;" class="text-center col">{{userWith?.first_name}} {{userWith?.last_name}}</div>
-    <div class="row no-gutters d-flex justify-content-center">
-        <div class="col col-lg-6" id="scroller"  style="overflow:auto; max-height: 76vh;" detect-scroll (onScroll)="handleScroll($event)" [topOffset]="1">
+    <div class="row no-gutters d-flex justify-content-center qwe" style="height: 80vh;">
+        <div class="col col-lg-6 asd" id="scroller"  style="overflow:auto; max-height:85%;" detect-scroll (onScroll)="handleScroll($event)" [topOffset]="1">
             <div style="background-color: white; color: rgba(0,0,0,0.2); border:none;" class="text-center col col-lg-6 position-fixed" (click)="getMessages()" *ngIf="loadMore">Pokaż więcej</div>
             <div class="mt-5 container d-flex flex-column  justify-content-between">
                 <span *ngFor="let group of groupMessages; let i = index">
@@ -51,6 +97,8 @@
               </div>
             </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
