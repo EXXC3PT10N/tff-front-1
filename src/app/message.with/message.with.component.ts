@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import {GroupMessage, User, Message} from '../models/message.with';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {ScrollEvent} from 'ngx-scroll-event';
 import { AfterViewInit } from '@angular/core';
@@ -28,7 +28,7 @@ export class MessageWithComponent implements OnInit, AfterViewInit {
   defaultImg: string = environment.defaultImage;
   loadMore: boolean;
 
-  constructor(private _messageService: MessageService, private _route: ActivatedRoute, private _router: Router) { }
+  constructor(private _messageService: MessageService, private _route: ActivatedRoute) { }
 
 
   ngAfterViewInit(): void {
