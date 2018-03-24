@@ -31,30 +31,38 @@
         </nav>
     </div>
     <!-- Pracownik -->
+
     <div class="features-clean" *ngIf="!loading && user.user.status==0"> 
         <div class="container" *ngIf="!loading">
-            <div class="intro" style="width:690px;">
-                <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2><img class="float-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
-                <img class="float-right" src="assets/assets_all//img/5288961-profile-pics.png" style="width:126px;" *ngIf="!user.user.image">
-                <p class="text-left" style="width:333px;"> {{user.employee.description}} <span *ngIf="!user.employee.description">Opis</span></p>
-                <p class="text-center float-left">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
-                <p class="text-center float-right" >Edytuj zdjęcie<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileImageDialog()" ></i></p>
-
-            </div>
+            <div class="container mt-4"  *ngIf="!loading">
+                    <div class="row">
+                        <div class="col-md-4 align-self-center">
+                            <h5 class="text-center">Ocena</h5>
+                            <p class="text-center"><i class="icon-star" style="color:rgb(0,0,0);"></i><i class="icon-star" style="color:rgb(0,0,0);"></i><i class="icon-star" style="color:rgb(0,0,0);"></i><i class="icon-star" style="color:rgb(0,0,0);"></i><i class="icon-star" style="color:rgb(0,0,0);"></i></p>
+                            <p
+                                class="text-center">Pokaż oceny</p>
+                        </div>
+                        <div class="col-md-4 align-self-center">
+                            <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
+                            <p class="text-center"> {{user.employee.description}} <span *ngIf="!user.employee.description">Opis</span> </p>
+                            <p class="text-center">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center align-self-center">
+                            <img class="float-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
+                            <img class="rounded-circle img-fluid-right" src="assets/assets_all/img/5288961-profile-pics.png" style="width:150px;height:150px;" *ngIf="!user.user.image">
+                        </div>
+                    </div>
+                </div>
             <div class="row features">
                 <div class="col-12" style="margin:0px;">
                     <h1 class="text-center" style="font-size:30px;margin:11px;">Dane osobowe</h1>
                     <hr style="margin:40px;">
                 </div>
-                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-user icon"></i>
+                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-user icon"></i>
                     <h3 class="name">Typ konta</h3>
                     <p class="description">{{person}}</p>
                 </div>
-                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
-                    <h3 class="name">Czas pracy</h3>
-                    <p class="description">720 godzin</p>
-                </div>
-                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
+                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-map-marker icon"></i>
                     <h3 class="name">Lokalizacja<i class="fa fa-edit float-right" (click)="openProfileCityDialog()" ></i></h3>
                     <p class="description">{{user.user.city}}</p>
                 </div>
