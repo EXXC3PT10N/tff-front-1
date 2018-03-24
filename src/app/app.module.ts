@@ -133,7 +133,7 @@ import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dial
       { path: 'ProfileEducationDialog', component: ProfileEducationDialogComponent },
       { path: 'ProfileDescriptionDialog', component: ProfileDescriptionDialogComponent },
       { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
-      { path: 'StrangerProfile/:id', component: StrangerProfileComponent },
+      { path: 'profile/:id', component: StrangerProfileComponent },
       { path: 'StrangerProfileRateDialog', component: StrangerProfileRateDialogComponent },
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
