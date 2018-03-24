@@ -14,7 +14,7 @@ import { ProfileEducationDialogComponent } from '../profile-education-dialog/pro
 import { ProfileDescriptionDialogComponent } from '../profile-description-dialog/profile-description-dialog.component';
 import { ProfileCityDialogComponent } from '../profile-city-dialog/profile-city-dialog.component';
 import { RateService } from '../services/rate.service';
-
+import { FirebaseMessagingService } from '../services/firebase.messaging.service';
 
 
 @Component({
@@ -48,9 +48,15 @@ export class ProfileComponent implements OnInit{
   dialogResult: string;
   url: string = "http://localhost:3000/image/user/";
   public loading = true;
-  
-  
-  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog, private _http: HttpClient, private _rateService: RateService){}
+
+
+  constructor(private _profileService: ProfileService,
+              private _authService: AuthService,
+              private _router: Router,
+              public dialog: MatDialog,
+              private _http: HttpClient,
+              private _rateService: RateService,
+              private _firebaseMessage: FirebaseMessagingService){}
 
   ngOnInit(): void {
       this._profileService.getIdentity().subscribe(userProfile => {
@@ -60,11 +66,11 @@ export class ProfileComponent implements OnInit{
         this.ocena = userProfile.rate;
         this.id = userProfile['user'].status;
         this.url += userProfile.user.image
-        
+
         if(this.id==0 && this.user.user.first_name){
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
-        
+
           this.userLanguages = userProfile.employee.languages
         this._profileService.getSpecializationsNames().subscribe(specializations => this.specializations = specializations)
         this.userSpec = userProfile.employee.specs
@@ -80,8 +86,10 @@ export class ProfileComponent implements OnInit{
           this.person = "Pracodawca";
           console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
           this.loading = false;
-        } 
-
+        }
+        this._firebaseMessage.getPermission(this.user.user._id);
+        this._firebaseMessage.reciveMessage();
+        console.log(this._firebaseMessage.currentMessage);
       });
   }
 
@@ -92,9 +100,9 @@ export class ProfileComponent implements OnInit{
 
 
 confirmLang(lang): void{
-  
+
   this._profileService.updateEmployee(lang).subscribe()
-  
+
 }
 
 confirmSpec(spec): void{
@@ -110,9 +118,9 @@ confirmCertifications(certifications): void{
 }
 
 confirmCategories(categories): void{
-  
+
   this._profileService.updateEmployee(categories).subscribe()
-  
+
 }
 
 createComp(): void{
@@ -139,7 +147,7 @@ openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
-    
+
     if(result == "Confirm")
     {
       switch(jsonName){
@@ -196,7 +204,7 @@ openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
         default: console.log("Błąd");
       }
     }
-      
+
   });
 }
 openProfileImageDialog() {
@@ -207,7 +215,7 @@ openProfileImageDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
-    
+
     if(result == "Confirm")
     {
       window.location.reload();
@@ -222,7 +230,7 @@ openProfileLinkDialog(link: string, title: string, jsonName: string) {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result.status}`);
     this.dialogResult = result;
-    
+
     if(result.status == "Confirm")
     {
       var obj;
@@ -255,14 +263,14 @@ openProfileEducationDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result.status}`);
     this.dialogResult = result;
-    
+
     if(result.status == "Confirm")
     {
       // console.log("Wyksztalcenie: "+result.result);
       this.user.employee.education = result.result;
       let obj = {education: result.result};
       this._profileService.updateEmployee(obj).subscribe()
-      
+
     }
   });
 }
@@ -274,14 +282,14 @@ openProfileDescriptionDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result.status}`);
     this.dialogResult = result;
-    
+
     if(result.status == "Confirm")
     {
       // console.log("Wyksztalcenie: "+result.result);
       this.user.employee.description = result.result;
       let obj = {description: result.result};
       this._profileService.updateEmployee(obj).subscribe()
-      
+
     }
   });
 }
@@ -294,14 +302,14 @@ openProfileCityDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result.status}`);
     this.dialogResult = result;
-    
+
     if(result.status == "Confirm")
     {
       // console.log("Wyksztalcenie: "+result.result);
       this.user.user.city = result.result;
       let obj = {city: result.result};
       this._profileService.updateUser(obj).subscribe()
-      
+
     }
   });
 }
