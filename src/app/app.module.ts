@@ -55,11 +55,16 @@ import { FillPipe } from './pipes/fill.pipe';
 import { StrangerProfileComponent } from './stranger-profile/stranger-profile.component';
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 import {FirebaseMessagingService} from './services/firebase.messaging.service';
+<<<<<<< HEAD
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import * as firebase from 'firebase';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+=======
+import { MyAsksComponent } from './my-asks/my-asks.component';
+
+>>>>>>> 996618c85599199d1dfc4d29814e1c42fb8b5e46
 //git add foldery/pliki
 //git commit -m "wiadomosc"
 //git push tff master
@@ -98,6 +103,7 @@ firebase.initializeApp(environment.firebaseConfig);
     FillPipe,
     StrangerProfileComponent,
     StrangerProfileRateDialogComponent,
+    MyAsksComponent
   ],
   imports: [
     BrowserModule,
@@ -144,6 +150,7 @@ firebase.initializeApp(environment.firebaseConfig);
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'myAsks', canActivate: [ LoginGuardService ], component: MyAsksComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
       { path: 'home', canActivate: [HomeGuardService], component: HomeComponent },
