@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  path: 'http://localhost:5001/toplance-842bb/us-central1/app',
+  path: 'https://toplance-842bb.firebaseapp.com',
   defaultImage: 'assets/assets_with/img/pic.png',
   firebaseConfig: {
     apiKey: "AIzaSyANiESTPjqrYVDRq91YOTumRnkaMVYajlc",
