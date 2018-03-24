@@ -55,6 +55,7 @@ import { FillPipe } from './pipes/fill.pipe';
 import { StrangerProfileComponent } from './stranger-profile/stranger-profile.component';
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 import {FirebaseMessagingService} from './services/firebase.messaging.service';
+import { MyAsksComponent } from './my-asks/my-asks.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -92,7 +93,8 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
     RateComponent,
     FillPipe,
     StrangerProfileComponent,
-    StrangerProfileRateDialogComponent
+    StrangerProfileRateDialogComponent,
+    MyAsksComponent
   ],
   imports: [
     BrowserModule,
@@ -139,6 +141,7 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'myAsks', canActivate: [ LoginGuardService ], component: MyAsksComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
       { path: 'home', canActivate: [HomeGuardService], component: HomeComponent },
