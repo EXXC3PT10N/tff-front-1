@@ -1,6 +1,5 @@
 export interface FullUser{
     "user": {
-        "rate": number,
         "username": string,
         "email": string,
         "city": string,
@@ -8,8 +7,10 @@ export interface FullUser{
         "last_name": string,
         "first_name": string,
         "status": number,
-        image?: string
+        image?: string,
+        _id?: string
     },
+    "rate": number,
     "employee": {
         "bids": object,
         "languages": any[],

@@ -49,6 +49,11 @@ import { ProfileCityDialogComponent } from './profile-city-dialog/profile-city-d
 import { HomeGuardService } from './services/home-guard.service';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {ScrollEventModule} from 'ngx-scroll-event';
+import { RateComponent } from './rate/rate.component';
+import { RateService } from './services/rate.service';
+import { FillPipe } from './pipes/fill.pipe';
+import { StrangerProfileComponent } from './stranger-profile/stranger-profile.component';
+import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -82,7 +87,11 @@ import {ScrollEventModule} from 'ngx-scroll-event';
     ProfileLinkDialogComponent,
     ProfileEducationDialogComponent,
     ProfileDescriptionDialogComponent,
-    ProfileCityDialogComponent
+    ProfileCityDialogComponent,
+    RateComponent,
+    FillPipe,
+    StrangerProfileComponent,
+    StrangerProfileRateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +133,9 @@ import {ScrollEventModule} from 'ngx-scroll-event';
       { path: 'ProfileEducationDialog', component: ProfileEducationDialogComponent },
       { path: 'ProfileDescriptionDialog', component: ProfileDescriptionDialogComponent },
       { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
+      { path: 'StrangerProfile/:id', component: StrangerProfileComponent },
+      { path: 'StrangerProfileRateDialog', component: StrangerProfileRateDialogComponent },
+      { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
@@ -149,7 +161,8 @@ import {ScrollEventModule} from 'ngx-scroll-event';
     AskService,
     BidService,
     MessageService,
-    HomeGuardService
+    HomeGuardService,
+    RateService
 
   ],
   bootstrap: [AppComponent]

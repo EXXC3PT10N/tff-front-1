@@ -13,7 +13,7 @@ import { UserP2 } from '../models/userP2';
 export class ProfileService {
   envPath: string = environment.path;
   idUrl: string = this.envPath + "/api/auth/id";
-  identityUrl: string = this.envPath + '/api/user/me';
+  identityUrl: string = this.envPath + '/api/user';
   skillsUrl: string = this.envPath + '/api/skills';
   updateUrl: string = this.envPath + '/api/employee/update';
   companyUrl: string = this.envPath + '/api/company';
@@ -21,8 +21,15 @@ export class ProfileService {
   constructor(private _http: HttpClient) { }
 
   getIdentity(): Observable<FullUser> {
-      return this._http.get<FullUser>(this.identityUrl)
+    let url = this.identityUrl + "/me";
+    return this._http.get<FullUser>(url);
   }
+
+  getStrangerIdentity(user_id: string): Observable<FullUser>{
+    let url = this.identityUrl + "/" + user_id;
+    return this._http.get<FullUser>(url);
+  }
+
   getId(): Observable<string>{
     return this._http.get<string>(this.idUrl)
     //.do(data => console.log(JSON.stringify(data)));
@@ -38,10 +45,6 @@ export class ProfileService {
     return this._http.get<string[]>(url);
   }
 
-  getUserLanguages(): Observable<any>{
-    return this._http.get<any>(this.identityUrl)
-    //.do(data => console.log(JSON.stringify(data)));
-  }
   
   // setLanguages(language): Observable<any>{
   //   let url = this.updateUrl;
@@ -55,20 +58,12 @@ export class ProfileService {
   //   return this._http.post<any>(url, specialization);
   // }
 
-  getUserSpec(): Observable<any>{
-    return this._http.get<any>(this.identityUrl)
-    //.do(data => console.log(JSON.stringify(data)));
-  }
 
   getSoftwareNames(): Observable<string[]>{
     let url: string = this.skillsUrl + "/software";
     return this._http.get<string[]>(url);
   }
 
-  getUserSoftware(): Observable<any>{
-    return this._http.get<any>(this.identityUrl)
-    //.do(data => console.log(JSON.stringify(data)));
-  }
 
 
   // setSoftware(software): Observable<any>{
@@ -82,10 +77,7 @@ export class ProfileService {
     return this._http.get<string[]>(url);
   }
 
-  getUserCertifications(): Observable<any>{
-    return this._http.get<any>(this.identityUrl)
-    //.do(data => console.log(JSON.stringify(data)));
-  }
+  
 
 
   // setCertifications(certifications): Observable<any>{
@@ -128,5 +120,7 @@ export class ProfileService {
     let url = this.envPath + '/api/user/update';
     return this._http.post<any>(url, tab);
   }
+
+
 
 }

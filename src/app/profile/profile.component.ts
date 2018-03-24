@@ -13,6 +13,7 @@ import { ProfileLinkDialogComponent } from '../profile-link-dialog/profile-link-
 import { ProfileEducationDialogComponent } from '../profile-education-dialog/profile-education-dialog.component';
 import { ProfileDescriptionDialogComponent } from '../profile-description-dialog/profile-description-dialog.component';
 import { ProfileCityDialogComponent } from '../profile-city-dialog/profile-city-dialog.component';
+import { RateService } from '../services/rate.service';
 
 
 
@@ -49,32 +50,33 @@ export class ProfileComponent implements OnInit{
   public loading = true;
   
   
-  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog, private _http: HttpClient){}
+  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, public dialog: MatDialog, private _http: HttpClient, private _rateService: RateService){}
 
   ngOnInit(): void {
       this._profileService.getIdentity().subscribe(userProfile => {
         this.user = userProfile;
         this.imie = userProfile["user"].first_name;
         this.nazwisko = userProfile["user"].last_name;
-        this.ocena = userProfile["user"].rate;
+        this.ocena = userProfile.rate;
         this.id = userProfile['user'].status;
         this.url += userProfile.user.image
         
         if(this.id==0 && this.user.user.first_name){
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
-        this._profileService.getUserLanguages().subscribe(userLanguages => { 
-          this.userLanguages = userLanguages.employee.languages });
+        
+          this.userLanguages = userProfile.employee.languages
         this._profileService.getSpecializationsNames().subscribe(specializations => this.specializations = specializations)
-        this._profileService.getUserSpec().subscribe(userSpec => this.userSpec = userSpec.employee.specs);
+        this.userSpec = userProfile.employee.specs
         this._profileService.getSoftwareNames().subscribe(software => this.software = software);
-        this._profileService.getUserSoftware().subscribe(userSoftware => this.userSoftware = userSoftware.employee.software);
+        this.userSoftware = userProfile.employee.software
         this._profileService.getCertificationsNames().subscribe(certifications => this.certifications = certifications);
-        this._profileService.getUserCertifications().subscribe(userCertifications => this.userCertifications = userCertifications.employee.certifications);
+        this.userCertifications = userProfile.employee.certifications
         this._profileService.getCategoriesNames().subscribe(categories => this.categories = categories);
         this.userCategories = this.user.employee.categories;
         this.loading = false;
-        }else if(this.id==1){
+        console.log("Twoje id: "+this.user.user._id)
+        }else if(this.id==1 && this.user.user.first_name){
           this.person = "Pracodawca";
           console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
           this.loading = false;
@@ -303,5 +305,6 @@ openProfileCityDialog() {
     }
   });
 }
+
 
 }

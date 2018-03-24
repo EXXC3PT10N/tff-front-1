@@ -1,0 +1,23 @@
+<div>
+    <h2 mat-dialog-title>Dodaj ocene</h2>
+    <hr>
+    <mat-dialog-content>
+    
+      <div>
+          <strong>{{data.username}}</strong>
+          <i class="fa fa-star" style="font-size:20px;" *ngFor="let number of data.value | fill;"></i>
+          <div class="form-group">
+              <label>Opis: </label>
+              <textarea class="form-control" [(ngModel)]="data.description" rows="3"></textarea>
+            </div>
+      </div>
+      <br>
+      <br>
+      
+    </mat-dialog-content>
+    <hr>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onCloseConfirm()">Dodaj</button>&nbsp;
+      <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
+    </mat-dialog-actions>
+  </div>

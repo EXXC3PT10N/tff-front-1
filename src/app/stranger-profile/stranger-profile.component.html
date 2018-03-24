@@ -31,26 +31,30 @@
         </nav>
     </div>
     <!-- Pracownik -->
-
-    <div class="features-clean" *ngIf="!loading && user.user.status==0">
+    <div class="features-clean" *ngIf="!loading && user.user.status==0"> 
         <div class="container" *ngIf="!loading">
+            <!-- <div class="intro" style="width:690px;">
+                <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2><img class="float-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
+                <img class="float-right" src="assets/assets_all//img/5288961-profile-pics.png" style="width:126px;" *ngIf="!user.user.image">
+                <p class="text-left" style="width:333px;"> {{user.employee.description}} <span *ngIf="!user.employee.description">Opis</span></p>
+
+            </div> -->
             <div class="container mt-4"  *ngIf="!loading">
                     <div class="row">
                         <div class="col-md-4 align-self-center">
                             <h5 class="text-center">Ocena</h5>
                             <p class="text-center" [title]="user.rate">
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1}" style="color:rgb(0,0,0);" ></i>
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i></p>
-                            <p [routerLink]="['/rate','me']" style="cursor: pointer"
+                                <i (click)="openRateDialog(1)" [ngClass]="{'fa': true, 'fa-star': user.rate>=1}" style="color:rgb(0,0,0);" ></i>
+                                <i (click)="openRateDialog(2)" [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
+                                <i (click)="openRateDialog(3)" [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
+                                <i (click)="openRateDialog(4)" [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
+                                <i (click)="openRateDialog(5)" [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i></p>
+                            <p [routerLink]="['/rate',user.user._id]" style="cursor: pointer"
                                 class="text-center">Pokaż oceny</p>
                         </div>
                         <div class="col-md-4 align-self-center">
                             <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
                             <p class="text-center"> {{user.employee.description}} <span *ngIf="!user.employee.description">Opis</span> </p>
-                            <p class="text-center">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
                         </div>
                       <div class="col-md-4 d-flex justify-content-center align-self-center">
                         <div style="width:150px;height:150px;">
@@ -65,12 +69,16 @@
                     <h1 class="text-center" style="font-size:30px;margin:11px;">Dane osobowe</h1>
                     <hr style="margin:40px;">
                 </div>
-                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-user icon"></i>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-user icon"></i>
                     <h3 class="name">Typ konta</h3>
                     <p class="description">{{person}}</p>
                 </div>
-                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-map-marker icon"></i>
-                    <h3 class="name">Lokalizacja<i class="fa fa-edit float-right" (click)="openProfileCityDialog()" ></i></h3>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
+                    <h3 class="name">Czas pracy</h3>
+                    <p class="description">720 godzin</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
+                    <h3 class="name">Lokalizacja</h3>
                     <p class="description">{{user.user.city}}</p>
                 </div>
                 <div class="col-12">
@@ -78,15 +86,15 @@
                     <hr style="margin:40px;">
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-external-link icon"></i>
-                    <h3 class="name">Porfolio<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.portfolio_link, 'Portfolio', 'portfolio_link')"></i></h3>
+                    <h3 class="name">Porfolio</h3>
                     <p class="description"> {{user.employee.portfolio_link}} </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
-                    <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.git_link, 'Github', 'git_link')"></i></h3>
+                    <h3 class="name">Github</h3>
                     <p class="description">{{user.employee.git_link}}</p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-linkedin icon"></i>
-                    <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
+                    <h3 class="name">LinkedIn</h3>
                     <p class="description">{{user.employee.linked_in_link}}</p>
                 </div>
                 <div class="col-12">
@@ -110,34 +118,34 @@
                     <hr style="margin:40px;">
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-tasks icon"></i>
-                    <h3 class="name">Edukacja<i class="fa fa-edit float-right" (click)="openProfileEducationDialog()"></i></h3>
+                    <h3 class="name">Edukacja</h3>
                     <p class="description">{{user.employee.education}}</p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-tags icon"></i>
-                    <h3 class="name">Kategoria<i class="fa fa-edit float-right" (click)="openDialog('Kategoria',userCategories,'categories', categories)"></i></h3>
+                    <h3 class="name">Kategoria</h3>
                     <p class="description" *ngFor="let userCategory of userCategories">{{userCategory.name}}</p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-language icon"></i>
-                    <h3 class="name">Języki<i class="fa fa-edit float-right" (click)="openDialog('Języki',userLanguages,'languages', languages)"></i></h3>
+                    <h3 class="name">Języki</h3>
                     <p class="description" *ngFor="let userLanguage of userLanguages"> {{userLanguage.name}} </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-desktop icon"></i>
-                    <h3 class="name">Oprogramowanie<i class="fa fa-edit float-right" (click)="openDialog('Oprogramowanie',userSoftware,'software', software)"></i></h3>
+                    <h3 class="name">Oprogramowanie</h3>
                     <p class="description" *ngFor="let userSoft of userSoftware"> {{userSoft.name}} </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-archive icon"></i>
-                    <h3 class="name">Specjalizacja<i class="fa fa-edit float-right" (click)="openDialog('Specjalizacja',userSpec,'specs', specializations)"></i></h3>
+                    <h3 class="name">Specjalizacja</h3>
                     <p class="description" *ngFor="let userSp of userSpec"> {{userSp.name}} </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-certificate icon"></i>
-                    <h3 class="name">Certyfikaty<i class="fa fa-edit float-right" (click)="openDialog('Certyfikaty',userCertifications,'certifications', certifications)"></i></h3>
+                    <h3 class="name">Certyfikaty</h3>
                     <p class="description" *ngFor="let userCert of userCertifications"> {{userCert.name}} </p>
                 </div>
             </div>
         </div>
     </div>
     <!-- Pracodawca -->
-    <div class="features-clean" *ngIf="!loading && user.user.status==1">
+    <div class="features-clean" *ngIf="!loading && user.user.status==1"> 
             <div class="container" *ngIf="!loading">
                 <div class="intro" style="width:690px;">
                     <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2><img class="float-right" bind-src="url" style="width:126px;" *ngIf="user.user.image">
@@ -145,7 +153,7 @@
                     <p class="text-left" style="width:333px;"> dsadsadsasdasdsdsdasd </p>
                     <p class="text-center float-left">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
                     <p class="text-center float-right" >Edytuj zdjęcie<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileImageDialog()" ></i></p>
-
+    
                 </div>
                 <div class="row features">
                     <div class="col-12" style="margin:0px;">
