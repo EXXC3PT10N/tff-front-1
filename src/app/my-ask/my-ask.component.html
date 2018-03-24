@@ -1,21 +1,78 @@
-<div *ngFor="let ask of userAsks">
-  <div>Opis: {{ask.description}}</div>
-  <div>Wynagrodzenie: {{ask.salary}}</div>
-  <div>Czas pracy: {{ask.work_time}}</div>
-  <div>Kategorie:   <div *ngFor="let cat of ask.categories">
-                  {{cat.name}}
-  </div></div>
-  <div>Języki: <div *ngFor="let lang of ask.languages">
-      {{lang.name}}
-</div></div>
-  <div>Oprogramowanie: <div *ngFor="let soft of ask.software">
-      {{soft.name}}
-</div></div>
-  <div>Specjalizacje: <div *ngFor="let spec of ask.specs">
-      {{spec.name}}
-</div></div>
-  <div>Certyfikaty: <div *ngFor="let cert of ask.certifications">
-      {{cert.name}}
-</div></div>
-<button (click)="deleteAsk(ask._id)">Usuń</button>
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/assets_mask/css/Features-Clean.css">
+    <link rel="stylesheet" href="assets/assets_mask/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/assets_mask/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/assets_mask/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Company Name</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">First Item</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Second Item</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Third Item</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Dropdown </a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Tytuł</h2>
+                <h5 class="text-center">Pracodawca: Kamil Knapik</h5>
+                <div class="d-flex justify-content-around intro">
+                    <p class="text-center">Stawka: 10zł</p>
+                    <p class="text-center">Czas pracy: 12</p>
+                    <p class="text-center">Data: 24.03.2018</p>
+                </div>
+                <p class="text-center">Jakiś tam opis na kiju&nbsp;Jakiś tam opis na kiju&nbsp;<br>Jakiś tam opis na kiju&nbsp;<br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="features-clean">
+        <div class="container">
+            <div class="row features">
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-tasks icon"></i>
+                    <h3 class="name">Kategoria</h3>
+                    <p class="description">Software Development</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-language icon"></i>
+                    <h3 class="name">Języki</h3>
+                    <p class="description">Ruski</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-desktop icon"></i>
+                    <h3 class="name">Oprogramowanie</h3>
+                    <p class="description">xD?</p>
+                </div>
+                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-archive icon"></i>
+                    <h3 class="name">Specjalizacja</h3>
+                    <p class="description">Python</p>
+                </div>
+                <div class="col-sm-6 col-lg-6 item"><i class="fa fa-certificate icon"></i>
+                    <h3 class="name">Certyfikaty</h3>
+                    <p class="description">CCNA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
