@@ -40,7 +40,7 @@ export class BidComponent implements OnInit {
   openDialog(tytul: string, ogloszenie: Ask) {
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '600px',
-      data: {title: tytul, content: ogloszenie}
+      data: {title: tytul, content: ogloszenie, username: this.user.user.username, _id: this.user.user._id}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);

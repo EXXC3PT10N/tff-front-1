@@ -48,7 +48,7 @@
         <li class="list-group-item d-flex flex-column" *ngFor="let rate of rates.rates">
           <span>
             <i class="fa fa-star" style="font-size:20px;" *ngFor="let number of rate.grade | fill;"></i>
-            <span><strong> {{rate.user_from.username}}</strong></span> 
+            <span><strong [routerLink]="['/profile',rate.user_from._id]" > {{rate.user_from.username}}</strong></span> 
           </span>
           <span>{{rate.description}}</span>
           <span style="color:rgb(162,162,162);font-size:12px;">26/02/2018</span>

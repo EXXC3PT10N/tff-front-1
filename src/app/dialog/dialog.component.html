@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>{{data.title}}</h2>
   <hr>
   <mat-dialog-content>
-    
+    <div [routerLink]="['/profile',data._id]" style="cursor: pointer"><strong>{{data.username}}</strong></div>
     <div>Kategorie: <span *ngFor="let cat of data.content.categories"> {{cat.name}} </span></div>
     <div>Języki: <span *ngFor="let lang of data.content.languages"> {{lang.name}} </span></div>
     <div>Oprogramowanie: <span *ngFor="let soft of data.content.software"> {{soft.name}} </span></div>
