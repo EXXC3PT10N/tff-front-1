@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit{
   user: FullUser;
   categories: string[];
   userCategories;
+  hasNewMessages: boolean;
 
   dialogResult: string;
   url: string = "http://localhost:3000/image/user/";
@@ -65,7 +66,8 @@ export class ProfileComponent implements OnInit{
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile.rate;
         this.id = userProfile['user'].status;
-        this.url += userProfile.user.image
+        this.url += userProfile.user.image;
+        this.hasNewMessages = userProfile.user.unread_messages > 0;
 
         if(this.id==0 && this.user.user.first_name){
           this.person = "Freelancer";
