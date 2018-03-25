@@ -1,0 +1,15 @@
+<div>
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(31,106,221);">
+    <div class="container"><a class="navbar-brand" href="#" style="background-color:rgba(255,255,255,0);color:rgba(255,255,255,0.9);">Top Lance</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div
+        class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']" style="color:rgb(255,255,255);">Lista ogłoszeń</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/profile']" style="color:rgb(255,255,255);">Twój profil</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/messages']" style="color:rgb(255,255,255);"><i class="fa" [class.fa-envelope-o]="!hasNewMessages" [class.fa-envelope]="hasNewMessages" style="margin:0px 5px 0px 0px;"></i>Wiadomości</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/login']" style="color:rgb(255,255,255);">Wyloguj się</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
