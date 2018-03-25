@@ -1,7 +1,12 @@
 {
-  "short_name": "FireStarter",
-  "name": "Angular4 + Firebase Starter App",
+  "short_name": "TopLance",
+  "name": "TopLance for freelancers",
   "start_url": "/?utm_source=homescreen",
-
+  "display": "standalone",
+  "icons": [{
+    "src": "https://storage.cloud.google.com/toplance-842bb.appspot.com/logo.png?_ga=2.133323662.-1875057819.1521896601",
+    "sizes": "192x192"
+  }],
   "gcm_sender_id": "103953800507"
 }
+

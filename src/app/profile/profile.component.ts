@@ -194,7 +194,7 @@ openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
           let nowy = {"specs": new Array()};
           for(let userSp of this.userSpec)
             {
-              console.log("Nazwa: "+user0Sp.name)
+              console.log("Nazwa: "+userSp.name)
               nowy.specs.push(userSp.name);}
           this.confirmSpec(nowy);
           // console.log(JSON.stringify(nowy))
@@ -224,7 +224,6 @@ openProfileImageDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
-
     // if(result == "Confirm")
     // {
     //   window.location.reload();

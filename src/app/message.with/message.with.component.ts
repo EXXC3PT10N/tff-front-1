@@ -4,6 +4,7 @@ import {GroupMessage, User, Message} from '../models/message.with';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {ScrollEvent} from 'ngx-scroll-event';
+import {FirebaseMessagingService} from '../services/firebase.messaging.service';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class MessageWithComponent implements OnInit {
   defaultImg: string = environment.defaultImage;
   loadMore: boolean;
 
-  constructor(private _messageService: MessageService, private _route: ActivatedRoute) { }
+  constructor(private _messageService: MessageService,
+              private _route: ActivatedRoute,
+              private _firebaseMessage: FirebaseMessagingService) { }
 
 
 
@@ -36,6 +39,16 @@ export class MessageWithComponent implements OnInit {
     this.pagesize = 15;
     this.page = 0;
     this.getMessages();
+    this._firebaseMessage.reciveMessage();
+    this._firebaseMessage.getMessagingFunction().onMessage(payload => {
+      let newMsg: Message;
+      newMsg.is_read = false;
+      newMsg.content = payload['notification']['body'];
+      newMsg._id = this.userWith._id;
+      newMsg.is_send = false;
+      newMsg.send_date = new Date(Date.now());
+      this.groupMsgsAddMessage(newMsg);
+    });
   }
 
   getMessages(): void {
@@ -67,10 +80,9 @@ export class MessageWithComponent implements OnInit {
       .subscribe(res => {
         if (res.success) {
           this.messages.push(res.message);
-          this.groupMsgsAddMessage(res.message);
           this.count++;
           this.textValue = '';
-          this.scrollDown(250);
+          this.groupMsgsAddMessage(res.message);
         } else {
           console.log(res.message);
         }
@@ -112,6 +124,7 @@ export class MessageWithComponent implements OnInit {
     } else {
       this.groupMessages[this.groupMessages.length - 1].messages.push(message);
     }
+    this.scrollDown(250);
   }
   handleScroll(event: ScrollEvent): void {
     if (event.isReachingTop) {

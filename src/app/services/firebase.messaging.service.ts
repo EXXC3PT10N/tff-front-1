@@ -43,4 +43,7 @@ export class FirebaseMessagingService {
       this.currentMessage.next(payload);
       });
   }
+  getMessagingFunction() {
+    return this.messaging;
+  }
 }
