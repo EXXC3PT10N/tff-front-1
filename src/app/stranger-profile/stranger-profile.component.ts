@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material';
 import { RateService } from '../services/rate.service';
 import { Rate } from '../models/rates';
 import { StrangerProfileRateDialogComponent } from '../stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
+import {environment} from '../../environments/environment';
+import {FirebaseMessagingService} from '../services/firebase.messaging.service';
+
 
 @Component({
   selector: 'app-stranger-profile',
@@ -33,25 +36,32 @@ export class StrangerProfileComponent implements OnInit {
   user: FullUser;
   userCategories;
   dialogResult: string;
-  url: string = "http://localhost:3000/image/user/";
+  url: string;
   public loading = true;
   identyfikator: string;
+  hasNewMessages: boolean;
 
 
-  constructor(private _profileService: ProfileService, private _authService: AuthService, private _router: Router, private _route: ActivatedRoute, public dialog: MatDialog, private _rateService: RateService) { 
+  constructor(private _profileService: ProfileService,
+              private _authService: AuthService,
+              private _router: Router,
+              private _route: ActivatedRoute,
+              public dialog: MatDialog,
+              private _rateService: RateService,
+              private _firebaseMessage: FirebaseMessagingService) {
     this.identyfikator = this._route.snapshot.paramMap.get('id')
   }
 
   ngOnInit() {
-    
+
     this._profileService.getStrangerIdentity(this.identyfikator).subscribe(userProfile => {
       this.user = userProfile;
       this.imie = userProfile["user"].first_name;
       this.nazwisko = userProfile["user"].last_name;
       this.ocena = userProfile.rate;
       this.id = userProfile['user'].status;
-      this.url += userProfile.user.image
-      
+      this.url = userProfile.user.image || environment.defaultImage;
+
       if(this.id==0 && this.user.user.first_name){
         this.person = "Freelancer";
         this.userLanguages = userProfile.employee.languages
@@ -64,9 +74,12 @@ export class StrangerProfileComponent implements OnInit {
         this.person = "Pracodawca";
         console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
         this.loading = false;
-      } 
+      }
 
     });
+    this._firebaseMessage.getMessagingFunction().onMessage(data => {
+      this.hasNewMessages = true;
+    })
   }
 
   logout() {
@@ -81,7 +94,7 @@ export class StrangerProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result.status}`);
       this.dialogResult = result;
-      
+
       if(result.status == "Confirm")
       {
         let obj: Rate = {
@@ -92,7 +105,7 @@ export class StrangerProfileComponent implements OnInit {
         this._rateService.rate(obj).subscribe();
       }
     });
-  
+
   }
 
 }
