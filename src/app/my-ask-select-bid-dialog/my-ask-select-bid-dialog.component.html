@@ -1,0 +1,21 @@
+<div>
+  <h2 mat-dialog-title>Zaakceptuj ofertę</h2>
+  <hr>
+  <mat-dialog-content *ngIf="user">
+    <div [routerLink]="['/profile',user.user._id]" style="cursor: pointer"><strong>{{user.user.username}}</strong></div>
+    <div><strong>Kategorie:</strong> <span *ngFor="let cat of user.employee.categories"> {{cat.name}} </span></div>
+    <div><strong>Języki:</strong> <span *ngFor="let lang of user.employee.languages"> {{lang.name}} </span></div>
+    <div><strong>Oprogramowanie:</strong> <span *ngFor="let soft of user.employee.software"> {{soft.name}} </span></div>
+    <div><strong>Specjalizacje:</strong> <span *ngFor="let spec of user.employee.specs"> {{spec.name}} </span></div>
+    <div><strong>Certyfikaty:</strong> <span *ngFor="let cert of user.employee.certifications"> {{cert.name}} </span></div>
+    <div><strong>Opis:</strong> <span>{{data.description}}</span></div>
+    <div><strong>Wynagrodzenie:</strong> <span>{{data.salary}}</span></div>
+    <br>
+    <br>
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="onCloseConfirm()">Zaakceptuj</button>&nbsp;
+    <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
+  </mat-dialog-actions>
+</div>

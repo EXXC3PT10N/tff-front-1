@@ -6,5 +6,13 @@
 export const environment = {
   production: false,
   path: 'https://toplance-842bb.firebaseapp.com',
-  defaultImage: 'assets/assets_with/img/pic.png'
+  defaultImage: 'assets/assets_with/img/pic.png',
+  firebaseConfig: {
+    apiKey: "AIzaSyANiESTPjqrYVDRq91YOTumRnkaMVYajlc",
+    authDomain: "toplance-842bb.firebaseapp.com",
+    databaseURL: "https://toplance-842bb.firebaseio.com",
+    projectId: "toplance-842bb",
+    storageBucket: "toplance-842bb.appspot.com",
+    messagingSenderId: "303574020364"
+  }
 };

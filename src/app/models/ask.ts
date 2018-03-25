@@ -1,4 +1,5 @@
 export interface Ask{
+    _id?: string,
     description: string,
     salary: number,
     work_time: number,
@@ -7,16 +8,27 @@ export interface Ask{
     software: string[],
     specs: string[],
     certifications: string[],
-    _id?: string,
+    is_active?: boolean,
+	is_complete?: false,
+    create_date?: Date,
+    title?: string,
     employer?: {
         company: string[];
     }
-    bids?: {
-        description: string,
-        salary: number
+    bids?: Bid[]
+    
+}
+
+export interface Bid{
+    description: string,
+    salary: number
+    create_date?: Date,
+    is_accepted?: boolean,
+    _id?: string,
+    employee?: {
+        _id?: string,
+        user_id?: string
     },
-    is_active?: boolean,
-	is_complete?: false,
-    creation_date?: Date,
-    title?: string
+    ask?: string,
+    
 }

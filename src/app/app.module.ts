@@ -56,11 +56,21 @@ import { StrangerProfileComponent } from './stranger-profile/stranger-profile.co
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 import {FirebaseMessagingService} from './services/firebase.messaging.service';
 
+import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import * as firebase from 'firebase';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import { MyAsksComponent } from './my-asks/my-asks.component';
+import { MyAskSelectBidDialogComponent } from './my-ask-select-bid-dialog/my-ask-select-bid-dialog.component';
+
+
 //git add foldery/pliki
 //git commit -m "wiadomosc"
 //git push tff master
 
 //git pull origin master
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -92,7 +102,9 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
     RateComponent,
     FillPipe,
     StrangerProfileComponent,
-    StrangerProfileRateDialogComponent
+    StrangerProfileRateDialogComponent,
+    MyAsksComponent,
+    MyAskSelectBidDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -134,11 +146,13 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
       { path: 'ProfileEducationDialog', component: ProfileEducationDialogComponent },
       { path: 'ProfileDescriptionDialog', component: ProfileDescriptionDialogComponent },
       { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
+      { path: 'MyAskSelectBidDialog', component: MyAskSelectBidDialogComponent },
       { path: 'profile/:id', component: StrangerProfileComponent },
       { path: 'StrangerProfileRateDialog', component: StrangerProfileRateDialogComponent },
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
-      { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'myAsk/:id', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'myAsks', canActivate: [ LoginGuardService ], component: MyAsksComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
       { path: 'home', canActivate: [HomeGuardService], component: HomeComponent },
@@ -148,7 +162,10 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
       { path: 'parallax', component: ParallaxTestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
-    ])
+    ]),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [
     AuthService, {
@@ -164,7 +181,8 @@ import {FirebaseMessagingService} from './services/firebase.messaging.service';
     MessageService,
     HomeGuardService,
     RateService,
-    FirebaseMessagingService
+    FirebaseMessagingService,
+    AngularFireDatabase
 
   ],
   bootstrap: [AppComponent]

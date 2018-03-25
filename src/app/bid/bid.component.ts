@@ -18,9 +18,6 @@ export class BidComponent implements OnInit {
   asks: {"count": number,
          "asks": Ask[]};
   czyAsk: boolean = false;
-  description: string;
-  salary: number;
-  
   dialogResult: string;
 
   constructor(private _askService: AskService, private _profileService: ProfileService, private _bidService: BidService, public dialog: MatDialog) { }
@@ -40,18 +37,25 @@ export class BidComponent implements OnInit {
   openDialog(tytul: string, ogloszenie: Ask) {
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '600px',
-      data: {title: tytul, content: ogloszenie, username: this.user.user.username, _id: this.user.user._id}
+      data: {
+        title: tytul, 
+        content: ogloszenie, 
+        username: this.user.user.username, 
+        _id: this.user.user._id,
+        description: '',
+        salary: 0
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed: ${result}`);
-      this.dialogResult = result;
-      if(result == "Confirm")
-        this.takeOffer(ogloszenie._id);
+      console.log(`Dialog closed: ${result.status}`);
+      this.dialogResult = result.status;
+      if(result.status == "Confirm")
+        this.takeOffer(ogloszenie._id, result.result.description, result.result.salary);
     });
   }
 
-  takeOffer(id: string): void{
-    this._bidService.createBid(id,this.description, this.salary).subscribe();
+  takeOffer(id: string,description: string, salary: number): void{
+    this._bidService.createBid(id, description, salary).subscribe();
     
   }
   

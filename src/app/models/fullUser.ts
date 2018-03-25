@@ -7,6 +7,7 @@ export interface FullUser{
         "last_name": string,
         "first_name": string,
         "status": number,
+        unread_messages: number,
         image?: string,
         _id?: string
     },
