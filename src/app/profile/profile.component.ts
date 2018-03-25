@@ -225,10 +225,10 @@ openProfileImageDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
-    // if(result == "Confirm")
-    // {
-    //   window.location.reload();
-    // }
+    if(result == "Confirm")
+    {
+      window.location.reload();
+    }
   });
 }
 openProfileLinkDialog(link: string, title: string, jsonName: string) {

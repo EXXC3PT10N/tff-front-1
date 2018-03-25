@@ -175,11 +175,11 @@
                         <hr style="margin:40px;">
                     </div>
                     <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
-                        <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.git_link, 'Github', 'git_link')"></i></h3>
-                        <p class="description">{{user.employer.git_link}}</p>
+                        <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employer.git_link, 'Github', 'git_link')"></i></h3>
+                        <p class="description"><a>{{user.employer.git_link}}</a></p>
                     </div>
                     <div class="col-sm-6 col-lg-4 item"><i class="fa fa-linkedin icon"></i>
-                        <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
+                        <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employer.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
                         <p class="description">{{user.employer.linked_in_link}}</p>
                     </div>
                 </div>
