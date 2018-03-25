@@ -85,15 +85,15 @@
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-external-link icon"></i>
                     <h3 class="name">Porfolio<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.portfolio_link, 'Portfolio', 'portfolio_link')"></i></h3>
-                    <p class="description"> {{user.employee.portfolio_link}} </p>
+                    <p class="description"> <a [href]="user.employee.portfolio_link" target="blank">{{user.employee.portfolio_link}}</a> </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
                     <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.git_link, 'Github', 'git_link')"></i></h3>
-                    <p class="description">{{user.employee.git_link}}</p>
+                    <p class="description"><a [href]="user.employee.git_link" target="blank">{{user.employee.git_link}}</a></p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-linkedin icon"></i>
                     <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
-                    <p class="description">{{user.employee.linked_in_link}}</p>
+                    <p class="description"><a [href]="user.employee.linked_in_link" target="blank">{{user.employee.linked_in_link}}</a></p>
                 </div>
                 <div class="col-12">
                     <h1 class="text-center" style="font-size:30px;margin:10px;">Zlecenia</h1>
@@ -162,11 +162,11 @@
                         <h1 class="text-center" style="font-size:30px;margin:11px;">Dane osobowe</h1>
                         <hr style="margin:40px;">
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-user icon"></i>
+                    <div class="col-sm-6 col-lg-6 item"><i class="fa fa-user icon"></i>
                         <h3 class="name">Typ konta</h3>
                         <p class="description">{{person}}</p>
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
+                    <div class="col-sm-6 col-lg-6 item"><i class="fa fa-map-marker icon"></i>
                         <h3 class="name">Lokalizacja<i class="fa fa-edit float-right" (click)="openProfileCityDialog()" ></i></h3>
                         <p class="description">{{user.user.city}}</p>
                     </div>
@@ -174,13 +174,13 @@
                         <h1 class="text-center" style="font-size:30px;margin:10px;">Moje konta</h1>
                         <hr style="margin:40px;">
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
+                    <div class="col-sm-6 col-lg-6 item"><i class="fa fa-github icon"></i>
                         <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employer.git_link, 'Github', 'git_link')"></i></h3>
-                        <p class="description"><a>{{user.employer.git_link}}</a></p>
+                        <p class="description"><a [href]="user.employer.git_link" target="blank">{{user.employer.git_link}}</a></p>
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-linkedin icon"></i>
+                    <div class="col-sm-6 col-lg-6 item"><i class="fa fa-linkedin icon"></i>
                         <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employer.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
-                        <p class="description">{{user.employer.linked_in_link}}</p>
+                        <p class="description"><a [href]="user.employer.linked_in_link" target="blank">{{user.employer.linked_in_link}}</a></p>
                     </div>
                 </div>
                 <div class="row features">
