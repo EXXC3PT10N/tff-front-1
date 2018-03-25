@@ -63,10 +63,10 @@
                 <div class="collapse navbar-collapse"
                     id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Szukaj zleceń</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wiadomości</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Twój profil</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wyloguj się</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']">Szukaj zleceń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/messages']">Wiadomości</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/profile']">Twój profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" (click)="logout()">Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
