@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 import { UserProfile } from './userProfile';
 import { AuthService } from "../services/auth.service";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FullUser, Company } from '../models/fullUser';
 import { DialogProfileComponent } from '../dialog-profile/dialog-profile.component';
 import { MatDialog } from '@angular/material';
@@ -63,6 +63,8 @@ export class ProfileComponent implements OnInit{
               private _firebaseMessage: FirebaseMessagingService){}
 
   ngOnInit(): void {
+      
+      
       this._profileService.getIdentity().subscribe(userProfile => {
         this.user = userProfile;
         this.imie = userProfile["user"].first_name;
@@ -380,6 +382,8 @@ openProfileEditCompanyDialog(_id: string, firma: Company) {
     }
   });
 }
-
+getUrl(){
+  return "url(assets/assets_all/img/5288961-profile-pics.png)"
+}
 
 }

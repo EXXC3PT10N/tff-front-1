@@ -44,7 +44,7 @@
             <i (click)="openRateDialog(4)" [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
             <i (click)="openRateDialog(5)" [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
           </p>
-          <p [routerLink]="['/rate','me']" style="cursor: pointer"
+          <p [routerLink]="['/rate',user.user._id]" style="cursor: pointer"
              class="text-center">Pokaż oceny</p>
         </div>
         <div class="col-md-4 align-self-center">
@@ -149,7 +149,7 @@
             <i (click)="openRateDialog(4)" [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
             <i (click)="openRateDialog(5)" [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
           </p>
-          <p [routerLink]="['/rate','me']" style="cursor: pointer"
+          <p [routerLink]="['/rate',user.user._id]" style="cursor: pointer"
              class="text-center">Pokaż oceny</p>
         </div>
         <div class="col-md-4 align-self-center">
