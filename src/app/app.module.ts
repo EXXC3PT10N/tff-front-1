@@ -56,6 +56,7 @@ import { StrangerProfileComponent } from './stranger-profile/stranger-profile.co
 import { StrangerProfileRateDialogComponent } from './stranger-profile-rate-dialog/stranger-profile-rate-dialog.component';
 import {FirebaseMessagingService} from './services/firebase.messaging.service';
 import { MyAsksComponent } from './my-asks/my-asks.component';
+import { MyAskSelectBidDialogComponent } from './my-ask-select-bid-dialog/my-ask-select-bid-dialog.component';
 
 //git add foldery/pliki
 //git commit -m "wiadomosc"
@@ -94,7 +95,8 @@ import { MyAsksComponent } from './my-asks/my-asks.component';
     FillPipe,
     StrangerProfileComponent,
     StrangerProfileRateDialogComponent,
-    MyAsksComponent
+    MyAsksComponent,
+    MyAskSelectBidDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -136,11 +138,12 @@ import { MyAsksComponent } from './my-asks/my-asks.component';
       { path: 'ProfileEducationDialog', component: ProfileEducationDialogComponent },
       { path: 'ProfileDescriptionDialog', component: ProfileDescriptionDialogComponent },
       { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
+      { path: 'MyAskSelectBidDialog', component: MyAskSelectBidDialogComponent },
       { path: 'profile/:id', component: StrangerProfileComponent },
       { path: 'StrangerProfileRateDialog', component: StrangerProfileRateDialogComponent },
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
-      { path: 'myAsk', canActivate: [ LoginGuardService ], component: MyAskComponent },
+      { path: 'myAsk/:id', canActivate: [ LoginGuardService ], component: MyAskComponent },
       { path: 'myAsks', canActivate: [ LoginGuardService ], component: MyAsksComponent },
       { path: 'bid', canActivate: [ LoginGuardService ], component: BidComponent },
       { path: "test", component: TestComponent },
