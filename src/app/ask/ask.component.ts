@@ -72,6 +72,10 @@ export class AskComponent implements OnInit {
   set categoriesFilter(value: string) {
   this._categoriesFilter = value;
   this.filteredCategories = this.categoriesFilter ? this.performFilter(this.categoriesFilter, this.categoriesNames) : null;
+  if(this.filteredCategories.length>4)
+  {
+    this.filteredCategories.splice(4)
+  }
   }
 
   get languagesFilter(): string {
@@ -81,6 +85,10 @@ export class AskComponent implements OnInit {
   set languagesFilter(value: string) {
   this._languagesFilter = value;
   this.filteredLanguages = this.languagesFilter ? this.performFilter(this.languagesFilter, this.languagesNames) : null;
+  if(this.filteredLanguages.length>4)
+  {
+    this.filteredLanguages.splice(4)
+  }
   }
 
   get softwareFilter(): string {
@@ -90,6 +98,10 @@ export class AskComponent implements OnInit {
   set softwareFilter(value: string) {
   this._softwareFilter = value;
   this.filteredSoftware = this.softwareFilter ? this.performFilter(this.softwareFilter, this.softwareNames) : null;
+  if(this.filteredSoftware.length>4)
+  {
+    this.filteredSoftware.splice(4)
+  }
   }
 
   get specializationsFilter(): string {
@@ -99,6 +111,10 @@ export class AskComponent implements OnInit {
   set specializationsFilter(value: string) {
   this._specializationsFilter = value;
   this.filteredSpecializations = this.specializationsFilter ? this.performFilter(this.specializationsFilter, this.specializationsNames) : null;
+  if(this.filteredSpecializations.length>4)
+  {
+    this.filteredSpecializations.splice(4)
+  }
   }
 
   get certificationsFilter(): string {
@@ -108,6 +124,10 @@ export class AskComponent implements OnInit {
   set certificationsFilter(value: string) {
   this._certificationsFilter = value;
   this.filteredCertifications = this.certificationsFilter ? this.performFilter(this.certificationsFilter, this.certificationsNames) : null;
+  if(this.filteredCertifications.length>4)
+  {
+    this.filteredCertifications.splice(4)
+  }
   }
 
   performFilter(filterBy: string, variable: string[]): string[] {
