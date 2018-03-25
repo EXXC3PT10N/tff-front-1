@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse"
                     id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/profile']">Profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" [routerLink]="['/profile']">Profil</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']" *ngIf="!loading && user.user.status==0">Szukaj ogłoszeń</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/ask']" *ngIf="!loading && user.user.status==1">Dodaj ogłoszenie</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/myAsks']" *ngIf="!loading && user.user.status==1">Moje ogłoszenia</a></li>
@@ -145,18 +145,34 @@
     <!-- Pracodawca -->
     <div class="features-clean" *ngIf="!loading && user.user.status==1">
         <div class="container" *ngIf="!loading">
-            <div class="intro" style="width:690px;">
-                <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2>
-                <div class="col-md d-flex justify-content-center align-self-center">
-                    <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
-                        <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
-                        <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
-                        <div class="img-hover">
-                            <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
-                        </div>
-                    </div>
+          <div class="container mt-4"  *ngIf="!loading">
+            <div class="row">
+              <div class="col-md-4 align-self-center">
+                <h5 class="text-center">Ocena</h5>
+                <p class="text-center" [title]="user.rate">
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
+                </p>
+                <p [routerLink]="['/rate','me']" style="cursor: pointer"
+                   class="text-center">Pokaż oceny</p>
+              </div>
+              <div class="col-md-4 align-self-center">
+                <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
+              </div>
+              <div class="col-md-4 d-flex justify-content-center align-self-center">
+                <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
+                  <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
+                  <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
+                  <div class="img-hover">
+                    <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
                 <div class="row features">
                     <div class="col-12" style="margin:0px;">
                         <h1 class="text-center" style="font-size:30px;margin:11px;">Dane osobowe</h1>
