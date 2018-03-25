@@ -15,6 +15,7 @@ import { ProfileDescriptionDialogComponent } from '../profile-description-dialog
 import { ProfileCityDialogComponent } from '../profile-city-dialog/profile-city-dialog.component';
 import { RateService } from '../services/rate.service';
 import { FirebaseMessagingService } from '../services/firebase.messaging.service';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class ProfileComponent implements OnInit{
   hasNewMessages: boolean;
 
   dialogResult: string;
-  url: string = "http://localhost:3000/image/user/";
+  url: string;
   public loading = true;
 
 
@@ -66,10 +67,10 @@ export class ProfileComponent implements OnInit{
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile.rate;
         this.id = userProfile['user'].status;
-        this.url += userProfile.user.image;
+        this.url = userProfile.user.image || environment.defaultImage;
         this.hasNewMessages = userProfile.user.unread_messages > 0;
 
-        if(this.id==0 && this.user.user.first_name){
+        if (this.id==0 && this.user.user.first_name) {
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
 
@@ -84,7 +85,7 @@ export class ProfileComponent implements OnInit{
         this.userCategories = this.user.employee.categories;
         this.loading = false;
         console.log("Twoje id: "+this.user.user._id)
-        }else if(this.id==1 && this.user.user.first_name){
+        } else if (this.id==1 && this.user.user.first_name) {
           this.person = "Pracodawca";
           console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
           this.loading = false;
@@ -217,11 +218,10 @@ openProfileImageDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
-
-    if(result == "Confirm")
-    {
-      window.location.reload();
-    }
+    // if(result == "Confirm")
+    // {
+    //   window.location.reload();
+    // }
   });
 }
 openProfileLinkDialog(link: string, title: string, jsonName: string) {

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import {environment} from '../../environments/environment';
 
 @Component({
   templateUrl: './profile-image-dialog.component.html',
@@ -11,7 +12,8 @@ import { Observable } from 'rxjs/Observable';
 export class ProfileImageDialogComponent implements OnInit {
 
   public files: UploadFile[] = [];
-  apiEndPoint: string = "http://localhost:3000/api/user/image/upload";
+  baseUrl = environment.path;
+  apiEndPoint: string = this.baseUrl + "/api/user/image/upload";
   formData: FormData;
   fileEntry;
   message: string;
@@ -23,6 +25,7 @@ export class ProfileImageDialogComponent implements OnInit {
   }
 
   onCloseConfirm() {
+    console.log(this.apiEndPoint);
     if(this.fileEntry){
       this.fileEntry.file((file: File) => {
         let formData:FormData = new FormData();
@@ -30,7 +33,9 @@ export class ProfileImageDialogComponent implements OnInit {
         this._http.post(`${this.apiEndPoint}`, formData)
         .catch(error => Observable.throw(error))
         .subscribe(
-            data => console.log('success'),
+            data => {
+              console.log(data);
+            },
             error => console.log(error)
         )
       })
@@ -38,11 +43,11 @@ export class ProfileImageDialogComponent implements OnInit {
         this._http.post(`${this.apiEndPoint}`, this.formData)
         .catch(error => Observable.throw(error))
         .subscribe(
-            data => console.log('success'),
+            data => console.log(data),
             error => console.log(error)
         )
       }
-    
+
     this.thisDialogRef.close('Confirm');
   }
   onCloseCancel() {
@@ -53,7 +58,7 @@ export class ProfileImageDialogComponent implements OnInit {
     this.loading = true;
     this.files = event.files;
     for (const droppedFile of event.files) {
- 
+
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
@@ -62,10 +67,10 @@ export class ProfileImageDialogComponent implements OnInit {
         //   let formData:FormData = new FormData();
         //   formData.append('uploadFile', file, file.name);
         //   this.formData = formData;
-          
+
           this.message = "Twoje zdjęcie zostało załadowane. Aby ustawić je na profilowe kliknij 'Dodaj'"
-          
-          
+
+
         // });
       } else {
         // It was a directory (empty directories are added, otherwise only files)
@@ -75,11 +80,11 @@ export class ProfileImageDialogComponent implements OnInit {
     }
     this.loading = false;
   }
- 
+
   public fileOver(event){
     console.log(event);
   }
- 
+
   public fileLeave(event){
     console.log(event);
   }
@@ -91,9 +96,9 @@ export class ProfileImageDialogComponent implements OnInit {
         let formData:FormData = new FormData();
         formData.append('uploadFile', file, file.name);
         this.formData = formData;
-          
+
         this.message = "Twoje zdjęcie zostało załadowane. Aby ustawić je na profilowe kliknij 'Dodaj'"
-        
+
 
     }
 }
