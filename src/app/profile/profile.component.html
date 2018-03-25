@@ -21,8 +21,10 @@
                 <div class="collapse navbar-collapse"
                     id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Twój profil</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']">Lista ogłoszeń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/profile']">Profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']" *ngIf="!loading && user.user.status==0">Szukaj ogłoszeń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/ask']" *ngIf="!loading && user.user.status==1">Dodaj ogłoszenie</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/myAsks']" *ngIf="!loading && user.user.status==1">Moje ogłoszenia</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/messages']"><i class="fa" [class.fa-envelope-o]="!hasNewMessages" [class.fa-envelope]="hasNewMessages" style="margin:0px 5px 0px 0px;"></i>Wiadomości</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/login']" (click)="logout()">Wyloguj się</a></li>
                     </ul>
