@@ -77,13 +77,13 @@ export class MessageWithComponent implements OnInit {
     });
   }
   sendMessage() {
-    console.log(this.textValue);
-    this._messageService.sendMessage(this.textValue, this.withId)
+    let sendValue = this.textValue;
+    this.textValue = '';
+    this._messageService.sendMessage(sendValue, this.withId)
       .subscribe(res => {
         if (res.success) {
           this.messages.push(res.message);
           this.count++;
-          this.textValue = '';
           this.groupMsgsAddMessage(res.message);
         } else {
           console.log(res.message);
