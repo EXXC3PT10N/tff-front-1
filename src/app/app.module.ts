@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
@@ -108,7 +109,8 @@ firebase.initializeApp(environment.firebaseConfig);
     MyAsksComponent,
     MyAskSelectBidDialogComponent,
     ProfileCreateCompanyDialogComponent,
-    ProfileEditCompanyDialogComponent
+    ProfileEditCompanyDialogComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
