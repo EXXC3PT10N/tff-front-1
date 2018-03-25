@@ -26,8 +26,9 @@ export interface FullUser{
         education?: string,
         finished_asks?: number,
         in_progress_asks?: number,
-        waiting_asks?: number
-    
+        waiting_asks?: number,
+        _id: string
+
 
     },
     "employer": {
@@ -37,9 +38,10 @@ export interface FullUser{
         linked_in_link?: string,
         active_asks?: number,
         finished_asks?: number,
-        in_progress_asks?: number
+        in_progress_asks?: number,
+        _id: string
     },
-    
+
 }
 
 export interface Company{

@@ -45,13 +45,13 @@ export class ProfileService {
     return this._http.get<string[]>(url);
   }
 
-  
+
   // setLanguages(language): Observable<any>{
   //   let url = this.updateUrl;
 
   //   return this._http.post<any>(url, language);
   // }
-  
+
   // setSpecializations(specialization): Observable<any>{
   //   let url = this.updateUrl;
 
@@ -77,7 +77,7 @@ export class ProfileService {
     return this._http.get<string[]>(url);
   }
 
-  
+
 
 
   // setCertifications(certifications): Observable<any>{
@@ -112,10 +112,15 @@ export class ProfileService {
       return this._http.delete<string>(url);
     },
     getAllComp: (): Observable<any> =>{
-      let url = this.envPath + "/api/employer/companies/my"
+      let url = this.envPath + "/api/employer/companies/my";
       return this._http.get<any>(url);
-    }
-  }
+    },
+    getAllCompOfAStranger: (id: string): Observable<any> =>{
+      let url =  environment.path + '/api/employer/companies/' + id;
+      console.log(url);
+      return this._http.get<any>(url);
+    },
+  };
 
   updateEmployee(tab): Observable<any>{
       let url = this.updateUrl;

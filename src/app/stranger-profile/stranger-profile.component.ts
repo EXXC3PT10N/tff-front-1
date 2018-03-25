@@ -71,15 +71,19 @@ export class StrangerProfileComponent implements OnInit {
       this.userCategories = this.user.employee.categories;
       this.loading = false;
       }else if(this.id==1 && this.user.user.first_name){
+        let employerId = userProfile['employer']['_id'];
+        console.log(employerId);
         this.person = "Pracodawca";
-        console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
+        this._profileService.company.getAllCompOfAStranger(employerId).subscribe(comp => {
+          this.user.employer.company = comp;
+        });
         this.loading = false;
       }
 
     });
     this._firebaseMessage.getMessagingFunction().onMessage(data => {
       this.hasNewMessages = true;
-    })
+    });
   }
 
   logout() {
