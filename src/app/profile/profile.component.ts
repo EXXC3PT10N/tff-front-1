@@ -93,14 +93,16 @@ export class ProfileComponent implements OnInit{
           this._profileService.company.getAllComp().subscribe(comp => {
             this.user.employer.company = comp;
             console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
-          }); 
-          
+          });
+
           this.loading = false;
         }
-        this._firebaseMessage.getPermission(this.user.user._id);
-        this._firebaseMessage.reciveMessage();
-        console.log(this._firebaseMessage.currentMessage);
+
       });
+    this._firebaseMessage.getPermission(this.user.user._id);
+    this._firebaseMessage.getMessagingFunction().onMessage(data => {
+      this.hasNewMessages = true;
+    });
   }
 
 
