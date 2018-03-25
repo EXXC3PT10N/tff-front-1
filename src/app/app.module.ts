@@ -63,6 +63,8 @@ import * as firebase from 'firebase';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { MyAsksComponent } from './my-asks/my-asks.component';
 import { MyAskSelectBidDialogComponent } from './my-ask-select-bid-dialog/my-ask-select-bid-dialog.component';
+import { ProfileCreateCompanyDialogComponent } from './profile-create-company-dialog/profile-create-company-dialog.component';
+import { ProfileEditCompanyDialogComponent } from './profile-edit-company-dialog/profile-edit-company-dialog.component';
 
 
 //git add foldery/pliki
@@ -104,7 +106,9 @@ firebase.initializeApp(environment.firebaseConfig);
     StrangerProfileComponent,
     StrangerProfileRateDialogComponent,
     MyAsksComponent,
-    MyAskSelectBidDialogComponent
+    MyAskSelectBidDialogComponent,
+    ProfileCreateCompanyDialogComponent,
+    ProfileEditCompanyDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +152,9 @@ firebase.initializeApp(environment.firebaseConfig);
       { path: 'ProfileCityDialog', component: ProfileCityDialogComponent },
       { path: 'MyAskSelectBidDialog', component: MyAskSelectBidDialogComponent },
       { path: 'profile/:id', component: StrangerProfileComponent },
+      { path: 'ProfileCreateCompanyDialog', component: ProfileCreateCompanyDialogComponent },
       { path: 'StrangerProfileRateDialog', component: StrangerProfileRateDialogComponent },
+      { path: 'ProfileEditCompanyDialog', component: ProfileEditCompanyDialogComponent },
       { path: 'rate/:id', component: RateComponent },
       { path: 'ask', canActivate: [ LoginGuardService ], component: AskComponent },
       { path: 'myAsk/:id', canActivate: [ LoginGuardService ], component: MyAskComponent },

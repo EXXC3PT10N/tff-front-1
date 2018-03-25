@@ -101,13 +101,19 @@ export class ProfileService {
       let url = this.companyUrl + '/create';
       return this._http.post<any>(url, data);
     },
-    update: function(){
+    update: (id: string, data): Observable<any>=>{
+      let url = this.companyUrl + '/update/'+id;
+      return this._http.post<any>(url, data);
 
     },
-    delete: (NIP: string): Observable<string> =>{
-      let url = this.companyUrl + '/delete';
-      let obj = {"NIP": NIP}
-      return this._http.post<string>(url,obj);
+    delete: (id: string): Observable<string> =>{
+      let url = this.companyUrl + '/delete/' + id;
+      // let obj = {"NIP": NIP}
+      return this._http.delete<string>(url);
+    },
+    getAllComp: (): Observable<any> =>{
+      let url = this.envPath + "/api/employer/companies/my"
+      return this._http.get<any>(url);
     }
   }
 

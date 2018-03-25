@@ -1,0 +1,17 @@
+<div>
+    <h2 mat-dialog-title>Dodaj firmę</h2>
+    <hr>
+    <mat-dialog-content>
+      <div><strong>Nazwa:</strong> <input class="form-control" type="text" placeholder="Nazwa firmy" [(ngModel)]="data.name" ></div>
+      <div><strong>NIP:</strong> <input class="form-control" type="number" placeholder="NIP" [(ngModel)]="data.NIP" ></div>
+      <div><strong>Miasto:</strong> <input class="form-control" type="text" placeholder="Miasto" [(ngModel)]="data.city" ></div>
+      
+      <br>
+      <br>
+    </mat-dialog-content>
+    <hr>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onCloseConfirm()">Dodaj</button>&nbsp;
+      <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
+    </mat-dialog-actions>
+  </div>

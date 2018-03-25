@@ -28,14 +28,15 @@ export interface FullUser{
     },
     "employer": {
         "asks": object,
-        "company": [
-            {
-                "name": string,
-                "NIP": string,
-                "city": string
-            }
-        ],
+        "company": Company[],
         git_link?: string,
         linked_in_link?: string
     }
+}
+
+export interface Company{
+    "name": string,
+    "NIP": string,
+    "city": string,
+    _id?: string
 }

@@ -3,7 +3,7 @@ import { ProfileService } from '../services/profile.service';
 import { UserProfile } from './userProfile';
 import { AuthService } from "../services/auth.service";
 import { Router } from '@angular/router';
-import { FullUser } from '../models/fullUser';
+import { FullUser, Company } from '../models/fullUser';
 import { DialogProfileComponent } from '../dialog-profile/dialog-profile.component';
 import { MatDialog } from '@angular/material';
 import { ProfileImageDialogComponent } from '../profile-image-dialog/profile-image-dialog.component';
@@ -15,6 +15,9 @@ import { ProfileDescriptionDialogComponent } from '../profile-description-dialog
 import { ProfileCityDialogComponent } from '../profile-city-dialog/profile-city-dialog.component';
 import { RateService } from '../services/rate.service';
 import { FirebaseMessagingService } from '../services/firebase.messaging.service';
+import { ProfileCreateCompanyDialogComponent } from '../profile-create-company-dialog/profile-create-company-dialog.component';
+import { ProfileEditCompanyDialogComponent } from '../profile-edit-company-dialog/profile-edit-company-dialog.component';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -47,7 +50,7 @@ export class ProfileComponent implements OnInit{
   hasNewMessages: boolean;
 
   dialogResult: string;
-  url: string = "http://localhost:3000/image/user/";
+  url: string;
   public loading = true;
 
 
@@ -66,10 +69,10 @@ export class ProfileComponent implements OnInit{
         this.nazwisko = userProfile["user"].last_name;
         this.ocena = userProfile.rate;
         this.id = userProfile['user'].status;
-        this.url += userProfile.user.image;
+        this.url = userProfile.user.image || environment.defaultImage;
         this.hasNewMessages = userProfile.user.unread_messages > 0;
 
-        if(this.id==0 && this.user.user.first_name){
+        if (this.id==0 && this.user.user.first_name) {
           this.person = "Freelancer";
         this._profileService.getLanguagesNames().subscribe(languages => this.languages = languages);
 
@@ -84,9 +87,13 @@ export class ProfileComponent implements OnInit{
         this.userCategories = this.user.employee.categories;
         this.loading = false;
         console.log("Twoje id: "+this.user.user._id)
-        }else if(this.id==1 && this.user.user.first_name){
+       } else if (this.id==1 && this.user.user.first_name) {
           this.person = "Pracodawca";
-          console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
+          this._profileService.company.getAllComp().subscribe(comp => {
+            this.user.employer.company = comp;
+            console.log("Firmy: "+ JSON.stringify(this.user.employer.company));
+          }); 
+          
           this.loading = false;
         }
         this._firebaseMessage.getPermission(this.user.user._id);
@@ -133,13 +140,13 @@ createComp(): void{
   this.user.employer.company.push(comp);
 }
 
-deleteComp(data: string): void{
-  this._profileService.company.delete(data).subscribe();
-  //console.log("wybrales NIP: "+data)
-  let pos = this.user.employer.company.map(function(e) { return e.NIP }).indexOf(data);
-  if(pos > -1)
-    this.user.employer.company.splice(pos,1);
-}
+// deleteComp(nip: string): void{
+//   this._profileService.company.delete(nip).subscribe();
+//   console.log("wybrales NIP: "+data)
+//   let pos = this.user.employer.company.map(function(e) { return e.NIP }).indexOf(data);
+//   if(pos > -1)
+//     this.user.employer.company.splice(pos,1);
+// }
 
 openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
   let dialogRef = this.dialog.open(DialogProfileComponent, {
@@ -187,7 +194,7 @@ openDialog(tytul: string, tab, jsonName: string, tabNames: string[]) {
           let nowy = {"specs": new Array()};
           for(let userSp of this.userSpec)
             {
-              console.log("Nazwa: "+userSp.name)
+              console.log("Nazwa: "+user0Sp.name)
               nowy.specs.push(userSp.name);}
           this.confirmSpec(nowy);
           // console.log(JSON.stringify(nowy))
@@ -218,10 +225,10 @@ openProfileImageDialog() {
     console.log(`Dialog closed: ${result}`);
     this.dialogResult = result;
 
-    if(result == "Confirm")
-    {
-      window.location.reload();
-    }
+    // if(result == "Confirm")
+    // {
+    //   window.location.reload();
+    // }
   });
 }
 openProfileLinkDialog(link: string, title: string, jsonName: string) {
@@ -312,6 +319,52 @@ openProfileCityDialog() {
       let obj = {city: result.result};
       this._profileService.updateUser(obj).subscribe()
 
+    }
+  });
+}
+
+openProfileCreateCompanyDialog() {
+  let dialogRef = this.dialog.open(ProfileCreateCompanyDialogComponent, {
+    width: '600px',
+    data: {
+      name: '',
+      NIP: 0,
+      city: ''
+  }
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result.status;
+
+    if(result.status == "Confirm")
+    {
+      this.compName = result.result.name;
+      this.NIP = result.result.NIP;
+      this.compCity = result.result.city;
+      this.createComp();
+    }
+  });
+}
+
+openProfileEditCompanyDialog(_id: string, firma: Company) {
+  let dialogRef = this.dialog.open(ProfileEditCompanyDialogComponent, {
+    width: '600px',
+    data: {
+      name: firma.name,
+      NIP: firma.NIP,
+      city: firma.city
+  }
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog closed: ${result.status}`);
+    this.dialogResult = result.status;
+
+    if(result.status == "Confirm")
+    {
+      this._profileService.company.update(_id,result.result).subscribe()
+    } else if(result.status == "Delete")
+    {
+      this._profileService.company.delete(_id).subscribe();
     }
   });
 }
