@@ -41,13 +41,12 @@ export class MessageWithComponent implements OnInit {
     this.getMessages();
     this._firebaseMessage.reciveMessage();
     this._firebaseMessage.getMessagingFunction().onMessage(payload => {
-      let newMsg: Message = {
-        send_date: Date.now,
-        is_read: false,
-        _id: this.userWith._id,
-        content: payload['notification']['body'],
-        is_send: false
-      };
+      let newMsg: Message;
+      newMsg.is_read = false;
+      newMsg.content = payload['notification']['body'];
+      newMsg._id = this.userWith._id;
+      newMsg.is_send = false;
+      newMsg.send_date = new Date(Date.now());
       this.groupMsgsAddMessage(newMsg);
     });
   }
