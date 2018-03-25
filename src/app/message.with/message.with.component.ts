@@ -41,12 +41,14 @@ export class MessageWithComponent implements OnInit {
     this.getMessages();
     this._firebaseMessage.reciveMessage();
     this._firebaseMessage.getMessagingFunction().onMessage(payload => {
-      let newMsg: Message;
-      newMsg.is_read = false;
-      newMsg.content = payload['notification']['body'];
-      newMsg._id = this.userWith._id;
-      newMsg.is_send = false;
-      newMsg.send_date = new Date(Date.now());
+      let newMsg: Message = {
+          is_read: false,
+          content: payload['notification']['body'],
+          _id: this.userWith._id,
+          is_send: false,
+          send_date: new Date(Date.now())
+      };
+
       this.groupMsgsAddMessage(newMsg);
     });
   }
@@ -75,13 +77,13 @@ export class MessageWithComponent implements OnInit {
     });
   }
   sendMessage() {
-    console.log(this.textValue);
-    this._messageService.sendMessage(this.textValue, this.withId)
+    let sendValue = this.textValue;
+    this.textValue = '';
+    this._messageService.sendMessage(sendValue, this.withId)
       .subscribe(res => {
         if (res.success) {
           this.messages.push(res.message);
           this.count++;
-          this.textValue = '';
           this.groupMsgsAddMessage(res.message);
         } else {
           console.log(res.message);
