@@ -147,24 +147,33 @@
         <div class="container" *ngIf="!loading">
             <div class="intro" style="width:690px;">
                 <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2>
+                <div class="col-md align-self-center">
+                        <h5 class="text-center">Ocena</h5>
+                        <p class="text-center" [title]="user.rate">
+                                <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
+                                <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
+                                <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
+                                <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
+                                <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
+                        </p>
+                        <p [routerLink]="['/rate','me']" style="cursor: pointer"
+                            class="text-center">Pokaż oceny</p>
+                    </div>
                 <div class="col-md d-flex justify-content-center align-self-center">
-                        <div class="col-md-4 align-self-center">
-                                <h5 class="text-center">Ocena</h5>
-                                <p class="text-center" [title]="user.rate">
-                                        <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
-                                        <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
-                                        <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
-                                        <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
-                                        <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
-                                </p>
-                                <p [routerLink]="['/rate','me']" style="cursor: pointer"
-                                    class="text-center">Pokaż oceny</p>
-                            </div>
+                       
+                    <!-- <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
+                        <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
+                        <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
+                        <div class="img-hover">
+                            <div style="color: -moz-dialogtext; font-weight: bolder;" class="bg-img">Edytuj</div>
+                        </div>
+                    </div> -->
+                   
                     <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
                         <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
                         <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
                         <div class="img-hover">
-                            <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
+                            <div style="color: -moz-dialogtext; font-weight: bolder;" >Edytuj</div>
                         </div>
                     </div>
                 </div>

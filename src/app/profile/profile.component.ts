@@ -382,6 +382,8 @@ openProfileEditCompanyDialog(_id: string, firma: Company) {
     }
   });
 }
-
+getUrl(){
+  return "url(assets/assets_all/img/5288961-profile-pics.png)"
+}
 
 }
