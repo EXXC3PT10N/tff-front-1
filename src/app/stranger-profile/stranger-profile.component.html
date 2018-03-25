@@ -22,9 +22,6 @@
            id="navcol-1">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/profile']">Profil</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/bid']" *ngIf="!loading && user.user.status==0">Szukaj ogłoszeń</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/ask']" *ngIf="!loading && user.user.status==1">Dodaj ogłoszenie</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/myAsks']" *ngIf="!loading && user.user.status==1">Moje ogłoszenia</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/messages']"><i class="fa" [class.fa-envelope-o]="!hasNewMessages" [class.fa-envelope]="hasNewMessages" style="margin:0px 5px 0px 0px;"></i>Wiadomości</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/login']" (click)="logout()">Wyloguj się</a></li>
         </ul>
@@ -41,11 +38,11 @@
         <div class="col-md-4 align-self-center">
           <h5 class="text-center">Ocena</h5>
           <p class="text-center" [title]="user.rate">
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(1)" [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
+            <i (click)="openRateDialog(2)" [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(3)" [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(4)" [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(5)" [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
           </p>
           <p [routerLink]="['/rate','me']" style="cursor: pointer"
              class="text-center">Pokaż oceny</p>
@@ -53,15 +50,11 @@
         <div class="col-md-4 align-self-center">
           <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
           <p class="text-center"> {{user.employee.description}} <span *ngIf="!user.employee.description">Opis</span> </p>
-          <p class="text-center">Edytuj opis<i class="fa fa-edit" style="margin:0px 0px 0px 15px;" (click)="openProfileDescriptionDialog()"></i></p>
         </div>
         <div class="col-md-4 d-flex justify-content-center align-self-center">
-          <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
+          <div style="width:150px;height:150px;">
             <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
             <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
-            <div class="img-hover">
-              <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
-            </div>
           </div>
         </div>
       </div>
@@ -76,7 +69,7 @@
         <p class="description">{{person}}</p>
       </div>
       <div class="col-sm-6 col-lg-6 item"><i class="fa fa-map-marker icon"></i>
-        <h3 class="name">Lokalizacja<i class="fa fa-edit float-right" (click)="openProfileCityDialog()" ></i></h3>
+        <h3 class="name">Lokalizacja</h3>
         <p class="description">{{user.user.city}}</p>
       </div>
       <div class="col-12">
@@ -84,16 +77,16 @@
         <hr style="margin:40px;">
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-external-link icon"></i>
-        <h3 class="name">Porfolio<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.portfolio_link, 'Portfolio', 'portfolio_link')"></i></h3>
-        <p class="description"> {{user.employee.portfolio_link}} </p>
+        <h3 class="name">Porfolio</h3>
+        <a class="description" [href]="user.employee.portfolio_link" target="_blank"> {{user.employee.portfolio_link}} </a>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
-        <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.git_link, 'Github', 'git_link')"></i></h3>
-        <p class="description">{{user.employee.git_link}}</p>
+        <h3 class="name">Github</h3>
+        <a class="description" [href]="user.employee.git_link" target="_blank">{{user.employee.git_link}}</a>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-linkedin icon"></i>
-        <h3 class="name">LinkedIn<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.linked_in_link, 'LinkedIn', 'linked_in_link')"></i></h3>
-        <p class="description">{{user.employee.linked_in_link}}</p>
+        <h3 class="name">LinkedIn</h3>
+        <a class="description" [href]="user.employee.linked_in_link" target="_blank">{{user.employee.linked_in_link}}</a>
       </div>
       <div class="col-12">
         <h1 class="text-center" style="font-size:30px;margin:10px;">Zlecenia</h1>
@@ -116,27 +109,27 @@
         <hr style="margin:40px;">
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-tasks icon"></i>
-        <h3 class="name">Edukacja<i class="fa fa-edit float-right" (click)="openProfileEducationDialog()"></i></h3>
+        <h3 class="name">Edukacja</h3>
         <p class="description">{{user.employee.education}}</p>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-tags icon"></i>
-        <h3 class="name">Kategoria<i class="fa fa-edit float-right" (click)="openDialog('Kategoria',userCategories,'categories', categories)"></i></h3>
+        <h3 class="name">Kategoria</h3>
         <p class="description" *ngFor="let userCategory of userCategories">{{userCategory.name}}</p>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-language icon"></i>
-        <h3 class="name">Języki<i class="fa fa-edit float-right" (click)="openDialog('Języki',userLanguages,'languages', languages)"></i></h3>
+        <h3 class="name">Języki</h3>
         <p class="description" *ngFor="let userLanguage of userLanguages"> {{userLanguage.name}} </p>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-desktop icon"></i>
-        <h3 class="name">Oprogramowanie<i class="fa fa-edit float-right" (click)="openDialog('Oprogramowanie',userSoftware,'software', software)"></i></h3>
+        <h3 class="name">Oprogramowanie</h3>
         <p class="description" *ngFor="let userSoft of userSoftware"> {{userSoft.name}} </p>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-archive icon"></i>
-        <h3 class="name">Specjalizacja<i class="fa fa-edit float-right" (click)="openDialog('Specjalizacja',userSpec,'specs', specializations)"></i></h3>
+        <h3 class="name">Specjalizacja</h3>
         <p class="description" *ngFor="let userSp of userSpec"> {{userSp.name}} </p>
       </div>
       <div class="col-sm-6 col-lg-4 item"><i class="fa fa-certificate icon"></i>
-        <h3 class="name">Certyfikaty<i class="fa fa-edit float-right" (click)="openDialog('Certyfikaty',userCertifications,'certifications', certifications)"></i></h3>
+        <h3 class="name">Certyfikaty</h3>
         <p class="description" *ngFor="let userCert of userCertifications"> {{userCert.name}} </p>
       </div>
     </div>
@@ -150,11 +143,11 @@
         <div class="col-md-4 align-self-center">
           <h5 class="text-center">Ocena</h5>
           <p class="text-center" [title]="user.rate">
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
-            <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(1)" [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
+            <i (click)="openRateDialog(2)" [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(3)" [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(4)" [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
+            <i (click)="openRateDialog(5)" [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
           </p>
           <p [routerLink]="['/rate','me']" style="cursor: pointer"
              class="text-center">Pokaż oceny</p>
@@ -163,12 +156,9 @@
           <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
         </div>
         <div class="col-md-4 d-flex justify-content-center align-self-center">
-          <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
+          <div style="width:150px;height:150px;">
             <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
             <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
-            <div class="img-hover">
-              <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
-            </div>
           </div>
         </div>
       </div>
@@ -192,11 +182,11 @@
       </div>
       <div class="col-sm-6 col-lg-6 item"><i class="fa fa-github icon"></i>
         <h3 class="name">Github</h3>
-        <p class="description">{{user.employer.git_link}}</p>
+        <a class="description" [href]="user.employer.git_link" target="_blank" >{{user.employer.git_link}}</a>
       </div>
       <div class="col-sm-6 col-lg-6 item"><i class="fa fa-linkedin icon"></i>
         <h3 class="name">LinkedIn</h3>
-        <p class="description">{{user.employer.linked_in_link}}</p>
+        <a class="description" [href]="user.employer.linked_in_link" target="_blank" >{{user.employer.linked_in_link}}</a>
       </div>
     </div>
     <div class="row features">
