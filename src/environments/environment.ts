@@ -4,9 +4,9 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false,
-  path: 'https://toplance-842bb.firebaseapp.com',
-  defaultImage: 'assets/assets_with/img/pic.png',
+  production: true,
+  path: "https://toplance-842bb.firebaseapp.com",
+  defaultImage: "assets/assets_with/img/pic.png",
   firebaseConfig: {
     apiKey: "AIzaSyANiESTPjqrYVDRq91YOTumRnkaMVYajlc",
     authDomain: "toplance-842bb.firebaseapp.com",

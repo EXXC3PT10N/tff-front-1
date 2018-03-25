@@ -80,12 +80,12 @@
                 <span *ngFor="let group of groupMessages; let i = index">
                   <span *ngIf="group.is_send">
                     <div class="label d-flex flex-column align-items-end" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
-                      <div class="d-flex align-items-center"><div class="message you m-1">{{message.content}}</div><img src="{{imageMe}}" src-fallback="{{defaultImg}}" class="rounded-circle" style="width: 40px; height: 40px;"></div>
+                      <div class="d-flex align-items-center"><div class="message you m-1" [innerHTML]="message.content"></div><img src="{{imageMe}}" src-fallback="{{defaultImg}}" class="rounded-circle" style="width: 40px; height: 40px;"></div>
                     </div>
                   </span>
                   <span *ngIf="!group.is_send">
                     <div class="label d-flex flex-column align-items-start" [class.mt-2]="index === 0" *ngFor="let message of group.messages">
-                      <div class="d-flex align-items-center"><img src="{{imageWith}}" src-fallback="{{defaultImg}}" class="rounded-circle" style="width: 40px; height: 40px;"><div class="message m-1">{{message.content}}</div></div>
+                      <div class="d-flex align-items-center"><img src="{{imageWith}}" src-fallback="{{defaultImg}}" class="rounded-circle" style="width: 40px; height: 40px;"><div class="message m-1" [innerHTML]="message.content"></div></div>
                     </div>
                   </span>
                 </span>
