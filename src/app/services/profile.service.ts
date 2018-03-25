@@ -127,6 +127,11 @@ export class ProfileService {
       return this._http.post<any>(url, tab);
     }
 
+  updateEmployer(obj): Observable<any>{
+    let url = this.envPath + "/api/employer/update";
+    return this._http.post<any>(url,obj);
+  }
+
   updateUser(tab): Observable<any>{
     let url = this.envPath + '/api/user/update';
     return this._http.post<any>(url, tab);

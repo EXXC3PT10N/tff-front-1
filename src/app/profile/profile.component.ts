@@ -98,11 +98,12 @@ export class ProfileComponent implements OnInit{
           this.loading = false;
         }
 
+        this._firebaseMessage.getPermission(this.user.user._id);
+        this._firebaseMessage.getMessagingFunction().onMessage(data => {
+        this.hasNewMessages = true;
+        });
       });
-    this._firebaseMessage.getPermission(this.user.user._id);
-    this._firebaseMessage.getMessagingFunction().onMessage(data => {
-      this.hasNewMessages = true;
-    });
+    
   }
 
 
@@ -253,16 +254,25 @@ openProfileLinkDialog(link: string, title: string, jsonName: string) {
         }
         case 'git_link': {
           obj = {git_link: result.result}
-          this.user.employee.git_link = obj.git_link;
+          if(this.id==0)
+            this.user.employee.git_link = obj.git_link;
+          else if(this.id==1)
+            this.user.employer.git_link = obj.git_link;
           break;
         }
         case 'linked_in_link': {
-          obj = {linked_in_link: result.result}
-          this.user.employee.linked_in_link = obj.linked_in_link;
+          obj = {linked_in_link: result.result};
+          if(this.id==0)
+            this.user.employee.linked_in_link = obj.linked_in_link;
+          else if(this.id==1)
+            this.user.employer.linked_in_link = obj.linked_in_link;
           break;
         }
       }
-      this._profileService.updateEmployee(obj).subscribe()
+      if(this.id==0)
+        this._profileService.updateEmployee(obj).subscribe();
+      else if(this.id==1)
+        this._profileService.updateEmployer(obj).subscribe();
     }
   });
 }
