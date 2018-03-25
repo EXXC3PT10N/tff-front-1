@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseMessagingService} from '../services/firebase.messaging.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,11 +10,14 @@ import {FirebaseMessagingService} from '../services/firebase.messaging.service';
 export class NavbarComponent implements OnInit {
   hasNewMessages: boolean;
 
-  constructor(private _firebaseMessage: FirebaseMessagingService){}
+  constructor(private _firebaseMessage: FirebaseMessagingService, private _authService: AuthService){}
 
   ngOnInit(): void {
     this._firebaseMessage.getMessagingFunction().onMessage(data => {
       this.hasNewMessages = true;
     });
+  }
+  logout() {
+    this._authService.logout();
   }
 }
