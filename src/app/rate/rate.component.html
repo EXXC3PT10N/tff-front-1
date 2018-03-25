@@ -20,9 +20,9 @@
                     id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Oceny</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Twój profil</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Szukaj zleceń</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wyloguj się</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" [routerLink]="['/profile']" >Twój profil</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" [routerLink]="['/bid']" >Szukaj zleceń</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" [routerLink]="['/login']" >Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,11 +33,11 @@
             <div class="intro" *ngIf="user">
                 <h2 class="text-center">{{user.user.first_name +" "+ user.user.last_name}}</h2>
                 <p class="text-center" [title]="user.rate">
-                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1}" style="font-size:32px;color:rgb(255,255,255);margin:5px;"></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="font-size:32px;color:rgb(255,255,255);"></i>
                   <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="font-size:32px;color:rgb(255,255,255);"></i>
                   <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="font-size:32px;color:rgb(255,255,255);"></i>
                   <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="font-size:32px;color:rgb(255,255,255);"></i>
-                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="font-size:32px;color:rgb(255,255,255);margin:5px;"></i>
+                  <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="font-size:32px;color:rgb(255,255,255);"></i>
                 </p>
                 <!-- <app-star [rating]="4" ></app-star> -->
             </div>
@@ -48,7 +48,7 @@
         <li class="list-group-item d-flex flex-column" *ngFor="let rate of rates.rates">
           <span>
             <i class="fa fa-star" style="font-size:20px;" *ngFor="let number of rate.grade | fill;"></i>
-            <span><strong [routerLink]="['/profile',rate.user_from._id]" > {{rate.user_from.username}}</strong></span> 
+            <span><strong [routerLink]="['/profile',rate.user_from._id]" > {{rate.user_from.username}}</strong></span>
           </span>
           <span>{{rate.description}}</span>
           <span style="color:rgb(162,162,162);font-size:12px;">26/02/2018</span>

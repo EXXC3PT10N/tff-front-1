@@ -65,7 +65,7 @@
                 <h2 class="text-center">Jak to działa?</h2>
                 <p class="text-center">Aby móc przyjmować lub zlecać pracę wystarczy utworzyć darmowe konto, wybrać jeden z dwóch typów kont, uzupełnić podstawowe dane i przejść do działania.</p>
             </div>
-            <div class="buttons"><a class="btn btn-primary" role="button" href="#">FREELANCER</a><button class="btn btn-light" type="button">ZLECENIODAWCA</button></div>
+            <div class="buttons"><a class="btn btn-primary" role="button" (click)="scroll('freelancer')">FREELANCER</a><button class="btn btn-light" type="button" (click)="scroll('zleceniodawca')">ZLECENIODAWCA</button></div>
         </div>
     </div>
     <div class="highlight-blue" id="freelancer">
@@ -88,32 +88,15 @@
     </div>
     <div class="footer-dark">
         <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Usługi</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>O nas</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>Top Lance</h3>
-                        <p>Wygodna, intuicyjna platforma, która zrzesza freelancerów oraz zleceniodawców z całego świata. W łatwy sposób można wykonywać lub zlecać pracę. Głównym atutem jest intuicyjny system, który ułatwia i usprawnia komunikację<br></p>
-                    </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                </div>
-                <p class="copyright">Top Lance © 2018</p>
+          <div class="container">
+            <div class="row">
+              <div class="col text-center">
+                <h3>Top Lance</h3>
+                <p>Wygodna, intuicyjna platforma, która zrzesza freelancerów oraz zleceniodawców z całego świata. W łatwy sposób można wykonywać lub zlecać pracę. Głównym atutem jest intuicyjny system, który ułatwia i usprawnia komunikację<br></p>
+              </div>
             </div>
+            <p class="copyright">Top Lance © 2018</p>
+          </div>
         </footer>
     </div>
 </body>

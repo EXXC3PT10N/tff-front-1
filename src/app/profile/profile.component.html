@@ -39,11 +39,12 @@
                         <div class="col-md-4 align-self-center">
                             <h5 class="text-center">Ocena</h5>
                             <p class="text-center" [title]="user.rate">
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1}" style="color:rgb(0,0,0);" ></i>
+                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=1, 'fa-star-o': user.rate<1}" style="color:rgb(0,0,0);" ></i>
                                     <i [ngClass]="{'fa': true, 'fa-star': user.rate>=2, 'fa-star-o': user.rate<2, 'fa-star-half-o': user.rate==1.5}" style="color:rgb(0,0,0);"></i>
                                     <i [ngClass]="{'fa': true, 'fa-star': user.rate>=3, 'fa-star-o': user.rate<3, 'fa-star-half-o': user.rate==2.5}" style="color:rgb(0,0,0);"></i>
                                     <i [ngClass]="{'fa': true, 'fa-star': user.rate>=4, 'fa-star-o': user.rate<4, 'fa-star-half-o': user.rate==3.5}" style="color:rgb(0,0,0);"></i>
-                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i></p>
+                                    <i [ngClass]="{'fa': true, 'fa-star': user.rate>=5, 'fa-star-o': user.rate<5, 'fa-star-half-o': user.rate==4.5}" style="color:rgb(0,0,0);"></i>
+                            </p>
                             <p [routerLink]="['/rate','me']" style="cursor: pointer"
                                 class="text-center">Pokaż oceny</p>
                         </div>
