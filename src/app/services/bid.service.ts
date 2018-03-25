@@ -19,6 +19,7 @@ export class BidService {
       "description": description,
       "salary": salary
     }
+    console.log("Obiekt: "+JSON.stringify(obj))
     return  this._http.post<any>(url,obj)
   }
 

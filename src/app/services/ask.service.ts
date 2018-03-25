@@ -44,43 +44,18 @@ export class AskService {
         url += 'categories='+cat.name;
       else url+= '&categories='+cat.name;
     }
-    // for(let lang of user.employee.languages)
-    // {
-    //   // languages.push(lang.name)
-    //   if(url[url.length-1] == '?')
-    //   url += 'languages='+lang.name;
-    //  else url+= '&languages='+lang.name;
-    // }
-    // for(let soft of user.employee.software)
-    // {
-    //   // software.push(soft.name)
-    //   if(url[url.length-1] == '?')
-    //   url += 'software='+soft.name;
-    //  else url+= '&software='+soft.name;
-    // }
-    // for(let spec of user.employee.specs)
-    // {
-    //   // specs.push(spec.name)
-    //   if(url[url.length-1] == '?')
-    //   url += 'specs='+spec.name;
-    //  else url+= '&specs='+spec.name;
-    // }
-    // for(let cert of user.employee.certifications)
-    // {
-    //   // certifications.push(cert.name)
-    //   if(url[url.length-1] == '?')
-    //   url += 'certifications='+cert.name;
-    //  else url+= '&certifications='+cert.name;
-    // }
-    // let obj = {'categories': categories,
-    //            'languages': languages,
-    //            'software': software,
-    //            'specs': specs,
-    //            'certifications': certifications,
-    //            'pagesize': pagesize,
-    //            'page': page};
-      // console.log('Obiekt: '+JSON.stringify(obj))
       return this._http.get<any>(url);
+  }
+
+  getAsk(id: string): Observable<Ask>{
+    let url: string = this.envPath + "/ask/" + id;
+    console.log("Twoje url: "+url)
+    return this._http.get<Ask>(url);
+  }
+
+  acceptBid(bid_id): Observable<any>{
+    let url: string = this.envPath + "/bid/accept/"+bid_id;
+    return this._http.post<any>(url, null);
   }
 
 }

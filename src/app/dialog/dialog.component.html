@@ -8,7 +8,14 @@
     <div>Oprogramowanie: <span *ngFor="let soft of data.content.software"> {{soft.name}} </span></div>
     <div>Specjalizacje: <span *ngFor="let spec of data.content.specs"> {{spec.name}} </span></div>
     <div>Certyfikaty: <span *ngFor="let cert of data.content.certifications"> {{cert.name}} </span></div>
-
+    <div class="form-group">
+      <label>Opis</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="data.description" ></textarea>
+    </div>
+    <div class="form-group">
+      <label>Wynagrodzenie</label>
+        <input class="form-control" type="number" [(ngModel)]="data.salary" >
+    </div>
     <br>
     <br>
     <strong></strong>
