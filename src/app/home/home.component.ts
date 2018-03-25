@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  
+
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
@@ -11,4 +11,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  scroll(targetId) {
+    document.getElementById(targetId).scrollIntoView({block: 'start',  behavior: 'smooth'});
+  }
 }
