@@ -48,7 +48,8 @@ export class MyAskComponent implements OnInit {
       data: {
         _userId: bid.employee.user_id,
         description: bid.description,
-        salary: bid.salary
+        salary: bid.salary,
+        condition: condition
       }
     });
     dialogRef.afterClosed().subscribe(result => {

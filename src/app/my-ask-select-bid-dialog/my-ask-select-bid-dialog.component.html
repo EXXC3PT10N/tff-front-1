@@ -15,7 +15,7 @@
   </mat-dialog-content>
   <hr>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="onCloseConfirm()">Zaakceptuj</button>&nbsp;
+    <button mat-raised-button (click)="onCloseConfirm()" *ngIf="data.condition">Zaakceptuj</button>&nbsp;
     <button mat-raised-button (click)="onCloseCancel()">Anuluj</button>
   </mat-dialog-actions>
 </div>
