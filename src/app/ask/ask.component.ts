@@ -71,7 +71,7 @@ export class AskComponent implements OnInit {
   
   set categoriesFilter(value: string) {
   this._categoriesFilter = value;
-  this.filteredCategories = this.categoriesFilter ? this.performFilter(this.categoriesFilter, this.categoriesNames) : null;
+  this.filteredCategories = this.categoriesFilter ? this.performFilter(this.categoriesFilter, this.categoriesNames) : [];
   if(this.filteredCategories.length>4)
   {
     this.filteredCategories.splice(4)
@@ -84,7 +84,7 @@ export class AskComponent implements OnInit {
   
   set languagesFilter(value: string) {
   this._languagesFilter = value;
-  this.filteredLanguages = this.languagesFilter ? this.performFilter(this.languagesFilter, this.languagesNames) : null;
+  this.filteredLanguages = this.languagesFilter ? this.performFilter(this.languagesFilter, this.languagesNames) : [];
   if(this.filteredLanguages.length>4)
   {
     this.filteredLanguages.splice(4)
@@ -97,7 +97,7 @@ export class AskComponent implements OnInit {
   
   set softwareFilter(value: string) {
   this._softwareFilter = value;
-  this.filteredSoftware = this.softwareFilter ? this.performFilter(this.softwareFilter, this.softwareNames) : null;
+  this.filteredSoftware = this.softwareFilter ? this.performFilter(this.softwareFilter, this.softwareNames) : [];
   if(this.filteredSoftware.length>4)
   {
     this.filteredSoftware.splice(4)
@@ -110,7 +110,7 @@ export class AskComponent implements OnInit {
   
   set specializationsFilter(value: string) {
   this._specializationsFilter = value;
-  this.filteredSpecializations = this.specializationsFilter ? this.performFilter(this.specializationsFilter, this.specializationsNames) : null;
+  this.filteredSpecializations = this.specializationsFilter ? this.performFilter(this.specializationsFilter, this.specializationsNames) : [];
   if(this.filteredSpecializations.length>4)
   {
     this.filteredSpecializations.splice(4)
@@ -123,7 +123,7 @@ export class AskComponent implements OnInit {
   
   set certificationsFilter(value: string) {
   this._certificationsFilter = value;
-  this.filteredCertifications = this.certificationsFilter ? this.performFilter(this.certificationsFilter, this.certificationsNames) : null;
+  this.filteredCertifications = this.certificationsFilter ? this.performFilter(this.certificationsFilter, this.certificationsNames) : [];
   if(this.filteredCertifications.length>4)
   {
     this.filteredCertifications.splice(4)
@@ -175,6 +175,8 @@ export class AskComponent implements OnInit {
     nowy.categories.push(name);
     let tmp = { "name": nowy.categories[nowy.categories.length-1] }
     this.categories.push(tmp);
+    this.categoriesFilter = ""
+
     
   }
 
@@ -193,6 +195,7 @@ export class AskComponent implements OnInit {
     nowy.languages.push(name);
     let tmp = { "name": nowy.languages[nowy.languages.length-1] }
     this.languages.push(tmp);
+    this.languagesFilter = ""
     
   }
 
@@ -211,6 +214,7 @@ export class AskComponent implements OnInit {
     nowy.software.push(name);
     let tmp = { "name": nowy.software[nowy.software.length-1] }
     this.software.push(tmp);
+    this.softwareFilter = ""
     
   }
 
@@ -229,6 +233,7 @@ export class AskComponent implements OnInit {
     nowy.specializations.push(name);
     let tmp = { "name": nowy.specializations[nowy.specializations.length-1] }
     this.specializations.push(tmp);
+    this.specializationsFilter = ""
     
   }
 
@@ -247,6 +252,7 @@ export class AskComponent implements OnInit {
     nowy.certifications.push(name);
     let tmp = { "name": nowy.certifications[nowy.certifications.length-1] }
     this.certifications.push(tmp);
+    this.certificationsFilter = ""
     
   }
 
@@ -273,6 +279,12 @@ export class AskComponent implements OnInit {
     this.certifications = [];
     this.certificationsFilter = "";
     this.title = ""
+    this.filteredCategories = [];
+    this.filteredCertifications = [];
+    this.filteredLanguages = [];
+    this.filteredSoftware = [];
+    this.filteredSpecializations = [];
+
   }
 
   logout() {
