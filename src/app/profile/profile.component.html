@@ -142,19 +142,19 @@
     </div>
     <!-- Pracodawca -->
     <div class="features-clean" *ngIf="!loading && user.user.status==1">
-            <div class="container" *ngIf="!loading">
-                <div class="intro" style="width:690px;">
-                    <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2>
-                    <div class="col-md-4 d-flex justify-content-center align-self-center">
-                            <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
-                              <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
-                              <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
-                              <div class="img-hover">
-                                <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
-                              </div>
-                            </div>
+        <div class="container" *ngIf="!loading">
+            <div class="intro" style="width:690px;">
+                <h2 class="text-center"> {{user.user.first_name +" "+ user.user.last_name}} </h2>
+                <div class="col-md d-flex justify-content-center align-self-center">
+                    <div style="width:150px;height:150px; cursor: pointer" (click)="openProfileImageDialog()" class="img-container">
+                        <img class="rounded-circle img-fluid-right img-profile" bind-src="url" style="width:150px; height: 150px;" *ngIf="user.user.image">
+                        <img class="rounded-circle img-fluid-right img-profile" src="assets/assets_all/img/5288961-profile-pics.png" style="height: auto; width: auto; max-width: 100%;" *ngIf="!user.user.image">
+                        <div class="img-hover">
+                            <div style="color: -moz-dialogtext; font-weight: bolder;">Edytuj</div>
+                        </div>
+                    </div>
                 </div>
-                </div>
+            </div>
                 <div class="row features">
                     <div class="col-12" style="margin:0px;">
                         <h1 class="text-center" style="font-size:30px;margin:11px;">Dane osobowe</h1>
@@ -164,10 +164,6 @@
                         <h3 class="name">Typ konta</h3>
                         <p class="description">{{person}}</p>
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
-                        <h3 class="name">Czas pracy</h3>
-                        <p class="description">720 godzin</p>
-                    </div>
                     <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
                         <h3 class="name">Lokalizacja<i class="fa fa-edit float-right" (click)="openProfileCityDialog()" ></i></h3>
                         <p class="description">{{user.user.city}}</p>
@@ -176,10 +172,6 @@
                         <h1 class="text-center" style="font-size:30px;margin:10px;">Moje konta</h1>
                         <hr style="margin:40px;">
                     </div>
-                    <!-- <div class="col-sm-6 col-lg-4 item"><i class="fa fa-external-link icon"></i>
-                        <h3 class="name">Porfolio<i class="fa fa-edit float-right"  ></i></h3>
-                        <p class="description"> {{user.employee.portfolio_link}} </p>
-                    </div> -->
                     <div class="col-sm-6 col-lg-4 item"><i class="fa fa-github icon"></i>
                         <h3 class="name">Github<i class="fa fa-edit float-right" (click)="openProfileLinkDialog(user.employee.git_link, 'Github', 'git_link')"></i></h3>
                         <p class="description">{{user.employer.git_link}}</p>
