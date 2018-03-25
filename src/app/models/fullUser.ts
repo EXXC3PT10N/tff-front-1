@@ -23,15 +23,23 @@ export interface FullUser{
         portfolio_link?: string,
         git_link?: string,
         linked_in_link?: string,
-        education?: string
+        education?: string,
+        finished_asks?: number,
+        in_progress_asks?: number,
+        waiting_asks?: number
+    
 
     },
     "employer": {
         "asks": object,
         "company": Company[],
         git_link?: string,
-        linked_in_link?: string
-    }
+        linked_in_link?: string,
+        active_asks?: number,
+        finished_asks?: number,
+        in_progress_asks?: number
+    },
+    
 }
 
 export interface Company{

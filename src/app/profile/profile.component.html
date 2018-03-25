@@ -100,16 +100,16 @@
                     <hr style="margin:40px;">
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-th icon"></i>
-                    <h3 class="name">Zleceń ogółem</h3>
-                    <p class="description">30</p>
+                    <h3 class="name">Oczekujące</h3>
+                    <p class="description">{{user.employee.waiting_asks}}</p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-check icon"></i>
                     <h3 class="name">Zrealizowanych</h3>
-                    <p class="description">21</p>
+                    <p class="description">{{user.employee.finished_asks}}</p>
                 </div>
                 <div class="col-sm-6 col-lg-4 item"><i class="fa fa-plane icon"></i>
                     <h3 class="name">W trakcie</h3>
-                    <p class="description">9</p>
+                    <p class="description">{{user.employee.in_progress_asks}}</p>
                 </div>
                 <div class="col-12">
                     <h1 class="text-center" style="font-size:30px;margin:9px;">Umiejętności</h1>
@@ -184,6 +184,22 @@
                     </div>
                 </div>
                 <div class="row features">
+                    <div class="col-12">
+                        <h1 class="text-center" style="font-size:30px;margin:10px;">Ogłoszenia</h1>
+                        <hr style="margin:40px;">
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-th icon"></i>
+                        <h3 class="name">Aktywne</h3>
+                        <p class="description">{{user.employer.active_asks}}</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-check icon"></i>
+                        <h3 class="name">Zrealizowanych</h3>
+                        <p class="description">{{user.employer.finished_asks}}</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-plane icon"></i>
+                        <h3 class="name">W trakcie</h3>
+                        <p class="description">{{user.employer.in_progress_asks}}</p>
+                    </div>
                     <div class="col-12">
                         <h1 class="text-center" style="font-size:30px;margin:10px;">Firmy<i class="fa fa-edit float-right" (click)="openProfileCreateCompanyDialog()"></i></h1>
                         <hr style="margin:40px;">

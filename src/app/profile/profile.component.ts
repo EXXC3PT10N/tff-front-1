@@ -71,6 +71,7 @@ export class ProfileComponent implements OnInit{
         this.id = userProfile['user'].status;
         this.url = userProfile.user.image || environment.defaultImage;
         this.hasNewMessages = userProfile.user.unread_messages > 0;
+        console.log("User: "+JSON.stringify(this.user))
 
         if (this.id==0 && this.user.user.first_name) {
           this.person = "Freelancer";
