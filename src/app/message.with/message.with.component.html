@@ -58,6 +58,8 @@
 
 <body style="height: 100vh;">
 <app-nav-bar></app-nav-bar>
+<ngx-loading [show]="loading"></ngx-loading>
+<span *ngIf="!loading">
     <div style="background-color: rgb(0, 123, 255); color: white; padding:12px; border:none; cursor: pointer" class="text-center col" [routerLink]="['/profile',userWith?._id]" >{{userWith?.first_name}} {{userWith?.last_name}}</div>
     <div class="row no-gutters d-flex justify-content-center qwe" style="height: 80vh;">
         <div class="col col-lg-6 asd" id="scroller"  style="overflow:auto; max-height:85%;" detect-scroll (onScroll)="handleScroll($event)" [topOffset]="1">
@@ -83,6 +85,7 @@
               </div>
             </div>
     </div>
+</span>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 </body>

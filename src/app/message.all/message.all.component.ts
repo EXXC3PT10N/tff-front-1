@@ -17,9 +17,11 @@ export class MessageAllComponent implements OnInit {
   pagesize: number;
   basePath = environment.path;
   defaultImg: string = environment.defaultImage;
+  loading: boolean;
   constructor(private _messageService: MessageService, private _authService: AuthService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.getMessages();
   }
 
@@ -32,6 +34,7 @@ export class MessageAllComponent implements OnInit {
           msg.image = msg.image || this.defaultImg;
           return msg;
         });
+        this.loading = false;
       },
       err => {
         console.error(err);

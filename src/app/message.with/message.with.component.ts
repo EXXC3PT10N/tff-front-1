@@ -27,6 +27,7 @@ export class MessageWithComponent implements OnInit {
   imageWith: string;
   defaultImg: string = environment.defaultImage;
   loadMore: boolean;
+  loading: boolean;
 
   constructor(private _messageService: MessageService,
               private _route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class MessageWithComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loading = true;
     this.loadMore = false;
     this.pagesize = 15;
     this.page = 0;
@@ -69,6 +71,7 @@ export class MessageWithComponent implements OnInit {
           this.imageWith =  this.userWith.image || this.defaultImg;
           this.imageMe = this.userMe.image || this.defaultImg;
           this.loadMore = false;
+          this.loading = false;
         },
         err => {
           console.error(err);

@@ -16,6 +16,8 @@
 
 <body>
 <app-nav-bar></app-nav-bar>
+<ngx-loading [show]="loading"></ngx-loading>
+<span *ngIf="!loading">
     <div class="row no-gutters justify-content-center">
         <div class="col offset-0 col-lg-6">
             <ul class="list-group" *ngFor="let msg of messages">
@@ -41,6 +43,7 @@
             </ul-->
         </div>
     </div>
+</span>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
