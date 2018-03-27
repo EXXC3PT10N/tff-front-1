@@ -38,6 +38,7 @@ export class MessageAllComponent implements OnInit {
       },
       err => {
         console.error(err);
+        this.loading = false;
       }
     )
   }

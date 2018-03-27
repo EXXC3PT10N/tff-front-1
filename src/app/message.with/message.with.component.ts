@@ -14,7 +14,7 @@ import {FirebaseMessagingService} from '../services/firebase.messaging.service';
 })
 export class MessageWithComponent implements OnInit {
   messages: Message[] = new Array();
-  groupMessages: GroupMessage[];
+  groupMessages: GroupMessage[] = new Array();
   userWith: User;
   userMe: User;
   count: number;
@@ -75,6 +75,7 @@ export class MessageWithComponent implements OnInit {
         },
         err => {
           console.error(err);
+          this.loading = false;
         }
       )
     });
