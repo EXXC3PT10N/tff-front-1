@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compile": "ng build --dev=sec && uglifyjs dist/vendor.bundle.js -o dist/vendor.bundle.js && uglifyjs dist/polyfills.bundle.js -o dist/polyfills.bundle.js && uglifyjs dist/main.bundle.js -o dist/main.bundle.js && uglifyjs dist/inline.bundle.js -o dist/inline.bundle.js"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "ngx-scroll-event": "^1.0.8",
     "popper.js": "^1.14.1",
     "rxjs": "^5.5.6",
+    "uglifyjs": "^2.4.11",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
