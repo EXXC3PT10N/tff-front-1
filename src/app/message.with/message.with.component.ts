@@ -60,18 +60,25 @@ export class MessageWithComponent implements OnInit {
       this.withId = params.id;
       this._messageService.getMessagesWith(this.withId, this.page, this.pagesize).subscribe(
         res => {
-          this.messages = res.messages.concat(this.messages);
-          this.count = res.count;
-          this.groupMessages = this.groupMsgs(this.messages);
-          if(this.page === 0)
-            this.scrollDown(500);
+          if (res.messages) {
+            this.messages = res.messages.concat(this.messages);
+            this.groupMessages = this.groupMsgs(this.messages);
+            if (this.page === 0) {
+              if (res.me) {
+                this.userMe = res.me;
+                this.imageMe = this.userMe.image || this.defaultImg;
+              }
+            }
+          }
+          if (this.page === 0) {
+            this.userWith = res.with;
+            this.imageWith =  this.userWith.image || this.defaultImg;
+          }
           this.page++;
-          this.userWith = res.with;
-          this.userMe = res.me;
-          this.imageWith =  this.userWith.image || this.defaultImg;
-          this.imageMe = this.userMe.image || this.defaultImg;
+          this.count = res.count;
           this.loadMore = false;
           this.loading = false;
+          this.scrollDown(500);
         },
         err => {
           console.error(err);
@@ -122,6 +129,12 @@ export class MessageWithComponent implements OnInit {
     return returnGroups;
   }
   groupMsgsAddMessage(message: Message) {
+    if (this.groupMessages.length === 0) {
+      this.groupMessages.push({
+        is_send: true,
+        messages: [message]
+      });
+    } else
     if (this.groupMessages[this.groupMessages.length - 1].is_send !== message.is_send) {
       this.groupMessages.push({
         is_send: message.is_send,
